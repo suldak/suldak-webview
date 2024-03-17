@@ -18,11 +18,25 @@ const config: Config = {
         'suldak-gray-700': '#646464',
         'suldak-gray-600': '#8e8e8e',
         'suldak-gray-500': '#bebebe',
+        'suldak-gray-300': '#e8e8e8',
         'suldak-orange-500': '#ff9300',
         'suldak-green-500': '#20bf27',
         'suldak-red-500': '#e45141',
         'suldak-mint-500': '#08beca',
         'suldak-mint-50': '#f6fdfe',
+      },
+      boxShadow: {
+        'suldak-card': '2px 2px 20px -3px rgba(0, 0, 0, 0.13)',
+      },
+      padding: {
+        '18px': '18px',
+      },
+      height: {
+        card: '140px',
+        'card-image': '90px',
+      },
+      width: {
+        'card-image': '90px',
       },
     },
   },
