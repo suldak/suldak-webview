@@ -10,13 +10,15 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
         'suldak-gray-900': '#1e1e1e',
         'suldak-gray-700': '#646464',
         'suldak-gray-600': '#8e8e8e',
         'suldak-gray-500': '#bebebe',
+        'suldak-gray-400': '#e1e1e1',
         'suldak-gray-300': '#e8e8e8',
         'suldak-orange-500': '#ff9300',
         'suldak-green-500': '#20bf27',

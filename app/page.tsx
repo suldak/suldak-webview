@@ -1,11 +1,9 @@
 import LiquorCard from 'components/LiquorCard';
+import Tag from 'components/Tag';
 
 export default function Home() {
   return (
     <main className="flex flex-col gap-4 p-5">
-      {/* <Card />
-      <Card />
-      <Card /> */}
       <LiquorCard
         imgUrl="/api/file/download/3a4a2da1c777406b9bbbcae17ab8b237_1708006440648"
         liquorId={5}
@@ -27,6 +25,12 @@ export default function Home() {
         liquorAbv={16.5}
         name="새로"
       />
+      <Tag tagType="blue" tagId={1}>
+        칵테일
+      </Tag>
+      <Tag tagType="gray" tagId={2}>
+        test
+      </Tag>
     </main>
   );
 }
