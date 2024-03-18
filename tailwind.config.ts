@@ -10,8 +10,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
         'suldak-gray-900': '#1e1e1e',
@@ -36,6 +35,9 @@ const config: Config = {
         'card-image': '90px',
       },
       width: {
+        'card-image': '90px',
+      },
+      minWidth: {
         'card-image': '90px',
       },
     },
