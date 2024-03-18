@@ -10,19 +10,35 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
         'suldak-gray-900': '#1e1e1e',
         'suldak-gray-700': '#646464',
         'suldak-gray-600': '#8e8e8e',
         'suldak-gray-500': '#bebebe',
+        'suldak-gray-300': '#e8e8e8',
         'suldak-orange-500': '#ff9300',
         'suldak-green-500': '#20bf27',
         'suldak-red-500': '#e45141',
         'suldak-mint-500': '#08beca',
         'suldak-mint-50': '#f6fdfe',
+      },
+      boxShadow: {
+        'suldak-card': '2px 2px 20px -3px rgba(0, 0, 0, 0.13)',
+      },
+      padding: {
+        '18px': '18px',
+      },
+      height: {
+        card: '140px',
+        'card-image': '90px',
+      },
+      width: {
+        'card-image': '90px',
+      },
+      minWidth: {
+        'card-image': '90px',
       },
     },
   },
