@@ -42,6 +42,9 @@ const config: Config = {
       minWidth: {
         'card-image': '90px',
       },
+      gap: {
+        '5px': '5px',
+      },
     },
   },
   plugins: [],
