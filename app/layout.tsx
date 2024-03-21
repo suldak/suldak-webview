@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white text-white max-w-screen-sm mx-auto">
+      <body className="bg-white text-suldak-gray-900 max-w-screen-sm mx-auto">
         {children}
       </body>
     </html>
