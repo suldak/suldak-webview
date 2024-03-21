@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 
 import Tag from 'components/Tag';
@@ -19,33 +21,32 @@ const LiquorSearchPage = () => {
         <div className="flex items-start py-2 px-5 gap-2 w-full overflow-x-scroll whitespace-nowrap">
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              <div>소주</div>
-              {/* <span>X</span> */}
-              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+              <span>소주</span>
+              <DeleteIcon src={DeleteIcon} />
             </div>
           </Tag>
 
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
               <span>하이볼</span>
-              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+              <DeleteIcon src={DeleteIcon} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              위스키{' '}
-              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+              <span>위스키</span>
+              <DeleteIcon src={DeleteIcon} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              과일 <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+              <span>과일</span>
+              <DeleteIcon src={DeleteIcon} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              TTEESSTT{' '}
-              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+              <span>TEST</span> <DeleteIcon src={DeleteIcon} />
             </div>
           </Tag>
         </div>
