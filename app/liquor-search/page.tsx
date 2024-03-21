@@ -8,33 +8,44 @@ const LiquorSearchPage = () => {
   return (
     <main className="flex flex-col ">
       {/* 최근 검색어 */}
-      <section className="px-5">
-        <div className="pt-10 pb-2 flex justify-between items-end">
+      <section className="">
+        <div className="pt-10 pb-2 px-5 flex justify-between items-end">
           <span className="text-base font-bold">최근 검색어</span>
 
           <button className="text-xs font-medium text-suldak-gray-500">
             전체삭제
           </button>
         </div>
-        <div className="flex gap-2 w-full overflow-x-auto whitespace-nowrap">
+        <div className="flex items-start py-2 px-5 gap-2 w-full overflow-x-scroll whitespace-nowrap">
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              소주 <Image alt="삭제" src={DeleteIcon} />
+              <div>소주</div>
+              {/* <span>X</span> */}
+              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
+            </div>
+          </Tag>
+
+          <Tag tagId={2} tagType="gray">
+            <div className="flex justify-center items-center gap-5px">
+              <span>하이볼</span>
+              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              하이볼 <Image alt="삭제" src={DeleteIcon} />
+              위스키{' '}
+              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              위스키 <Image alt="삭제" src={DeleteIcon} />
+              과일 <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
             </div>
           </Tag>
           <Tag tagId={2} tagType="gray">
             <div className="flex justify-center items-center gap-5px">
-              과일 <Image alt="삭제" src={DeleteIcon} />
+              TTEESSTT{' '}
+              <Image alt="삭제" src={DeleteIcon} width={12} height={12} />
             </div>
           </Tag>
         </div>

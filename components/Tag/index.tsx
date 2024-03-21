@@ -15,7 +15,7 @@ const Tag = ({ children, tagType, tagId, selected, onClick }: TagProps) => {
         break;
       case 'gray':
         tagStyle =
-          'bg-white text-suldak-gray-900 border-suldak-gray-400 border';
+          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-sm border';
         break;
     }
   }
