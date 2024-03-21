@@ -45,6 +45,9 @@ const config: Config = {
       gap: {
         '5px': '5px',
       },
+      borderRadius: {
+        '30px': '30px',
+      },
     },
   },
   plugins: [],

@@ -25,8 +25,11 @@ export default function Home() {
         liquorAbv={16.5}
         name="새로"
       />
-      <Tag tagType="blue" tagId={1}>
+      <Tag tagType="blue" tagId={1} selected={true}>
         칵테일
+      </Tag>
+      <Tag tagType="blue" tagId={2}>
+        맥주 <button>x</button>
       </Tag>
       <Tag tagType="gray" tagId={2}>
         test
