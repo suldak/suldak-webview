@@ -51,6 +51,10 @@
   src: url('/fonts/Pretendard-Thin.woff') format('woff') format('woff');
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Pretendard';
 }
