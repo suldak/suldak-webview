@@ -5,6 +5,7 @@ import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import SportsModal from 'assets/icons/ico-sports-medal.svg';
 import TodayUp from 'assets/icons/ico-today-up.svg';
 import TodayDown from 'assets/icons/ico-today-down.svg';
+export const BASE_URL = 'http://122.45.203.134:8083';
 
 // 최근 검색어 목데이터
 const recent = [
