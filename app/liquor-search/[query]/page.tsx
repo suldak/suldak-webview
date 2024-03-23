@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { usePathname, useRouter } from 'next/navigation';
 
 import SortIcon from 'assets/icons/ico-filter-sort.svg';
 import FilterIcon from 'assets/icons/ico-filter-filter.svg';
@@ -8,6 +10,8 @@ import LiquorCard from 'components/LiquorCard';
 
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
+  const router = useRouter();
+  console.log(router);
   return (
     <main>
       {/* 추천 목록 */}
@@ -27,7 +31,7 @@ const LiquorSearchResultPage = () => {
 
       {/* 술 검색 목록 */}
       <section className="px-5">
-        <div className="flex items-center justify-between py-3.5">
+        <div className="flex items-center justify-between pt-3.5">
           <span className="text-xs font-medium text-suldak-gray-600">
             총 12종
           </span>
@@ -45,7 +49,10 @@ const LiquorSearchResultPage = () => {
         </div>
       </section>
 
-      <section className="flex flex-col px-5 gap-2.5">
+      <section
+        className="flex flex-col px-5 py-3.5 gap-2.5 overflow-y-auto"
+        style={{ maxHeight: `calc(100dvh - 100px)` }}
+      >
         <LiquorCard
           imgUrl="/api/file/download/3a4a2da1c777406b9bbbcae17ab8b237_1708006440648"
           liquorId={5}
