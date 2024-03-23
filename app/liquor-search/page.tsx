@@ -128,7 +128,9 @@ const LiquorSearchPage = () => {
         <div className="pt-10 pb-2 flex justify-between items-end">
           <span className="text-base font-bold">최근 검색어</span>
 
-          <button className="text-xs font-medium text-suldak-gray-500">전체삭제</button>
+          <button className="text-xs font-medium text-suldak-gray-500">
+            전체삭제
+          </button>
         </div>
         <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
           {recent.map((liquor) => (
@@ -162,7 +164,9 @@ const LiquorSearchPage = () => {
             <span className="text-base font-bold">검색 키워드 랭킹</span>
           </div>
 
-          <button className="text-xs font-medium text-suldak-gray-500">18시 기준</button>
+          <button className="text-xs font-medium text-suldak-gray-500">
+            18시 기준
+          </button>
         </div>
 
         {/* 순위 목록 */}
@@ -171,11 +175,17 @@ const LiquorSearchPage = () => {
           <div className="flex flex-col">
             {ranking.slice(0, 5).map((keyword) => (
               <div className="flex items-center gap-3" key={keyword.id}>
-                <span className="text-suldak-gray-700 font-bold text-sm">{keyword.rank}</span>
+                <div className="flex items-center justify-center text-suldak-gray-700 font-bold text-sm w-2.5">
+                  {keyword.rank}
+                </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-suldak-gray-900 font-medium text-sm">{keyword.name}</span>
+                  <span className="text-suldak-gray-900 font-medium text-sm">
+                    {keyword.name}
+                  </span>
                   {keyword.new ? (
-                    <span className="text-suldak-red-500 font-bold text-2xs">NEW!</span>
+                    <span className="text-suldak-red-500 font-bold text-2xs">
+                      NEW!
+                    </span>
                   ) : null}
                   {keyword.today === 'up' ? (
                     <TodayUp />
@@ -190,11 +200,17 @@ const LiquorSearchPage = () => {
           <div>
             {ranking.slice(5, 10).map((keyword) => (
               <div className="flex items-center gap-3" key={keyword.id}>
-                <span className="text-suldak-gray-700 font-bold text-sm">{keyword.rank}</span>
+                <div className="flex items-center justify-center text-suldak-gray-700 font-bold text-sm w-2.5">
+                  {keyword.rank}
+                </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-suldak-gray-900 font-medium text-sm">{keyword.name}</span>
+                  <span className="text-suldak-gray-900 font-medium text-sm">
+                    {keyword.name}
+                  </span>
                   {keyword.new ? (
-                    <span className="text-suldak-red-500 font-bold text-2xs">NEW!</span>
+                    <span className="text-suldak-red-500 font-bold text-2xs">
+                      NEW!
+                    </span>
                   ) : null}
                   {keyword.today === 'up' ? (
                     <TodayUp />
