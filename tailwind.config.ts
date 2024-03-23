@@ -20,6 +20,7 @@ const config: Config = {
         'suldak-gray-500': '#bebebe',
         'suldak-gray-400': '#e1e1e1',
         'suldak-gray-300': '#e8e8e8',
+        'suldak-gray-200': '#f6f6f6',
         'suldak-orange-500': '#ff9300',
         'suldak-green-500': '#20bf27',
         'suldak-red-500': '#e45141',
@@ -48,8 +49,11 @@ const config: Config = {
       borderRadius: {
         '30px': '30px',
       },
+      fontSize: {
+        '2xs': '10px',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 export default config;
