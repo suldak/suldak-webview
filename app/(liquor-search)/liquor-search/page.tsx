@@ -7,6 +7,7 @@ import SportsMedal from 'assets/icons/ico-sports-medal.svg';
 import LiquorRecommendKeyword from 'components/liquor-search/LiquorRecommendKeyword';
 import { Suspense } from 'react';
 import LiquorRankingKeyword from 'components/liquor-search/LiquorRankingKeyword';
+import LiquorFetcher from 'components/liquor-detail/liquor-fetcher';
 export const BASE_URL = 'http://122.45.203.134:8083';
 
 // 최근 검색어 목데이터

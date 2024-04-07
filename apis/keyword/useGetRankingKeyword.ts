@@ -1,7 +1,7 @@
 import axiosInstance from 'apis/axiosInstance';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ResponseType } from 'apis/api';
-import { RankingKeyword, RankingKeywordRequestProps } from './keyword';
+import { RankingKeyword } from './types';
 
 const getRankingKeyword = async (): Promise<ResponseType<RankingKeyword[]>> => {
   await new Promise((resolve) => setTimeout(resolve, 2000));

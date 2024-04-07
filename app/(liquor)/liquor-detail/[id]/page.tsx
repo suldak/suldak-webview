@@ -1,13 +1,18 @@
+import { Suspense } from 'react';
 import LineLikeIcon from 'assets/icons/ico-alcohol-like-line.svg';
 import FillLineIcon from 'assets/icons/ico-alcohol-like-fill.svg';
 import SnackIcon from 'assets/icons/ico-snack.svg';
 
 import LiquorTag from 'components/liquor-detail/liquor-tag';
 import LiquorSnack from 'components/liquor-detail/liquor-snack';
+import LiquorFetcher from 'components/liquor-detail/liquor-fetcher';
 
 export default function LiquorDetailPage() {
   return (
     <main>
+      <Suspense fallback={<>Loading</>}>
+        <LiquorFetcher />
+      </Suspense>
       {/* 사진 */}
       <section>
         <div>

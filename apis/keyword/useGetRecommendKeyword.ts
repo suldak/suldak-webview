@@ -1,6 +1,6 @@
 import axiosInstance from 'apis/axiosInstance';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { RecommendKeyword } from './keyword';
+import { RecommendKeyword } from './types';
 import { ResponseType } from 'apis/api';
 
 const getRecommendKeyword = async (): Promise<
