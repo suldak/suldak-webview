@@ -32,6 +32,10 @@ const config: Config = {
       },
       padding: {
         '18px': '18px',
+        '50px': '50px',
+      },
+      margin: {
+        '18px': '18px',
       },
       height: {
         card: '140px',
@@ -51,6 +55,7 @@ const config: Config = {
       },
       fontSize: {
         '2xs': '10px',
+        '22px': '22px',
       },
     },
   },
