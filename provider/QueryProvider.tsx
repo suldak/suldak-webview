@@ -12,7 +12,15 @@ interface Props {
  * @returns
  */
 const QueryProvider = ({ children }: Props) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        gcTime: 0,
+        retry: 0,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

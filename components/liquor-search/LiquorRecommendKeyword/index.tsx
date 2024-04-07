@@ -1,7 +1,4 @@
-import {
-  getRecommendKeyword,
-  useGetRecommendKeyword,
-} from 'apis/keyword/useGetRecommendKeyword';
+import { useGetRecommendKeyword } from 'apis/keyword/useGetRecommendKeyword';
 import Tag from 'components/Tag';
 
 export default function LiquorRecommendKeyword() {
