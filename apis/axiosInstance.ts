@@ -1,17 +1,16 @@
 import axios from 'axios';
 
-export const BASE_URL = 'http://122.45.203.134:8080';
-
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 5000,
 });
 
 axiosInstance.interceptors.request.use((config) => {
   config.headers[
     'Authorization'
-  ] = `Bearer eyJyZWdEYXRlIjoxNzExMTEyNjc4NTg3LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0ODZkNmFhYy1hODlmLTRiNDktODE3My00ZjBjNDZlNzhhOGMiLCJpZCI6NiwiaWF0IjoxNzExMTEyNjc4LCJleHAiOjE3MTkwNjE0Nzh9.7ghONbhgxp9pjqDtnkXqOEdr_REpyOF9p0XbHuPs7AU`;
+  ] = `Bearer eyJyZWdEYXRlIjoxNzEyNDY5ODkwNzQ3LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZTQzZDIwNS1jYWRmLTRiMDItYWJiZC05ZjNiYjEzNjZkYWEiLCJpZCI6NiwiaWF0IjoxNzEyNDY5ODkwLCJleHAiOjE3MjAzMzIyOTB9.j3PIisumRiE3Bi0xiS--2mWAzIpaFIdzBOoBaOU40ak`;
 
+  console.log(config);
   return config;
 });
 

@@ -5,6 +5,8 @@ import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import SportsModal from 'assets/icons/ico-sports-medal.svg';
 import TodayUp from 'assets/icons/ico-today-up.svg';
 import TodayDown from 'assets/icons/ico-today-down.svg';
+import LiquorRecommendKeyword from 'components/liquor-search/LiquorRecommendKeyword';
+import { Suspense } from 'react';
 export const BASE_URL = 'http://122.45.203.134:8083';
 
 // 최근 검색어 목데이터
@@ -147,13 +149,9 @@ const LiquorSearchPage = () => {
       {/* 추천 검색어 */}
       <section className="px-5">
         <p className="text-base font-bold pt-10 pb-2">추천 검색어</p>
-        <div className="flex flex-wrap gap-2 py-2">
-          {recommend.map((recLiquor) => (
-            <Tag tagId={recLiquor.id} key={recLiquor.id} tagType="blue">
-              {recLiquor.name}
-            </Tag>
-          ))}
-        </div>
+        <Suspense fallback={<>로딩중...</>}>
+          <LiquorRecommendKeyword />
+        </Suspense>
       </section>
 
       {/* 검색 키워드 랭킹 */}
