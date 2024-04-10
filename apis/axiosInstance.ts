@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((config) => {
   config.headers[
     'Authorization'
-  ] = `Bearer eyJyZWdEYXRlIjoxNzEyNDY5ODkwNzQ3LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZTQzZDIwNS1jYWRmLTRiMDItYWJiZC05ZjNiYjEzNjZkYWEiLCJpZCI6NiwiaWF0IjoxNzEyNDY5ODkwLCJleHAiOjE3MjAzMzIyOTB9.j3PIisumRiE3Bi0xiS--2mWAzIpaFIdzBOoBaOU40ak`;
+  ] = `Bearer eyJyZWdEYXRlIjoxNzEyNzQ3MDM3MjYyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OGFiN2NlMy01ZTQ0LTQzN2EtOThiZi02MDcyOTVhYmIzMjEiLCJpZCI6NiwiaWF0IjoxNzEyNzQ3MDM3LCJleHAiOjE3MjA2MDk0Mzd9.ZlSak3eeBNmiKZz5tJ7T7B4gqPGy-UU_9Y90EZtMb3s`;
 
   console.log(config);
   return config;

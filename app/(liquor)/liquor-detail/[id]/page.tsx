@@ -1,6 +1,6 @@
+'use client';
+
 import { Suspense } from 'react';
-import LineLikeIcon from 'assets/icons/ico-alcohol-like-line.svg';
-import FillLineIcon from 'assets/icons/ico-alcohol-like-fill.svg';
 import SnackIcon from 'assets/icons/ico-snack.svg';
 
 import LiquorTag from 'components/liquor-detail/liquor-tag';
@@ -29,9 +29,6 @@ export default function LiquorDetailPage() {
         <div className="flex justify-between">
           <span className="text-suldak-orange-500 text-xs font-medium">
             ALC 14%
-          </span>
-          <span>
-            <FillLineIcon />
           </span>
         </div>
         <p className="text-22px font-semibold text-suldak-gray-900">홍초주</p>
