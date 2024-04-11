@@ -1,6 +1,7 @@
 import axiosInstance from 'apis/axiosInstance';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ResponseType } from 'apis/api';
+import { Liquor } from 'models/liquor';
 
 const getLiquorDetail = async (id: number): Promise<ResponseType<Liquor>> => {
   const { data } = await axiosInstance.get<ResponseType<Liquor>>(
