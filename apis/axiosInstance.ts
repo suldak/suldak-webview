@@ -6,11 +6,10 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  config.headers[
-    'Authorization'
-  ] = `Bearer eyJyZWdEYXRlIjoxNzEyODAyODg1Mzk0LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjOGM2YjMwZi05MTNmLTRjMGMtYmZhYS0yZGVmN2ZjZWFmNDMiLCJpZCI6NiwiaWF0IjoxNzEyODAyODg1LCJleHAiOjE3MjA2NjUyODV9.JnECRiOoesjyHJSafdTbtGyvdFXPV5pMa6Wq3qzXLEk`;
+  config.headers['Authorization'] = process.env.NEXT_PUBLIC_TOKEN;
 
   console.log(config);
+
   return config;
 });
 

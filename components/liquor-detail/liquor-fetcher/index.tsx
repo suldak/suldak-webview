@@ -3,6 +3,7 @@ import SnackIcon from 'assets/icons/ico-snack.svg';
 
 import LiquorTag from '../liquor-tag';
 import LiquorSnack from '../liquor-snack';
+import { BASE_URL } from 'app/(liquor-search)/liquor-search/page';
 
 export default function LiquorFetcher({ id }: { id: number }) {
   const { data } = useGetLiquorDetail(id);
@@ -14,7 +15,7 @@ export default function LiquorFetcher({ id }: { id: number }) {
         <div>
           <img
             className="w-full object-cover"
-            src={`https://suldak-images.s3.ap-northeast-2.amazonaws.com/${data.liquorPictureUrl}`}
+            src={`${BASE_URL}${data.liquorPictureUrl}`}
             alt={`${data.name} 사진`}
           />
         </div>
