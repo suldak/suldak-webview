@@ -1,4 +1,4 @@
-import LiquorTag from 'components/liquor-detail/liquor-tag';
+import LiquorTag from 'components/liquor/detail/LiquorTag';
 
 interface DetailInfoProps {
   detailAbv?: number;

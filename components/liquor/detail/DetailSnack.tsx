@@ -1,6 +1,6 @@
 import SnackIcon from 'assets/icons/ico-snack.svg';
 
-import LiquorSnack from 'components/liquor-detail/liquor-snack';
+import LiquorSnack from 'components/liquor/detail/LiquorSnack';
 import { LiquorSnack as LiquorSnackType } from 'models/liquor';
 
 interface DetailSnackProps {

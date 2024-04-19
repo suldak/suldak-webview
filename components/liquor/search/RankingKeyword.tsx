@@ -8,7 +8,7 @@ import TodayDown from 'assets/icons/ico-today-down.svg';
 /** 검색어 순위 컴포넌트 */
 function RankingKeyword() {
   const { data: rankingKeywords } = useGetRankingKeyword();
-  console.log(rankingKeywords);
+
   return (
     <>
       <div className="flex items-center gap-14">

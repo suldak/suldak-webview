@@ -1,8 +1,8 @@
 import { useGetLiquorDetail } from 'apis/liquor/useGetLiquorDetail';
 import SnackIcon from 'assets/icons/ico-snack.svg';
 
-import LiquorTag from '../liquor-tag';
-import LiquorSnack from '../liquor-snack';
+import LiquorTag from '../../liquor/detail/LiquorTag';
+import LiquorSnack from '../../liquor/detail/LiquorSnack';
 // import { BASE_URL } from 'app/(liquor-search)/liquor-search/page';
 
 export default function LiquorFetcher({ id }: { id: number }) {
