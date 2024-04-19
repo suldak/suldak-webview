@@ -50,7 +50,7 @@ interface LiquorSell {
 }
 
 // 술 안주
-interface LiquorSnack {
+export interface LiquorSnack {
   fileBaseNm: string;
   id: number;
   name: string;
