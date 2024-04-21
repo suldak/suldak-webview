@@ -6,7 +6,7 @@ import SortIcon from 'assets/icons/ico-filter-sort.svg';
 import FilterIcon from 'assets/icons/ico-filter-filter.svg';
 
 // components
-import LiquorCard from 'components/LiquorCard';
+import LiquorCard from 'components/shared/LiquorCard';
 
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
