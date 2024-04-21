@@ -60,7 +60,7 @@ function LiquorSearchPage() {
       <section className="px-5">
         <p className="text-base font-bold pt-10 pb-2">추천 검색어</p>
         <div className="flex flex-wrap gap-2 py-2">
-          <Suspense>
+          <Suspense fallback={<>로딩중...</>}>
             <RecommendKeyword />
           </Suspense>
         </div>
