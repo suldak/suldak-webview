@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import SortIcon from 'assets/icons/ico-filter-sort.svg';
 import FilterIcon from 'assets/icons/ico-filter-filter.svg';
@@ -11,7 +11,8 @@ import LiquorCard from 'components/shared/LiquorCard';
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
   const router = useRouter();
-  console.log(router);
+  const searchParams = useSearchParams();
+  console.log(searchParams);
   return (
     <main>
       {/* 추천 목록 */}
@@ -78,6 +79,20 @@ const LiquorSearchResultPage = () => {
           imgUrl="/api/file/download/9a71ce2ba9d64bcbac22a964907d789f_1708139200916"
           liquorId={5}
           liquorDetail="처음처럼 회사에서 만든 제로소주, 숙취가 별로 없다."
+          liquorAbv={16.5}
+          name="새로"
+        />
+        <LiquorCard
+          imgUrl="/api/file/download/b1921f7560bd4ae9bbed65615725aa1e_1708232807725"
+          liquorId={5}
+          liquorDetail="한 줄 테 스 트"
+          liquorAbv={16.5}
+          name="새로"
+        />
+        <LiquorCard
+          imgUrl="/api/file/download/b1921f7560bd4ae9bbed65615725aa1e_1708232807725"
+          liquorId={5}
+          liquorDetail="한 줄 테 스 트"
           liquorAbv={16.5}
           name="새로"
         />

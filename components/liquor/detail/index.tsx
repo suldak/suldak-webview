@@ -8,10 +8,14 @@ import DetailSnack from './DetailSnack';
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
   const { data: liquor } = useGetLiquorDetail(id);
-  console.log(liquor);
 
-  console.log(liquor.liquorDetailDto);
   // 표시할 태그 목록
+  const newTags = [
+    liquor.liquorNameDto.name,
+    ...liquor.liquorSellDtos.map((sell) => sell.name),
+    ...liquor.stateTypeDtos.map((state) => state.name),
+    ...liquor.tasteTypeDtos.map((taste) => taste.name),
+  ];
 
   return (
     <>
@@ -20,6 +24,7 @@ function LiquorDetail({ id }: { id: number }) {
         name={liquor.name}
         detailAbv={liquor.detailAbv}
         explanation={liquor.detailExplanation}
+        tags={newTags}
       />
       <div className="w-full h-2.5 bg-suldak-gray-200" />
       <DetailSnack snacks={liquor.liquorSnackRes} />

@@ -4,10 +4,16 @@ interface DetailInfoProps {
   detailAbv?: number;
   name?: string;
   explanation?: string;
+  tags?: string[];
 }
 
 /** 술 정보 컴포넌트 */
-function DetailInfo({ detailAbv, name, explanation }: DetailInfoProps) {
+function DetailInfo({
+  detailAbv,
+  name,
+  explanation,
+  tags = [],
+}: DetailInfoProps) {
   return (
     <>
       <section className="px-5 pt-10 pb-50px">
@@ -22,9 +28,9 @@ function DetailInfo({ detailAbv, name, explanation }: DetailInfoProps) {
         </div>
         <div className="flex gap-1.5 mt-18px">
           {/* 실제 태그 우선순위 기반으로 보여주도록 작업 필요 */}
-          <LiquorTag name="편의점" />
-          <LiquorTag name="달달한" />
-          <LiquorTag name="상큼" />
+          {tags.slice(0, 3).map((tag) => (
+            <LiquorTag key={tag} name={tag} />
+          ))}
         </div>
       </section>
     </>

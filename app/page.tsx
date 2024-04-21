@@ -1,5 +1,5 @@
-import LiquorCard from 'components/LiquorCard';
-import Tag from 'components/Tag';
+import LiquorCard from 'components/shared/LiquorCard';
+import Tag from 'components/shared/Tag';
 
 export default function Home() {
   return (

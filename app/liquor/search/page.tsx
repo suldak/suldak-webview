@@ -5,7 +5,7 @@ import SportsMedal from 'assets/icons/ico-sports-medal.svg';
 
 import RecommendKeyword from 'components/liquor/search/RecommendKeyword';
 import RankingKeyword from 'components/liquor/search/RankingKeyword';
-import Tag from 'components/Tag';
+import Tag from 'components/shared/Tag';
 
 // 최근 검색어 목데이터
 const recent = [
