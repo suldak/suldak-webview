@@ -17,7 +17,7 @@ const LiquorSearchResultPage = () => {
   const decodedQ = decodeURIComponent(q);
 
   const { data: liquors } = useLiquorSearch(decodedQ);
-  console.log('liquor', liquors);
+  //console.log('liquor', liquors);
 
   return (
     <main>

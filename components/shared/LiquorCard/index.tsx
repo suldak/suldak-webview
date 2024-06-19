@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CardProps } from './types';
-import LiquorTag from 'components/liquor/detail/LiquorTag';
+import LiquorTag from './LiquorTag';
 const BASE_URL = 'http://122.45.203.134:8080';
 
 /** 카드 컴포넌트 */
@@ -14,7 +14,6 @@ const LiquorCard = ({
   liquorSnackRes,
   tasteTypeDtos,
 }: CardProps) => {
-
   return (
     <div className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card p-[18px] cursor-pointer">
       <div className="rounded-full min-w-card-image h-card-image bg-orange-500">
