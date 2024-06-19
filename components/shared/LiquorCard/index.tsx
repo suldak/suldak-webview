@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CardProps } from './types';
-
+import LiquorTag from 'components/liquor/detail/LiquorTag';
 const BASE_URL = 'http://122.45.203.134:8080';
 
 /** 카드 컴포넌트 */
@@ -10,7 +10,11 @@ const LiquorCard = ({
   liquorDetail,
   liquorAbv,
   name,
+  liquorSellDtos,
+  liquorSnackRes,
+  tasteTypeDtos,
 }: CardProps) => {
+
   return (
     <div className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card p-[18px] cursor-pointer">
       <div className="rounded-full min-w-card-image h-card-image bg-orange-500">
@@ -27,7 +31,7 @@ const LiquorCard = ({
       <div className="flex flex-col gap-1.5">
         <div className="flex flex-col gap-0.5">
           <p className="text-suldak-orange-500 text-xs font-medium">
-            ALC 10~15%
+            ALC {liquorAbv}%
           </p>
           <p className="text-suldak-gray-900 text-base font-semibold">
             {name || 'Name None'}
@@ -37,16 +41,25 @@ const LiquorCard = ({
           </p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <div className="flex items-center justify-center bg-white py-1 px-1.5 rounded-sm border border-suldak-gray-300 text-suldak-gray-600 text-xs font-medium">
-            칵테일
-          </div>
-          <div className="flex items-center justify-center bg-white py-1 px-1.5 rounded-sm border border-suldak-gray-300 text-suldak-gray-600 text-xs font-medium">
-            달달한
-          </div>
+          {liquorSellDtos.map(
+            (liquorSell, index) =>
+              liquorSell?.name && (
+                <LiquorTag key={index} name={liquorSell.name} />
+              ),
+          )}
+          {tasteTypeDtos.map(
+            (taste, index) =>
+              taste.name && <LiquorTag key={index} name={taste.name} />,
+          )}
+          {liquorSnackRes.map(
+            (liquorSnack, index) =>
+              liquorSnack?.name && (
+                <LiquorTag key={index} name={liquorSnack.name} />
+              ),
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 export default LiquorCard;

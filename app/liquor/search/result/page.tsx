@@ -8,19 +8,15 @@ import FilterIcon from 'assets/icons/ico-filter-filter.svg';
 // components
 import LiquorCard from 'components/shared/LiquorCard';
 import SearchInput from 'components/liquor/search/SearchInput';
-import { useMemo } from 'react';
+import { Liquor } from 'models/liquor';
 
 /** 술 검색 결과 페이지 */
-
 const LiquorSearchResultPage = () => {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') ?? '';
   const decodedQ = decodeURIComponent(q);
 
-  const enabled = useMemo(() => Boolean(decodedQ), [decodedQ]);
-
-  const { data: liquors } = useLiquorSearch(decodedQ, { enabled });
-
+  const { data: liquors } = useLiquorSearch(decodedQ);
   console.log('liquor', liquors);
 
   return (
@@ -65,7 +61,7 @@ const LiquorSearchResultPage = () => {
         className="flex flex-col px-5 py-3.5 gap-2.5 overflow-y-auto"
         style={{ maxHeight: `calc(100dvh - 100px)` }}
       >
-        {liquors?.content?.map((liquor) => (
+        {liquors?.content?.map((liquor: Liquor) => (
           <LiquorCard
             key={liquor.id} // 고유한 key prop 추가
             imgUrl={liquor.liquorPictureUrl || '/default-image-url.jpg'} // 유효하지 않은 URL 처리
@@ -73,6 +69,9 @@ const LiquorSearchResultPage = () => {
             liquorDetail={liquor.detailExplanation}
             liquorAbv={liquor.detailAbv}
             name={liquor.name}
+            liquorSellDtos={liquor.liquorSellDtos}
+            liquorSnackRes={liquor.liquorSnackRes}
+            tasteTypeDtos={liquor.tasteTypeDtos}
           />
         ))}
       </section>

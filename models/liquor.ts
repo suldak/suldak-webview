@@ -44,7 +44,7 @@ export interface Liquor {
 }
 
 // 술 판매처
-interface LiquorSell {
+export interface LiquorSell {
   id: number;
   name: string;
 }
@@ -63,7 +63,7 @@ interface StateType {
 }
 
 // 술 맛
-interface TasteType {
+export interface TasteType {
   id: number;
   name: string;
 }
