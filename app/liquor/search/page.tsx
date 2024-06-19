@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import SportsMedal from 'assets/icons/ico-sports-medal.svg';
-
 import RecommendKeyword from 'components/liquor/search/RecommendKeyword';
 import RankingKeyword from 'components/liquor/search/RankingKeyword';
 import SearchInput from 'components/liquor/search/SearchInput';

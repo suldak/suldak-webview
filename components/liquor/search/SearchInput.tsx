@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import SearchIcon from 'assets/icons/ico-search-gray.svg';
 import ClearIcon from 'assets/icons/ico-clear-gray.svg';
 import Link from 'next/link';
+import SearchButton from './SearchButton';
 
 function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
@@ -17,9 +17,7 @@ function SearchInput() {
 
   return (
     <div className="relative w-full pt-1">
-      <Link href="/liquor/search/result">
-        <SearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer" />
-      </Link>
+      <SearchButton searchValue = {searchValue}/>
       <input
         className="search-input pl-10 bg-suldak-gray-200 w-full py-2 border-none outline-none focus:ring-0 rounded-full"
         type="text"
