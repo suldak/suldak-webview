@@ -15,7 +15,7 @@ const LiquorCard = ({
   tasteTypeDtos,
 }: CardProps) => {
   return (
-    <div className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card p-[18px] cursor-pointer">
+    <div className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card pl-[18px] py-[18px] cursor-pointer">
       <div className="rounded-full min-w-card-image h-card-image bg-orange-500">
         <Image
           className="rounded-full w-card-image h-card-image bg-orange-500"
@@ -39,7 +39,7 @@ const LiquorCard = ({
             {liquorDetail || 'Detail None'}
           </p>
         </div>
-        <div className="flex flex-row gap-1.5">
+        <div className="flex flex-wrap flex-row gap-1.5">
           {liquorSellDtos.map(
             (liquorSell, index) =>
               liquorSell?.name && (
