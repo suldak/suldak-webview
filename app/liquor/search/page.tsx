@@ -6,33 +6,12 @@ import RecommendKeyword from 'components/liquor/search/RecommendKeyword';
 import RankingKeyword from 'components/liquor/search/RankingKeyword';
 import SearchInput from 'components/liquor/search/SearchInput';
 import Tag from 'components/shared/Tag';
-
-// 최근 검색어 목데이터
-const recent = [
-  {
-    id: 1,
-    name: '소주',
-  },
-  {
-    id: 2,
-    name: '하이볼',
-  },
-  {
-    id: 3,
-    name: '위스키',
-  },
-  {
-    id: 4,
-    name: '과일',
-  },
-  {
-    id: 5,
-    name: '테스트',
-  },
-] as const;
+import { useGetRecentSearch } from 'apis/keyword/useGetRecentSearch';
+import { SearchText } from 'models/searchText';
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
+  const recent = useGetRecentSearch(); //최근검색어
   return (
     <>
       {/* 최근 검색어 */}
@@ -46,10 +25,10 @@ function LiquorSearchPage() {
           </button>
         </div>
         <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
-          {recent.map((liquor) => (
-            <Tag tagId={liquor.id} tagType="gray" key={liquor.id}>
+          {recent.map((search: SearchText, index: number) => (
+            <Tag tagId={index} tagType="gray" key={index}>
               <div className="flex justify-center items-center gap-5px">
-                <span>{liquor.name}</span>
+                <span>{search.searchText}</span>
                 <DeleteIcon />
               </div>
             </Tag>
