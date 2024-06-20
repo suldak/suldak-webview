@@ -1,7 +1,7 @@
 // 최근검색어 옆 현재시각을 띄우기 위한 컴포넌트
 import React, { useEffect, useState } from 'react';
 
-const CurrentTimeDisplay: React.FC = () => {
+function CurrentTimeDisplay() {
   const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
@@ -19,6 +19,6 @@ const CurrentTimeDisplay: React.FC = () => {
   }, []);
 
   return <>{currentTime}</>;
-};
+}
 
 export default CurrentTimeDisplay;
