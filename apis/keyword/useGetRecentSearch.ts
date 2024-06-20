@@ -5,7 +5,7 @@ import { SearchText } from 'models/searchText';
 
 const getRecentSearch = async (): Promise<ResponseType<SearchText[]>> => {
   const { data } = await axiosInstance.get<ResponseType<SearchText[]>>(
-    `http://122.45.203.134:8080/api/search/search-text`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/search-text`,
     {
       params: {
         searchType: 'LIQUOR',
