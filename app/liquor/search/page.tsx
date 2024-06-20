@@ -9,10 +9,16 @@ import SearchInput from 'components/liquor/search/SearchInput';
 import Tag from 'components/shared/Tag';
 import { useGetRecentSearch } from 'apis/keyword/useGetRecentSearch';
 import { SearchText } from 'models/searchText';
+import { useRouter } from 'next/navigation';
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
+  const router = useRouter();
   const { data: recent } = useGetRecentSearch(); // 최근검색어
+
+  const handleRecentClick = (searchValue: string) => () => {
+    router.push(`/liquor/search/result?q=${searchValue}`);
+  };
 
   return (
     <>
@@ -31,7 +37,9 @@ function LiquorSearchPage() {
             recent.map((search: SearchText, index: number) => (
               <Tag tagId={index} tagType="gray" key={index}>
                 <div className="flex justify-center items-center gap-5px">
-                  <span>{search.searchText}</span>
+                  <span onClick={handleRecentClick(search.searchText)}>
+                    {search.searchText}
+                  </span>
                   <DeleteIcon />
                 </div>
               </Tag>

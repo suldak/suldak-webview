@@ -22,7 +22,7 @@ export const useGetRecentSearch = () => {
   const { data } = useQuery({
     queryKey,
     queryFn: () => getRecentSearch(),
-    staleTime: 5000,
+    staleTime: 10000,
   });
 
   return {
