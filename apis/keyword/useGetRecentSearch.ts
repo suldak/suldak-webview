@@ -4,15 +4,15 @@ import { ResponseType } from 'apis/api';
 import { SearchText } from 'models/searchText';
 
 const getRecentSearch = async (): Promise<ResponseType<SearchText[]>> => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   const { data } = await axiosInstance.get<ResponseType<SearchText[]>>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/search-text`,
+    `http://122.45.203.134:8080/api/search/search-text`,
     {
       params: {
         searchType: 'LIQUOR',
       },
     },
   );
+  console.log('recent', data);
   return data;
 };
 
@@ -22,6 +22,7 @@ export const useGetRecentSearch = () => {
   const { data } = useQuery({
     queryKey,
     queryFn: () => getRecentSearch(),
+    staleTime: 5000,
   });
 
   return {

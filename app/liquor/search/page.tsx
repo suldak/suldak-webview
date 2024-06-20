@@ -1,3 +1,4 @@
+'use client';
 import { Suspense } from 'react';
 
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
@@ -11,7 +12,8 @@ import { SearchText } from 'models/searchText';
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
-  const recent = useGetRecentSearch(); //최근검색어
+  const { data: recent } = useGetRecentSearch(); // 최근검색어
+
   return (
     <>
       {/* 최근 검색어 */}
@@ -25,14 +27,18 @@ function LiquorSearchPage() {
           </button>
         </div>
         <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
-          {recent.map((search: SearchText, index: number) => (
-            <Tag tagId={index} tagType="gray" key={index}>
-              <div className="flex justify-center items-center gap-5px">
-                <span>{search.searchText}</span>
-                <DeleteIcon />
-              </div>
-            </Tag>
-          ))}
+          {recent && Array.isArray(recent) && recent.length > 0 ? (
+            recent.map((search: SearchText, index: number) => (
+              <Tag tagId={index} tagType="gray" key={index}>
+                <div className="flex justify-center items-center gap-5px">
+                  <span>{search.searchText}</span>
+                  <DeleteIcon />
+                </div>
+              </Tag>
+            ))
+          ) : (
+            <span>최근 검색어가 없습니다.</span>
+          )}
         </div>
       </section>
 
