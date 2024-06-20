@@ -13,10 +13,10 @@ import { Liquor } from 'models/liquor';
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
   const searchParams = useSearchParams();
-  const q = searchParams.get('q') ?? '';
-  const decodedQ = decodeURIComponent(q);
+  const searchInput = searchParams.get('q') ?? '';
+  const decodedInput = decodeURIComponent(searchInput);
 
-  const { data: liquors } = useLiquorSearch(decodedQ);
+  const { data: liquors } = useLiquorSearch(decodedInput);
   //console.log('liquor', liquors);
 
   return (
