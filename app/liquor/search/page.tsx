@@ -1,18 +1,20 @@
 'use client';
+// LiquorSearchPage.tsx
+import React from 'react';
 import { Suspense } from 'react';
-
+import { useRouter } from 'next/navigation';
+import { useGetRecentSearch } from 'apis/keyword/useGetRecentSearch';
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import SportsMedal from 'assets/icons/ico-sports-medal.svg';
 import RecommendKeyword from 'components/liquor/search/RecommendKeyword';
 import RankingKeyword from 'components/liquor/search/RankingKeyword';
 import SearchInput from 'components/liquor/search/SearchInput';
 import Tag from 'components/shared/Tag';
-import { useGetRecentSearch } from 'apis/keyword/useGetRecentSearch';
 import { SearchText } from 'models/searchText';
-import { useRouter } from 'next/navigation';
+import CurrentTimeDisplay from 'components/liquor/search/CurrentTimeDisplay';
 
 /** 술 검색 페이지 */
-function LiquorSearchPage() {
+const LiquorSearchPage: React.FC = () => {
   const router = useRouter();
   const { data: recent } = useGetRecentSearch(); // 최근검색어
 
@@ -61,7 +63,6 @@ function LiquorSearchPage() {
       </section>
 
       {/* 검색어 순위 영역 */}
-
       <section className="px-5">
         <div className="pt-10 pb-2 flex justify-start items-center gap-2">
           <div className="flex items-center gap-1">
@@ -69,8 +70,9 @@ function LiquorSearchPage() {
             <span className="text-base font-bold">검색 키워드 랭킹</span>
           </div>
 
+          {/* 현재 시각 표시 */}
           <button className="text-xs font-medium text-suldak-gray-500">
-            18시 기준
+            <CurrentTimeDisplay />
           </button>
         </div>
 
@@ -81,6 +83,6 @@ function LiquorSearchPage() {
       </section>
     </>
   );
-}
+};
 
 export default LiquorSearchPage;
