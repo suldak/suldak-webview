@@ -2,9 +2,9 @@ import { Suspense } from 'react';
 
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import SportsMedal from 'assets/icons/ico-sports-medal.svg';
-
 import RecommendKeyword from 'components/liquor/search/RecommendKeyword';
 import RankingKeyword from 'components/liquor/search/RankingKeyword';
+import SearchInput from 'components/liquor/search/SearchInput';
 import Tag from 'components/shared/Tag';
 
 // 최근 검색어 목데이터
@@ -37,6 +37,7 @@ function LiquorSearchPage() {
     <>
       {/* 최근 검색어 */}
       <section className="px-5">
+        <SearchInput />
         <div className="pt-10 pb-2 flex justify-between items-end">
           <span className="text-base font-bold">최근 검색어</span>
 
