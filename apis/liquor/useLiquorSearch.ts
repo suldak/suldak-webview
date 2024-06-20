@@ -17,7 +17,7 @@ const getLiquorSearch = async (
   return data;
 };
 
-export const useLiquorSearch = (tag: string, options?: any) => {
+export const useLiquorSearch = (tag: string, options?: unknown) => {
   const queryKey = tag ? ['liquor-search', tag] : [];
 
   const { data } = useQuery({

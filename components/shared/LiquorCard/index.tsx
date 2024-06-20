@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CardProps } from './types';
 import LiquorTag from './LiquorTag';
-const BASE_URL = 'http://122.45.203.134:8080';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 /** 카드 컴포넌트 */
 const LiquorCard = ({
