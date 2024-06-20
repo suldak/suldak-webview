@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import ClearIcon from 'assets/icons/ico-clear-gray.svg';
 import SearchIcon from 'assets/icons/ico-search-gray.svg';
 
 function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -16,7 +18,7 @@ function SearchInput() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue) {
-      window.location.href = `/liquor/search/result?q=${searchValue}`;
+      router.push(`/liquor/search/result?q=${searchValue}`);
     }
   };
 
