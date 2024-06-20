@@ -14,7 +14,7 @@ import { SearchText } from 'models/searchText';
 import CurrentTimeDisplay from 'components/liquor/search/CurrentTimeDisplay';
 
 /** 술 검색 페이지 */
-const LiquorSearchPage: React.FC = () => {
+function LiquorSearchPage() {
   const router = useRouter();
   const { data: recent } = useGetRecentSearch(); // 최근검색어
 
@@ -83,6 +83,6 @@ const LiquorSearchPage: React.FC = () => {
       </section>
     </>
   );
-};
+}
 
 export default LiquorSearchPage;
