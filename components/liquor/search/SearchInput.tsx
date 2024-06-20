@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import ClearIcon from 'assets/icons/ico-clear-gray.svg';
-import Link from 'next/link';
 import SearchButton from './SearchButton';
 
 function SearchInput() {
@@ -15,14 +14,21 @@ function SearchInput() {
     setSearchValue('');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchValue) {
+      window.location.href = `/liquor/search/result?q=${searchValue}`;
+    }
+  };
+
   return (
     <div className="relative w-full pt-1">
-      <SearchButton searchValue = {searchValue}/>
+      <SearchButton searchValue={searchValue} />
       <input
         className="search-input pl-10 bg-suldak-gray-200 w-full py-2 border-none outline-none focus:ring-0 rounded-full"
         type="text"
         value={searchValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         placeholder="원하는 술을 바로 검색해보세요!"
       />
       {searchValue && (
