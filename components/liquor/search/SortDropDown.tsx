@@ -24,16 +24,16 @@ function SortDropDown() {
   };
 
   return (
-    <div className="relative text-[]">
+    <div className="relative text-[14px]">
       <div
-        className="flex items-center gap-0.5 cursor-pointer text-suldak-gray-600"
+        className="flex items-center gap-0.5  cursor-pointer text-suldak-gray-600"
         onClick={toggleDropdown}
       >
         <SortIcon />
         {isSelected}
       </div>
       {isOpen && (
-        <div className="w-[105px] h-[86px] absolute top-full left-[-40px] mt-1 bg-white border border-suldak-gray-500">
+        <div className="w-[105px] h-[86px] text-[14px] absolute top-full left-[-40px] mt-1 bg-white border border-suldak-gray-500">
           <div
             className={`mt-3 px-4 ${
               isSelected === '정확도순'
