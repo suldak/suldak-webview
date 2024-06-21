@@ -11,8 +11,6 @@ function SortDropDown() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  //const currentSort = (searchParams.get('sort') as SortOption) || '정확도순';
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
