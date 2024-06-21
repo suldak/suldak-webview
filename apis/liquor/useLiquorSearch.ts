@@ -7,7 +7,7 @@ const getLiquorSearch = async (
   tag: string,
 ): Promise<ResponseType<{ content: Liquor[] }>> => {
   const { data } = await axiosInstance.get<ResponseType<{ content: Liquor[] }>>(
-    `http://122.45.203.134:8080/api/liquor/view/liquor-search/`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/liquor/view/liquor-search/`,
     {
       params: {
         searchTag: tag,
