@@ -11,9 +11,7 @@ function SearchRankingSection() {
           <SportsMedal />
           <span className="text-base font-bold">검색 키워드 랭킹</span>
         </div>
-        <button className="text-xs font-medium text-suldak-gray-500">
-          <CurrentTimeDisplay />
-        </button>
+        <CurrentTimeDisplay />
       </div>
       <Suspense fallback={<>로딩중...</>}>
         <RankingKeyword />
