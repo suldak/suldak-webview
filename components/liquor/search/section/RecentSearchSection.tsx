@@ -5,12 +5,16 @@ import Tag from 'components/shared/Tag';
 import SearchInput from '../SearchInput';
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import { SearchText } from 'models/searchText';
+
 function RecentSearchSection() {
   const router = useRouter();
   const { data: recent } = useGetRecentSearch();
-
-  const handleRecentClick = (searchValue: string) => () => {
-    router.push(`/liquor/search/result?q=${searchValue}`);
+  const isValidRecent = Array.isArray(recent) && recent.length > 0;
+  const handleRecentClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const searchValue = event.currentTarget.textContent;
+    if (searchValue) {
+      router.push(`/liquor/search/result?q=${searchValue}`);
+    }
   };
 
   return (
@@ -23,13 +27,11 @@ function RecentSearchSection() {
         </button>
       </div>
       <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
-        {recent && Array.isArray(recent) && recent.length > 0 ? (
+        {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
             <Tag tagId={index} tagType="gray" key={index}>
               <div className="flex justify-center items-center gap-5px">
-                <span onClick={handleRecentClick(search.searchText)}>
-                  {search.searchText}
-                </span>
+                <span onClick={handleRecentClick}>{search.searchText}</span>
                 <DeleteIcon />
               </div>
             </Tag>
