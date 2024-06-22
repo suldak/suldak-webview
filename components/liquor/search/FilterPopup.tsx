@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CloseIcon from 'assets/icons/ico-close-black.svg';
+import LiquorClassSection from './section/LiquorClassSection';
 
 // FilterPopup props 타입 정의
 interface FilterPopupProps {
@@ -20,7 +21,7 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
           <CloseIcon />
         </button>
         <div className="justify-center text-[18px] font-bold">필터</div>
-        <p>여기에 필터 내용을 추가하세요.</p>
+        <LiquorClassSection />
       </div>
     </div>
   );
