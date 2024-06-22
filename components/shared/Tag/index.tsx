@@ -1,9 +1,8 @@
 'use client';
-import { ComponentPropsWithRef } from 'react';
 import { TagProps } from './types';
 
 /** Tag 컴포넌트 */
-const Tag = ({ children, tagType, tagId, selected, onClick }: TagProps) => {
+function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
   let tagStyle = '';
 
   if (selected) {
@@ -20,13 +19,20 @@ const Tag = ({ children, tagType, tagId, selected, onClick }: TagProps) => {
     }
   }
 
+  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+    event.preventDefault();
+    if (onClick) {
+      onClick(tagId);
+    }
+  };
+
   return (
-    <div
-      className={`flex items-center justify-center py-2.5 px-4 rounded-30px text-black ${tagStyle}`}
+    <span
+      className={`inline-flex items-center justify-center py-2.5 px-4 rounded-30px text-black ${tagStyle}`}
+      onClick={handleClick}
     >
       {children}
-    </div>
+    </span>
   );
-};
-
+}
 export default Tag;
