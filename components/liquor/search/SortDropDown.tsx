@@ -7,7 +7,7 @@ type SortOption = '정확도순' | '인기순';
 
 function SortDropDown() {
   const [isOpen, setIsOpen] = useState(false); // 드롭다운 메뉴를 열고닫기 위함
-  const [isSelected, setIsSelected] = useState<SortOption>('정확도순'); // 메뉴 선택, 텍스트 적용을 위함
+  const [selectedOption, setSelectedOption] = useState<SortOption>('정확도순'); // 메뉴 선택, 텍스트 적용을 위함
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -17,7 +17,7 @@ function SortDropDown() {
 
   const handleOptionClick = (option: SortOption) => {
     setIsOpen(false);
-    setIsSelected(option);
+    setSelectedOption(option);
     const params = new URLSearchParams(searchParams.toString());
     params.set('sort', option);
     router.push(`?${params.toString()}`);
@@ -30,13 +30,13 @@ function SortDropDown() {
         onClick={toggleDropdown}
       >
         <SortIcon />
-        {isSelected}
+        {selectedOption}
       </div>
       {isOpen && (
         <div className="w-[105px] h-[86px] absolute top-full left-[-40px] mt-1 bg-white border border-suldak-gray-500">
           <div
             className={`mt-3 px-4 ${
-              isSelected === '정확도순'
+              selectedOption === '정확도순'
                 ? 'text-suldak-gray-900'
                 : 'text-suldak-gray-600'
             }`}
@@ -46,7 +46,7 @@ function SortDropDown() {
           </div>
           <div
             className={`mt-3 px-4 ${
-              isSelected === '인기순'
+              selectedOption === '인기순'
                 ? 'text-suldak-gray-900'
                 : 'text-suldak-gray-600'
             }`}
