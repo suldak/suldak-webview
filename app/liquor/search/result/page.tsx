@@ -9,15 +9,16 @@ import FilterIcon from 'assets/icons/ico-filter-filter.svg';
 import LiquorCard from 'components/shared/LiquorCard';
 import SearchInput from 'components/liquor/search/SearchInput';
 import { Liquor } from 'models/liquor';
+import SortDropDown from 'components/liquor/search/SortDropDown';
 
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
   const searchParams = useSearchParams();
   const searchInput = searchParams.get('q') ?? '';
   const decodedInput = decodeURIComponent(searchInput);
+  const sort = searchParams.get('sort') || '정확도순';
 
-  const { data: liquors } = useLiquorSearch(decodedInput);
-  //console.log('liquor', liquors);
+  const { data: liquors } = useLiquorSearch(decodedInput, sort);
 
   return (
     <main>
@@ -45,10 +46,7 @@ const LiquorSearchResultPage = () => {
           </span>
 
           <div className="flex items-center gap-3 text-sm text-suldak-gray-600 font-medium leading-5">
-            <div className="flex items-center gap-0.5">
-              <SortIcon />
-              정확도순
-            </div>
+            <SortDropDown />
             <div className="flex items-center gap-0.5">
               <FilterIcon />
               필터

@@ -1,3 +1,5 @@
+'use client';
+import SortDropDown from 'components/liquor/search/SortDropDown';
 import LiquorCard from 'components/shared/LiquorCard';
 import Tag from 'components/shared/Tag';
 
@@ -13,6 +15,7 @@ export default function Home() {
       <Tag tagType="gray" tagId={2}>
         test
       </Tag>
+      <SortDropDown />
     </main>
   );
 }
