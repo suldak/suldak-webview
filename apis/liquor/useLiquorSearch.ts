@@ -19,13 +19,12 @@ const getLiquorSearch = async (
   return data;
 };
 
-export const useLiquorSearch = (tag: string, option?: string) => {
+export const useLiquorSearch = (tag: string, sort?: string) => {
   const queryKey = tag ? ['liquor-search', tag] : [];
 
-  const sort = option === '인기순' ? false : true;
   const { data } = useQuery({
     queryKey,
-    queryFn: () => getLiquorSearch(tag, sort),
+    queryFn: () => getLiquorSearch(tag, sort === '인기순' ? false : true),
   });
 
   return {
