@@ -22,11 +22,11 @@ function LiquorSellerSection() {
   };
 
   return (
-    <section>
-      <div className="inline-flex text-[16px] text-suldak-gray-900 font-bold">
-        <CartIcon /> 구매 가능 장소
+    <section className="my-[40px]">
+      <div className="inline-flex text-[16px]  mb-[16px] text-suldak-gray-900 font-bold">
+        <CartIcon />구매 가능 장소
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-x-[8px]">
         {isValidLiquors &&
           liquors.map((liquor) => (
             <Tag
@@ -38,11 +38,6 @@ function LiquorSellerSection() {
               {liquor.name}
             </Tag>
           ))}
-      </div>
-      <div className="mt-4">
-        <p>
-          선택된 판매처: {selectedLiquors.map((liquor) => liquor).join(', ')}
-        </p>
       </div>
     </section>
   );

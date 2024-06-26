@@ -2,7 +2,7 @@ import { useState } from 'react';
 import BeerIcon from 'assets/icons/ico-beer-mug.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorABV } from 'apis/tag/useGetLiquorABV';
-function LiquorABVsection() {
+function LiquorABVSection() {
   const liquors = useGetLiquorABV().data;
 
   // 선택된 liquor의 인덱스를 저장하는 상태
@@ -22,8 +22,8 @@ function LiquorABVsection() {
   };
 
   return (
-    <section>
-      <div className="inline-flex text-[16px] text-suldak-gray-900 font-bold">
+    <section className="mt-[40px]">
+      <div className="inline-flex text-[16px]  mb-[16px] text-suldak-gray-900 font-bold">
         <BeerIcon /> 알코올 도수
       </div>
       <div className="flex flex-wrap gap-2">
@@ -39,11 +39,8 @@ function LiquorABVsection() {
             </Tag>
           ))}
       </div>
-      <div className="mt-4">
-        <p>선택된 도수: {selectedLiquors.map((liquor) => liquor).join(', ')}</p>
-      </div>
     </section>
   );
 }
 
-export default LiquorABVsection;
+export default LiquorABVSection;

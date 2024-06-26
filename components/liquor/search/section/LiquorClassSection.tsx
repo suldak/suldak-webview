@@ -23,7 +23,7 @@ function LiquorClassSection() {
 
   return (
     <section>
-      <div className="inline-flex text-[16px] text-suldak-gray-900 font-bold">
+      <div className="inline-flex text-[16px] mb-[16px] text-suldak-gray-900 font-bold">
         <CockTailIcon />
         주종
       </div>
@@ -39,9 +39,6 @@ function LiquorClassSection() {
               {liquor.name}
             </Tag>
           ))}
-      </div>
-      <div className="mt-4">
-        <p>선택된 주종: {selectedLiquors.map((liquor) => liquor).join(', ')}</p>
       </div>
     </section>
   );

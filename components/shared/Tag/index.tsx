@@ -10,11 +10,11 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
   } else {
     switch (tagType) {
       case 'blue':
-        tagStyle = 'bg-suldak-mint-50 text-suldak-mint-500 text-sm font-medium';
+        tagStyle = 'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
         break;
       case 'gray':
         tagStyle =
-          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-sm border';
+          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
         break;
     }
   }

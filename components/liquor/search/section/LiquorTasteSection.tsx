@@ -22,8 +22,8 @@ function LiquorTasteSection() {
   };
 
   return (
-    <section>
-      <div className="inline-flex text-[16px] text-suldak-gray-900 font-bold">
+    <section className="mt-[40px]">
+      <div className="inline-flex text-[16px]  mb-[16px] text-suldak-gray-900 font-bold">
         <TasteIcon />맛
       </div>
       <div className="flex flex-wrap gap-2">
@@ -38,9 +38,6 @@ function LiquorTasteSection() {
               {liquor.name}
             </Tag>
           ))}
-      </div>
-      <div className="mt-4">
-        <p>선택된 맛: {selectedLiquors.map((liquor) => liquor).join(', ')}</p>
       </div>
     </section>
   );
