@@ -13,7 +13,7 @@ const getLiquorSeller = async (): Promise<
 };
 
 export const useGetLiquorSeller = () => {
-  const queryKey = ['liquor-taste-type'];
+  const queryKey = ['liquor-seller'];
 
   const { data } = useQuery({
     queryKey,
