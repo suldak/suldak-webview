@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import CockTailIcon from 'assets/icons/ico-cocktail-glass.svg';
 import Tag from 'components/shared/Tag';
-import { useGetLiquorNameTag } from 'apis/tag/useGetLiquorNameTag';
+import { useGetLiquorName } from 'apis/tag/useGetLiquorName';
 function LiquorClassSection() {
-  const liquors = useGetLiquorNameTag().data;
+  const liquors = useGetLiquorName().data;
 
   // 선택된 liquor의 인덱스를 저장하는 상태
   const [selectedLiquors, setSelectedLiquors] = useState<number[]>([]);

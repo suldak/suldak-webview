@@ -12,7 +12,7 @@ const getLiquorNameTag = async (): Promise<
   return data;
 };
 
-export const useGetLiquorNameTag = () => {
+export const useGetLiquorName = () => {
   const queryKey = ['liquor-name-tag'];
 
   const { data } = useQuery({
