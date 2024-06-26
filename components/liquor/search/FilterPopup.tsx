@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CloseIcon from 'assets/icons/ico-close-black.svg';
 import LiquorClassSection from './section/LiquorClassSection';
 import LiquorTasteSection from './section/LiquorTasteSection';
-import LiquorABVsection from './section/LiquorABVsection';
-
+import LiquorABVSection from './section/LiquorABVSection';
+import LiquorSellerSection from './section/LiquorSellerSection';
 // FilterPopup props 타입 정의
 interface FilterPopupProps {
   isOpen: boolean;
@@ -25,7 +25,8 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
         <div className="justify-center text-[18px] font-bold">필터</div>
         <LiquorClassSection />
         <LiquorTasteSection />
-        <LiquorABVsection />
+        <LiquorABVSection />
+        <LiquorSellerSection />
       </div>
     </div>
   );
