@@ -20,14 +20,15 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      <div className="flex-col overflow-y-scroll justify-center h-full p-[20px] relative">
+      <div className="flex-col overflow-y-scroll scrollbar-hide justify-center h-full p-[20px] relative">
         <button className="absolute top-4 right-4" onClick={onClose}>
           <CloseIcon />
         </button>
         <div className="flex items-center justify-center text-[18px] text-suldak-gray-900  font-bold">
           필터
         </div>
-        <br className="w-full border-spacing-1 border-suldak-gray-900" />
+        <div className="absolute top-[48px] left-0 w-full border-t border-suldak-gray-200"></div>
+        <div className="mt-[20px]"></div>
         <div className="gap-y-[40px]">
           <LiquorClassSection />
           <LiquorTasteSection />

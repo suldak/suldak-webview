@@ -23,8 +23,9 @@ function LiquorSellerSection() {
 
   return (
     <section className="my-[40px]">
-      <div className="inline-flex text-[16px]  mb-[16px] text-suldak-gray-900 font-bold">
-        <CartIcon />구매 가능 장소
+      <div className="inline-flex text-[16px] gap-x-[6px] mb-[16px] text-suldak-gray-900 font-bold">
+        <CartIcon />
+        구매 가능 장소
       </div>
       <div className="flex flex-wrap gap-x-[8px]">
         {isValidLiquors &&

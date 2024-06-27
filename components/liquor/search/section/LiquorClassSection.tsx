@@ -23,7 +23,7 @@ function LiquorClassSection() {
 
   return (
     <section>
-      <div className="inline-flex text-[16px] mb-[16px] text-suldak-gray-900 font-bold">
+      <div className="inline-flex text-[16px] mb-[16px] gap-x-[6px]  text-suldak-gray-900 font-bold">
         <CockTailIcon />
         주종
       </div>

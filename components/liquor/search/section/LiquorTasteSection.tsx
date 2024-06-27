@@ -23,7 +23,7 @@ function LiquorTasteSection() {
 
   return (
     <section className="mt-[40px]">
-      <div className="inline-flex text-[16px]  mb-[16px] text-suldak-gray-900 font-bold">
+      <div className="inline-flex text-[16px] gap-x-[6px]  mb-[16px] text-suldak-gray-900 font-bold">
         <TasteIcon />맛
       </div>
       <div className="flex flex-wrap gap-2">
