@@ -3,7 +3,7 @@ import CartIcon from 'assets/icons/ico-shopping-cart.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorSeller } from 'apis/tag/useGetLiquorSeller';
 function LiquorSellerSection() {
-  const liquors = useGetLiquorSeller().data;
+  const { data: liquors } = useGetLiquorSeller();
 
   // 선택된 liquor의 인덱스를 저장하는 상태
   const [selectedLiquors, setSelectedLiquors] = useState<number[]>([]);

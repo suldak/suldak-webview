@@ -3,7 +3,7 @@ import TasteIcon from 'assets/icons/ico-taste-good-emoji.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorTaste } from 'apis/tag/useGetLiquorTaste';
 function LiquorTasteSection() {
-  const liquors = useGetLiquorTaste().data;
+  const { data: liquors } = useGetLiquorTaste();
 
   // 선택된 liquor의 인덱스를 저장하는 상태
   const [selectedLiquors, setSelectedLiquors] = useState<number[]>([]);

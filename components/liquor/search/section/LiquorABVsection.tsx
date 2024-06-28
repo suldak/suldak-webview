@@ -3,7 +3,7 @@ import BeerIcon from 'assets/icons/ico-beer-mug.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorABV } from 'apis/tag/useGetLiquorABV';
 function LiquorABVSection() {
-  const liquors = useGetLiquorABV().data;
+  const { data: liquors } = useGetLiquorABV();
 
   // 선택된 liquor의 인덱스를 저장하는 상태
   const [selectedLiquors, setSelectedLiquors] = useState<number[]>([]);
