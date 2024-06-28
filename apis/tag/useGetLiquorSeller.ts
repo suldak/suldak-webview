@@ -1,13 +1,13 @@
 import axiosInstance from 'apis/axiosInstance';
 import { useQuery } from '@tanstack/react-query';
 import { ResponseType } from 'apis/api';
-import { TasteType } from 'models/liquor';
+import { SellerType } from 'models/liquor';
 
 const getLiquorSeller = async (): Promise<
-  ResponseType<{ content: TasteType[] }>
+  ResponseType<{ content: SellerType[] }>
 > => {
   const { data } = await axiosInstance.get<
-    ResponseType<{ content: TasteType[] }>
+    ResponseType<{ content: SellerType[] }>
   >(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tag/view/liquor-sell/`);
   return data;
 };
