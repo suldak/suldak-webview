@@ -2,14 +2,14 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
-import SortIcon from 'assets/icons/ico-filter-sort.svg';
-import FilterIcon from 'assets/icons/ico-filter-filter.svg';
+
 
 // components
 import LiquorCard from 'components/shared/LiquorCard';
 import SearchInput from 'components/liquor/search/SearchInput';
 import { Liquor } from 'models/liquor';
 import SortDropDown from 'components/liquor/search/SortDropDown';
+import FilterButton from 'components/liquor/search/FilterButton';
 
 /** 술 검색 결과 페이지 */
 const LiquorSearchResultPage = () => {
@@ -47,10 +47,7 @@ const LiquorSearchResultPage = () => {
 
           <div className="flex items-center gap-3 text-sm text-suldak-gray-600 font-medium leading-5">
             <SortDropDown />
-            <div className="flex items-center gap-0.5">
-              <FilterIcon />
-              필터
-            </div>
+            <FilterButton />
           </div>
         </div>
       </section>

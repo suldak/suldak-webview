@@ -67,3 +67,15 @@ export interface TasteType {
   id: number;
   name: string;
 }
+
+// 도수
+export interface ABVType {
+  id: number;
+  name: string;
+}
+
+// 판매처
+export interface SellerType {
+  id: number;
+  name: string;
+}
