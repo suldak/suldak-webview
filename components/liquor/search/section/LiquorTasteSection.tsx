@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import TasteIcon from 'assets/icons/ico-taste-good-emoji.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorTaste } from 'apis/tag/useGetLiquorTaste';
-function LiquorTasteSection() {
-  const { data: liquors } = useGetLiquorTaste();
 
-  // 선택된 liquor의 인덱스를 저장하는 상태
-  const [selectedLiquors, setSelectedLiquors] = useState<number[]>([]);
+interface LiquorTasteSectionProps {
+  selected: number[];
+  setSelected: React.Dispatch<React.SetStateAction<number[]>>;
+}
+function LiquorTasteSection({
+  selected,
+  setSelected,
+}: LiquorTasteSectionProps) {
+  const { data: liquors } = useGetLiquorTaste();
   const isValidLiquors = Array.isArray(liquors) && liquors.length > 0;
   // 태그 클릭 핸들러
   const handleTagClick = (index: number) => {
-    setSelectedLiquors((prev) => {
+    setSelected((prev) => {
       if (prev.includes(index)) {
         // 이미 선택된 경우, 선택 해제
         return prev.filter((i) => i !== index);
@@ -32,7 +37,7 @@ function LiquorTasteSection() {
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagType={selectedLiquors.includes(liquor.id) ? 'blue' : 'gray'}
+              tagType={selected.includes(liquor.id) ? 'blue' : 'gray'}
               onClick={() => handleTagClick(liquor.id)}
             >
               {liquor.name}
