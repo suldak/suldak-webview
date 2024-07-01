@@ -1,16 +1,7 @@
 import axiosInstance from 'apis/axiosInstance';
 import { useQuery } from '@tanstack/react-query';
-import { ResponseType } from 'apis/api';
+import { LiquorSearchParams, ResponseType } from 'apis/api';
 import { Liquor } from 'models/liquor';
-
-type LiquorSearchParams = {
-  tag: string;
-  isRecommend?: string;
-  liquorNamePriKeys?: string;
-  liquorDetailPriKeys?: string;
-  liquorAbvPriKeys?: string;
-  sellPriKeys?: string;
-};
 
 const getLiquorSearch = async ({
   tag,
