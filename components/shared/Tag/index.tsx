@@ -11,11 +11,15 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
     switch (tagType) {
       case 'blue':
         tagStyle =
-          'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
+          'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
         break;
       case 'gray':
         tagStyle =
           'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
+        break;
+      case 'selected':
+        tagStyle =
+          'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
         break;
     }
   }

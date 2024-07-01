@@ -37,7 +37,7 @@ function LiquorSellerSection({
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagType={selected.includes(liquor.id) ? 'blue' : 'gray'}
+              tagType={selected.includes(liquor.id) ? 'selected' : 'gray'}
               onClick={() => handleTagClick(liquor.id)}
             >
               {liquor.name}
