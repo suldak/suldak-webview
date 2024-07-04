@@ -37,7 +37,8 @@ function LiquorTasteSection({
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagType={selected.includes(liquor.id) ? 'selected' : 'gray'}
+              tagColor={selected.includes(liquor.id) ? 'blue' : 'gray'}
+              selected={selected.includes(liquor.id)}
               onClick={() => handleTagClick(liquor.id)}
             >
               {liquor.name}

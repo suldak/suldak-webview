@@ -6,7 +6,8 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
   let tagStyle = '';
 
   if (selected) {
-    tagStyle += 'border border-suldak-mint-500 text-suldak-mint-500';
+    tagStyle =
+      'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
   } else {
     switch (tagType) {
       case 'blue':
@@ -17,9 +18,9 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
         tagStyle =
           'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
         break;
-      case 'selected':
+      default:
         tagStyle =
-          'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
+          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
         break;
     }
   }

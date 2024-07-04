@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-type TagType = 'gray' | 'blue' | 'selected';
+type TagColor = 'gray' | 'blue';
 
 /**
  * 태그 인터페이스
@@ -8,7 +8,7 @@ type TagType = 'gray' | 'blue' | 'selected';
 interface TagProps extends ComponentPropsWithoutRef<'div'> {
   tagId: number;
   onClick?: (tagId: number) => void;
-  tagType?: TagType;
+  tagColor?: TagColor;
   selected?: boolean;
   children?: React.ReactNode;
 }

@@ -29,7 +29,7 @@ function RecentSearchSection() {
       <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
         {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
-            <Tag tagId={index} tagType="gray" key={index}>
+            <Tag tagId={index} tagColor="gray" key={index}>
               <div className="flex justify-center items-center gap-5px">
                 <span onClick={handleRecentClick}>{search.searchText}</span>
                 <DeleteIcon />
