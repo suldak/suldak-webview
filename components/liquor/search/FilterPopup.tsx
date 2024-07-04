@@ -14,6 +14,17 @@ interface FilterPopupProps {
 
 // 팝업 컴포넌트
 function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
+  const [selectedClass, setSelectedClass] = useState<number[]>([]);
+  const [selectedTaste, setSelectedTaste] = useState<number[]>([]);
+  const [selectedABV, setSelectedABV] = useState<number[]>([]);
+  const [selectedSeller, setSelectedSeller] = useState<number[]>([]);
+
+  const handleReset = () => {
+    setSelectedClass([]);
+    setSelectedTaste([]);
+    setSelectedABV([]);
+    setSelectedSeller([]);
+  };
   return (
     <div
       className={`fixed inset-y-0 right-0  w-full bg-white shadow-lg transition-transform duration-300 ease-in-out transform ${
@@ -30,13 +41,25 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
         <div className="absolute top-[48px] left-0 w-full border-t border-suldak-gray-200"></div>
         <div className="mt-[20px]"></div>
         <div className="gap-y-[40px]">
-          <LiquorClassSection />
-          <LiquorTasteSection />
-          <LiquorABVSection />
-          <LiquorSellerSection />
+          <LiquorClassSection
+            selected={selectedClass}
+            setSelected={setSelectedClass}
+          />
+          <LiquorTasteSection
+            selected={selectedTaste}
+            setSelected={setSelectedTaste}
+          />
+          <LiquorABVSection
+            selected={selectedABV}
+            setSelected={setSelectedABV}
+          />
+          <LiquorSellerSection
+            selected={selectedSeller}
+            setSelected={setSelectedSeller}
+          />
         </div>
         <div className="flex gap-x-[12px]">
-          <FilterResetButton />
+          <FilterResetButton onReset={handleReset} />
           <FilterApplyButton />
         </div>
       </div>

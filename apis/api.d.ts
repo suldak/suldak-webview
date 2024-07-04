@@ -4,3 +4,12 @@ export interface ResponseType<T> {
   success: boolean;
   errorCode?: number;
 }
+
+export interface LiquorSearchParams {
+  tag: string;
+  isRecommend?: string;
+  liquorNamePriKeys?: string;
+  liquorDetailPriKeys?: string;
+  liquorAbvPriKeys?: string;
+  sellPriKeys?: string;
+}

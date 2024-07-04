@@ -6,13 +6,19 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
   let tagStyle = '';
 
   if (selected) {
-    tagStyle += 'border border-suldak-mint-500 text-suldak-mint-500';
+    tagStyle =
+      'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
   } else {
     switch (tagType) {
       case 'blue':
-        tagStyle = 'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
+        tagStyle =
+          'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
         break;
       case 'gray':
+        tagStyle =
+          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
+        break;
+      default:
         tagStyle =
           'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
         break;
