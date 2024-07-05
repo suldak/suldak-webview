@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import CloseIcon from 'assets/icons/ico-close-black.svg';
 import LiquorClassSection from './section/LiquorClassSection';
 import LiquorTasteSection from './section/LiquorTasteSection';
-import LiquorABVSection from './section/LiquorABVSection';
 import LiquorSellerSection from './section/LiquorSellerSection';
 import FilterResetButton from './FilterResetButton';
 import FilterApplyButton from './FilterApplyButton';
+import LiquorABVSection from './section/LiquorABVsection';
 // FilterPopup props 타입 정의
 interface FilterPopupProps {
   isOpen: boolean;
