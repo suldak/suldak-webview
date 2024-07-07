@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
 
@@ -11,13 +12,19 @@ import SortDropDown from 'components/liquor/search/SortDropDown';
 import FilterButton from 'components/liquor/search/FilterButton';
 
 /** 술 검색 결과 페이지 */
-const LiquorSearchResultPage = () => {
+function LiquorSearchResultPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const searchInput = searchParams.get('q') ?? '';
   const tag = decodeURIComponent(searchInput);
   const isRecommend = searchParams.get('sort') || '정확도순';
 
   const { data: liquors } = useLiquorSearch({ tag, isRecommend });
+  const handleFilterClick = () => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('filter', 'true');
+    router.push(`/liquor/search/result?${currentParams.toString()}`);
+  };
 
   return (
     <main>
@@ -46,7 +53,7 @@ const LiquorSearchResultPage = () => {
 
           <div className="flex items-center gap-3 text-sm text-suldak-gray-600 font-medium leading-5">
             <SortDropDown />
-            <FilterButton />
+            <FilterButton onClick={handleFilterClick} />
           </div>
         </div>
       </section>
@@ -71,6 +78,6 @@ const LiquorSearchResultPage = () => {
       </section>
     </main>
   );
-};
+}
 
 export default LiquorSearchResultPage;
