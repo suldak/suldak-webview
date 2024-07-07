@@ -1,25 +1,34 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
-
-// components
+import { useFilterContext } from 'app/context/FilterContext';
+import { useEffect } from 'react';
 import LiquorCard from 'components/shared/LiquorCard';
 import SearchInput from 'components/liquor/search/SearchInput';
 import { Liquor } from 'models/liquor';
 import SortDropDown from 'components/liquor/search/SortDropDown';
 import FilterButton from 'components/liquor/search/FilterButton';
 
-/** 술 검색 결과 페이지 */
 function LiquorSearchResultPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { filterOptions } = useFilterContext();
+
   const searchInput = searchParams.get('q') ?? '';
   const tag = decodeURIComponent(searchInput);
   const isRecommend = searchParams.get('sort') || '정확도순';
 
-  const { data: liquors } = useLiquorSearch({ tag, isRecommend });
+  const { data: liquors, refetch } = useLiquorSearch({
+    tag,
+    isRecommend,
+    ...filterOptions,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [filterOptions, refetch]);
+
   const handleFilterClick = () => {
     const currentParams = new URLSearchParams(searchParams.toString());
     currentParams.set('filter', 'true');
