@@ -2,20 +2,33 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import FilterPopup from 'components/liquor/search/FilterPopup';
+import { LiquorSearchParams } from 'apis/api';
 
-function FilterPage() {
+export default function FilterPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const showFilter = searchParams.get('filter') === 'true';
 
   const handleClose = () => {
-    router.push('/liquor/search/result');
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.delete('filter');
+    router.push(`/liquor/search/result?${currentParams.toString()}`, {
+      scroll: false,
+    });
   };
 
-  if (!showFilter) {
-    return null;
-  }
+  const handleApply = (newOptions: LiquorSearchParams) => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.delete('filter');
+    // URL에 filter option 추가
+    Object.entries(newOptions).forEach(([key, value]) => {
+      if (value) {
+        currentParams.set(key, value);
+      }
+    });
+    router.push(`/liquor/search/result?${currentParams.toString()}`, {
+      scroll: false,
+    });
+  };
 
-  return <FilterPopup isOpen={true} onClose={handleClose} />;
+  return <FilterPopup onClose={handleClose} onApply={handleApply} />;
 }
-export default FilterPage;
