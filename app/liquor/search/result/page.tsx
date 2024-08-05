@@ -8,27 +8,29 @@ import SortDropDown from 'components/liquor/search/SortDropDown';
 
 import LiquorCard from 'components/shared/LiquorCard';
 import FilterButton from 'components/liquor/search/FilterButton';
+import { useEffect, useState } from 'react';
 
 function LiquorSearchResultPage() {
   const searchParams = useSearchParams();
+  const [searchKey, setSearchKey] = useState('');
 
-  const tag = searchParams.get('q') || undefined;
-  const isRecommend = searchParams.get('isRecommend') || '인기순';
-  const priKeys = {
-    liquorNamePriKeys: searchParams.get('class')?.split(',').join() || '',
-    tastePriKeys: searchParams.get('taste')?.split(',').join() || '',
-    liquorAbvPriKeys: searchParams.get('abv')?.split(',').join() || '',
-    sellPriKeys: searchParams.get('seller')?.split(',').join() || '',
-  };
+  useEffect(() => {
+    // 검색 파라미터가 변경될 때마다 새로운 검색 키 생성
+    setSearchKey(searchParams.toString());
+  }, [searchParams]);
 
-  console.log('class', priKeys);
 
-  const { data, isLoading, error } = useLiquorSearch({
-    tag,
-    isRecommend,
-    ...priKeys,
-  });
-  console.log('data2', data);
+  const { data, isLoading, error } = useLiquorSearch(
+    {
+      tag: searchParams.get('q') || undefined,
+      isRecommend: searchParams.get('isRecommend') || '인기순',
+      liquorNamePriKeys: searchParams.get('class') || '',
+      tastePriKeys: searchParams.get('taste') || '',
+      liquorAbvPriKeys: searchParams.get('abv') || '',
+      sellPriKeys: searchParams.get('seller') || '',
+    },
+    searchKey,
+  );
   const liquors: Liquor[] = data?.data.content || [];
 
   return (

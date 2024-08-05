@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import FilterPopup from 'components/liquor/search/FilterPopup';
 import { LiquorSearchParams } from 'apis/api';
+import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
 
 export default function FilterPage() {
   const router = useRouter();

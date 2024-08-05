@@ -21,14 +21,12 @@ const getLiquorSearch = async ({
   return data;
 };
 
-export const useLiquorSearch = ({
-  tag,
-  isRecommend,
-  ...priKeys
-}: LiquorSearchParams) => {
-  const queryKey = tag ? ['liquor-search', tag] : [];
+export const useLiquorSearch = (
+  { tag, isRecommend, ...priKeys }: LiquorSearchParams,
+  searchKey: string,
+) => {
   return useQuery({
-    queryKey,
+    queryKey: ['liquor-search', searchKey],
     queryFn: () =>
       getLiquorSearch({
         tag,
@@ -36,5 +34,7 @@ export const useLiquorSearch = ({
         ...priKeys,
       }),
     select: (data) => ({ data: data.data }),
+    enabled: !!searchKey,
   });
 };
+app / (liquor - search) / liquor - search / [query] / layout.tsx;
