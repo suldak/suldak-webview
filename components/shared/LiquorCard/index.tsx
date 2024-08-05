@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { CardProps } from './types';
 import LiquorTag from './LiquorTag';
+import { useRouter } from 'next/navigation';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 /** 카드 컴포넌트 */
@@ -14,8 +15,17 @@ const LiquorCard = ({
   liquorSnackRes,
   tasteTypeDtos,
 }: CardProps) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/liquor/detail/${liquorId}`);
+  };
+
   return (
-    <div className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card pl-[18px] py-[18px] cursor-pointer">
+    <div
+      className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card pl-[18px] py-[18px] cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="rounded-full min-w-card-image h-card-image bg-orange-500">
         <Image
           className="rounded-full w-card-image h-card-image bg-orange-500"

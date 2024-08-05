@@ -13,4 +13,5 @@ export interface LiquorSearchParams {
   liquorAbvPriKeys?: string;
   sellPriKeys?: string;
   tastePriKeys?: string;
+  statePriKeys?: number;
 }
