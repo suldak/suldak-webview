@@ -47,8 +47,7 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
     if (selectedSeller.length)
       searchParams.push(`seller=${selectedSeller.join(',')}`);
 
-    const queryString = searchParams.join(',');
-    console.log('searchParams!', queryString);
+    const queryString = searchParams.join('&');
     router.push(`/liquor/search/result?${queryString}`);
   };
 
