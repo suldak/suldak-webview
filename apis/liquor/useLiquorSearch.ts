@@ -37,4 +37,3 @@ export const useLiquorSearch = (
     enabled: !!searchKey,
   });
 };
-app / (liquor - search) / liquor - search / [query] / layout.tsx;

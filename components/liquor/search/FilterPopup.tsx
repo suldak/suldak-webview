@@ -21,7 +21,7 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
   const [selectedTaste, setSelectedTaste] = useState<number[]>([]);
   const [selectedABV, setSelectedABV] = useState<number[]>([]);
   const [selectedSeller, setSelectedSeller] = useState<number[]>([]);
-  
+
   useEffect(() => {
     // 컴포넌트가 마운트될 때마다 상태 초기화
     setSelectedClass([]);
@@ -40,14 +40,14 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
   const handleApply = () => {
     const searchParams: string[] = [];
     if (selectedClass.length)
-      searchParams.push(`class=${selectedClass.join('&')}`);
+      searchParams.push(`class=${selectedClass.join(',')}`);
     if (selectedTaste.length)
-      searchParams.push(`taste=${selectedTaste.join('&')}`);
-    if (selectedABV.length) searchParams.push(`abv=${selectedABV.join('&')}`);
+      searchParams.push(`taste=${selectedTaste.join(',')}`);
+    if (selectedABV.length) searchParams.push(`abv=${selectedABV.join(',')}`);
     if (selectedSeller.length)
-      searchParams.push(`seller=${selectedSeller.join('&')}`);
+      searchParams.push(`seller=${selectedSeller.join(',')}`);
 
-    const queryString = searchParams.join('&');
+    const queryString = searchParams.join(',');
     console.log('searchParams!', queryString);
     router.push(`/liquor/search/result?${queryString}`);
   };
