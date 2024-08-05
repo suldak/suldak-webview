@@ -6,11 +6,14 @@ import SearchInput from '../SearchInput';
 import DeleteIcon from 'assets/icons/ico-head-close.svg';
 import { SearchText } from 'models/searchText';
 import { useCleanRecentSearch } from 'apis/keyword/useCleanRecentSearch';
+import { useDeleteRecentSearch } from 'apis/keyword/useDeleteRecentSearch';
 
 function RecentSearchSection() {
   const router = useRouter();
   const { data: recent, refetch } = useGetRecentSearch();
   const cleanRecentSearchMutation = useCleanRecentSearch();
+  const deleteRecentSearchMutation = useDeleteRecentSearch();
+
   const isValidRecent = Array.isArray(recent) && recent.length > 0;
 
   const handleRecentClick = (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -19,13 +22,21 @@ function RecentSearchSection() {
       router.push(`/liquor/search/result?q=${searchValue}`);
     }
   };
+
   const handleCleanClick = async () => {
     try {
       await cleanRecentSearchMutation.mutateAsync();
-      // 성공적으로 삭제한 후 최근 검색어 목록을 즉시 다시 불러옵니다.
       await refetch();
     } catch (error) {
       console.error('Failed to clean recent searches:', error);
+    }
+  };
+  const handleDeleteClick = async (id: number) => {
+    try {
+      await deleteRecentSearchMutation.mutateAsync(id);
+      await refetch();
+    } catch (error) {
+      console.error('Failed to delete recent search text:', error);
     }
   };
 
@@ -47,7 +58,7 @@ function RecentSearchSection() {
             <Tag tagId={index} tagColor="gray" key={index}>
               <div className="flex justify-center items-center gap-5px">
                 <span onClick={handleRecentClick}>{search.searchText}</span>
-                <DeleteIcon />
+                <DeleteIcon onClick={() => handleDeleteClick(search.id)} />
               </div>
             </Tag>
           ))

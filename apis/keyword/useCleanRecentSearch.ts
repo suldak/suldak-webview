@@ -5,7 +5,6 @@ const cleanRecentSearch = async () => {
   const { data } = await axiosInstance.delete(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/search-text/clean`,
   );
-  console.log('recent', data);
   return data;
 };
 
