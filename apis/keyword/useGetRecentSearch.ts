@@ -12,7 +12,7 @@ const getRecentSearch = async () => {
       },
     },
   );
-  console.log('recent', data);
+
   return data;
 };
 

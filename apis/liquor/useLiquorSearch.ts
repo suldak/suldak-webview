@@ -18,6 +18,7 @@ const getLiquorSearch = async ({
       },
     },
   );
+
   return data;
 };
 
