@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ResponseType } from 'apis/api';
 import { SearchText } from 'models/searchText';
 
-const getRecentSearch = async (): Promise<ResponseType<SearchText[]>> => {
+const getRecentSearch = async () => {
   const { data } = await axiosInstance.get<ResponseType<SearchText[]>>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/search-text`,
     {
@@ -19,7 +19,7 @@ const getRecentSearch = async (): Promise<ResponseType<SearchText[]>> => {
 export const useGetRecentSearch = () => {
   const queryKey = ['liquor-search'];
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey,
     queryFn: () => getRecentSearch(),
     staleTime: 10000,
@@ -27,5 +27,6 @@ export const useGetRecentSearch = () => {
 
   return {
     data: data?.data,
+    refetch,
   };
 };
