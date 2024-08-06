@@ -13,7 +13,7 @@ export const useDeleteRecentSearch = () => {
   return useMutation({
     mutationFn: (id: number) => deleteRecentSearch(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['recentSearches'] });
+      queryClient.invalidateQueries({ queryKey: ['recent-searches'] });
     },
   });
 };
