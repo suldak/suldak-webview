@@ -1,8 +1,9 @@
 'use client';
 import { Suspense } from 'react';
-import RankingKeyword from '../RankingKeyword';
 import CurrentTimeDisplay from '../CurrentTimeDisplay';
 import SportsMedal from 'assets/icons/ico-sports-medal.svg';
+import RankingKeyword from '../ranking/RankingKeyword';
+
 function SearchRankingSection() {
   return (
     <section className="px-5">
