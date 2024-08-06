@@ -17,7 +17,7 @@ const getRecentSearch = async () => {
 };
 
 export const useGetRecentSearch = () => {
-  const queryKey = ['liquor-search'];
+  const queryKey = ['recent-searches'];
 
   const { data, refetch } = useQuery({
     queryKey,
