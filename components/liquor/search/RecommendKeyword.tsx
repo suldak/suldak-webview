@@ -1,8 +1,6 @@
 'use client';
 
 import { useGetRecommendKeyword } from 'apis/keyword/useGetRecommendKeyword';
-import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
-
 import Tag from 'components/shared/Tag';
 import { useRouter } from 'next/navigation';
 
@@ -10,8 +8,8 @@ import { useRouter } from 'next/navigation';
 function RecommendKeyword() {
   const router = useRouter();
   const { data: recommendKeywords } = useGetRecommendKeyword();
-  const handleClick = (id: number) => {
-    router.push(`/liquor/search/result/${id}`);
+  const handleClick = (text:string) => {
+    router.push(`/liquor/search/result?q=${text}`);
   };
   return (
     <>

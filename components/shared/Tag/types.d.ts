@@ -7,7 +7,7 @@ type TagColor = 'gray' | 'blue';
  */
 interface TagProps extends Omit<ComponentPropsWithoutRef<'span'>, 'onClick'> {
   tagId: number;
-  onClick?: (tagId: number) => void;
+  onClick?: (text: string) => void;
   tagColor?: TagColor;
   selected?: boolean;
 }
