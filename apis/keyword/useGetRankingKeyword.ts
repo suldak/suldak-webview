@@ -10,6 +10,7 @@ const getRankingKeyword = async (): Promise<ResponseType<RankingKeyword[]>> => {
     {
       params: {
         searchHour: 14,
+        searchType: 'LIQUOR',
       },
     },
   );

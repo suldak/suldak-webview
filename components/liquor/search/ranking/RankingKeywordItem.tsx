@@ -1,16 +1,25 @@
-
 'use client';
 import TodayUp from 'assets/icons/ico-today-up.svg';
 import TodayDown from 'assets/icons/ico-today-down.svg';
 import { RankingKeyword } from 'apis/keyword/types';
+import { useRouter } from 'next/navigation';
 
 interface RankingKeywordItemProps {
   keyword: RankingKeyword;
 }
 
 function RankingKeywordItem({ keyword }: RankingKeywordItemProps) {
+  const router = useRouter();
+  const handleRankingClick = (searchValue: string) => {
+    if (searchValue) {
+      router.push(`/liquor/search/result?q=${searchValue}`);
+    }
+  };
   return (
-    <div className="flex items-center gap-3">
+    <div
+      className="flex items-center gap-3"
+      onClick={() => handleRankingClick(keyword.text)}
+    >
       <div className="flex items-center justify-center text-suldak-gray-700 font-bold text-sm w-2.5">
         {keyword.ranking}
       </div>
