@@ -63,7 +63,9 @@ function RecentSearchSection() {
             </Tag>
           ))
         ) : (
-          <span>최근 검색어가 없습니다.</span>
+          <div className="flex gap-5px text-suldak-gray-600 font-[14px]">
+            검색 시 자동으로 검색어가 저장됩니다.
+          </div>
         )}
       </div>
     </section>
