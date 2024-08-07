@@ -2,14 +2,14 @@
 import { TagProps } from './types';
 
 /** Tag 컴포넌트 */
-function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
+function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
   let tagStyle = '';
 
   if (selected) {
     tagStyle =
       'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
   } else {
-    switch (tagType) {
+    switch (tagColor) {
       case 'blue':
         tagStyle =
           'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
@@ -41,4 +41,5 @@ function Tag({ children, tagType, tagId, selected, onClick }: TagProps) {
     </span>
   );
 }
+
 export default Tag;
