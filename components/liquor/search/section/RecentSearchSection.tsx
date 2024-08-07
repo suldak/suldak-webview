@@ -52,7 +52,7 @@ function RecentSearchSection() {
           전체삭제
         </button>
       </div>
-      <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
+      <div className="flex h-[54px] items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
         {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
             <Tag tagId={index} tagColor="gray" key={index}>
