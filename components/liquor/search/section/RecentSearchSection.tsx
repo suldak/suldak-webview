@@ -63,7 +63,7 @@ function RecentSearchSection() {
             </Tag>
           ))
         ) : (
-          <div className="flex gap-5px text-suldak-gray-600 font-[14px]">
+          <div className="flex h-[54px] mt-[18px] text-suldak-gray-600 font-[14px]">
             검색 시 자동으로 검색어가 저장됩니다.
           </div>
         )}

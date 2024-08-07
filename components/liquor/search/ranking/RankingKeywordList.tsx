@@ -4,13 +4,22 @@ import RankingKeywordItem from './RankingKeywordItem';
 interface RankingKeywordListProps {
   keywords: RankingKeyword[];
   startIndex: number;
+  isLoading?: boolean;
 }
 
-function RankingKeywordList({ keywords, startIndex }: RankingKeywordListProps) {
+function RankingKeywordList({
+  keywords,
+  startIndex,
+  isLoading = false,
+}: RankingKeywordListProps) {
   return (
     <div className="flex flex-col">
       {keywords.map((keyword, index) => (
-        <RankingKeywordItem key={startIndex + index} keyword={keyword} />
+        <RankingKeywordItem
+          key={startIndex + index}
+          keyword={keyword}
+          isLoading={isLoading}
+        />
       ))}
     </div>
   );
