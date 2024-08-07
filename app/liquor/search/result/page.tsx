@@ -1,30 +1,37 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
-import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
-
-// components
-import LiquorCard from 'components/shared/LiquorCard';
-import SearchInput from 'components/liquor/search/SearchInput';
+import { useRouter } from 'next/navigation';
 import { Liquor } from 'models/liquor';
+import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
+import SearchInput from 'components/liquor/search/SearchInput';
 import SortDropDown from 'components/liquor/search/SortDropDown';
+
+import LiquorCard from 'components/shared/LiquorCard';
 import FilterButton from 'components/liquor/search/FilterButton';
+import { useEffect, useState } from 'react';
 
-/** 술 검색 결과 페이지 */
 function LiquorSearchResultPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const searchInput = searchParams.get('q') ?? '';
-  const tag = decodeURIComponent(searchInput);
-  const isRecommend = searchParams.get('sort') || '정확도순';
+  const [searchKey, setSearchKey] = useState('');
 
-  const { data: liquors } = useLiquorSearch({ tag, isRecommend });
-  const handleFilterClick = () => {
-    const currentParams = new URLSearchParams(searchParams.toString());
-    currentParams.set('filter', 'true');
-    router.push(`/liquor/search/result?${currentParams.toString()}`);
-  };
+  useEffect(() => {
+    // 검색 파라미터가 변경될 때마다 새로운 검색 키 생성
+    setSearchKey(searchParams.toString());
+  }, [searchParams]);
+
+
+  const { data, isLoading, error } = useLiquorSearch(
+    {
+      tag: searchParams.get('q') || undefined,
+      isRecommend: searchParams.get('isRecommend') || '인기순',
+      liquorNamePriKeys: searchParams.get('class') || '',
+      tastePriKeys: searchParams.get('taste') || '',
+      liquorAbvPriKeys: searchParams.get('abv') || '',
+      sellPriKeys: searchParams.get('seller') || '',
+    },
+    searchKey,
+  );
+  const liquors: Liquor[] = data?.data.content || [];
 
   return (
     <main>
@@ -48,12 +55,12 @@ function LiquorSearchResultPage() {
       <section className="px-5">
         <div className="flex items-center justify-between pt=3.5">
           <span className="text-xs font-medium text-suldak-gray-600">
-            총 {liquors?.data.content.length ?? 0}종
+            총 {liquors.length ?? 0}종
           </span>
 
           <div className="flex items-center gap-3 text-sm text-suldak-gray-600 font-medium leading-5">
             <SortDropDown />
-            <FilterButton onClick={handleFilterClick} />
+            <FilterButton />
           </div>
         </div>
       </section>
@@ -62,7 +69,7 @@ function LiquorSearchResultPage() {
         className="flex flex-col px-5 py-3.5 gap-2.5 overflow-y-auto"
         style={{ maxHeight: `calc(100dvh - 100px)` }}
       >
-        {liquors?.data.content.map((liquor: Liquor) => (
+        {liquors.map((liquor: Liquor) => (
           <LiquorCard
             key={liquor.id} // 고유한 key prop 추가
             imgUrl={liquor.liquorPictureUrl || '/default-image-url.jpg'} // 유효하지 않은 URL 처리

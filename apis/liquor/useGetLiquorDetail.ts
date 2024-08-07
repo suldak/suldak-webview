@@ -4,11 +4,16 @@ import { ResponseType } from 'apis/api';
 import { Liquor } from 'models/liquor';
 
 const getLiquorDetail = async (id: number): Promise<ResponseType<Liquor>> => {
-  const { data } = await axiosInstance.get<ResponseType<Liquor>>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/liquor/${id}`,
-  );
-
-  return data;
+  try {
+    const { data } = await axiosInstance.get<ResponseType<Liquor>>(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/liquor/${id}`,
+    );
+   
+    return data;
+  } catch (error) {
+    console.error('Error fetching liquor detail:', error);
+    throw error;
+  }
 };
 
 export const useGetLiquorDetail = (id: number) => {

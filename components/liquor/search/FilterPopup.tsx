@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import CloseIcon from 'assets/icons/ico-close-black.svg';
 import LiquorClassSection from './section/LiquorClassSection';
 import LiquorTasteSection from './section/LiquorTasteSection';
@@ -6,18 +8,27 @@ import LiquorSellerSection from './section/LiquorSellerSection';
 import FilterResetButton from './FilterResetButton';
 import FilterApplyButton from './FilterApplyButton';
 import LiquorABVSection from './section/LiquorABVsection';
-// FilterPopup props 타입 정의
+import { LiquorSearchParams } from 'apis/api';
+import { useRouter } from 'next/navigation';
 interface FilterPopupProps {
-  isOpen: boolean;
   onClose: () => void;
+  onApply: (newOptions: LiquorSearchParams) => void;
 }
 
-// 팝업 컴포넌트
-function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
+function FilterPopup({ onClose, onApply }: FilterPopupProps) {
+  const router = useRouter();
   const [selectedClass, setSelectedClass] = useState<number[]>([]);
   const [selectedTaste, setSelectedTaste] = useState<number[]>([]);
   const [selectedABV, setSelectedABV] = useState<number[]>([]);
   const [selectedSeller, setSelectedSeller] = useState<number[]>([]);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때마다 상태 초기화
+    setSelectedClass([]);
+    setSelectedTaste([]);
+    setSelectedABV([]);
+    setSelectedSeller([]);
+  }, []);
 
   const handleReset = () => {
     setSelectedClass([]);
@@ -25,17 +36,28 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
     setSelectedABV([]);
     setSelectedSeller([]);
   };
+
+  const handleApply = () => {
+    const searchParams: string[] = [];
+    if (selectedClass.length)
+      searchParams.push(`class=${selectedClass.join(',')}`);
+    if (selectedTaste.length)
+      searchParams.push(`taste=${selectedTaste.join(',')}`);
+    if (selectedABV.length) searchParams.push(`abv=${selectedABV.join(',')}`);
+    if (selectedSeller.length)
+      searchParams.push(`seller=${selectedSeller.join(',')}`);
+
+    const queryString = searchParams.join('&');
+    router.push(`/liquor/search/result?${queryString}`);
+  };
+
   return (
-    <div
-      className={`fixed inset-y-0 right-0  w-full bg-white shadow-lg transition-transform duration-300 ease-in-out transform ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}
-    >
+    <div className="fixed inset-y-0 right-0 w-full bg-white shadow-lg z-50">
       <div className="flex-col overflow-y-scroll scrollbar-hide justify-center h-full p-[20px] relative">
         <button className="absolute top-4 right-4" onClick={onClose}>
           <CloseIcon />
         </button>
-        <div className="flex items-center justify-center text-[18px] text-suldak-gray-900  font-bold">
+        <div className="flex items-center justify-center text-[18px] text-suldak-gray-900 font-bold">
           필터
         </div>
         <div className="absolute top-[48px] left-0 w-full border-t border-suldak-gray-200"></div>
@@ -60,7 +82,7 @@ function FilterPopup({ isOpen, onClose }: FilterPopupProps) {
         </div>
         <div className="flex gap-x-[12px]">
           <FilterResetButton onReset={handleReset} />
-          <FilterApplyButton />
+          <FilterApplyButton onApply={handleApply} />
         </div>
       </div>
     </div>

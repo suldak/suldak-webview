@@ -6,10 +6,12 @@ export interface ResponseType<T> {
 }
 
 export interface LiquorSearchParams {
-  tag: string;
+  tag?: string;
   isRecommend?: string;
   liquorNamePriKeys?: string;
   liquorDetailPriKeys?: string;
   liquorAbvPriKeys?: string;
   sellPriKeys?: string;
+  tastePriKeys?: string;
+  statePriKeys?: number;
 }

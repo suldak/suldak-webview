@@ -1,17 +1,21 @@
-import { ReactNode } from 'react';
-function SearchLayout({
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+
+export default function Layout({
   children,
   filter,
 }: {
-  children: ReactNode;
-  filter: ReactNode;
+  children: React.ReactNode;
+  filter: React.ReactNode;
 }) {
+  const searchParams = useSearchParams();
+  const isFilterOpen = searchParams.get('filter') === 'open'; //filterpage를 조건부로 렌더링하기 위함
+
   return (
     <>
       {children}
-      {filter}
+      {isFilterOpen && filter} 
     </>
   );
 }
-
-export default SearchLayout;
