@@ -6,9 +6,13 @@ import { useRouter } from 'next/navigation';
 
 interface RankingKeywordItemProps {
   keyword: RankingKeyword;
+  isLoading?: boolean;
 }
 
-function RankingKeywordItem({ keyword }: RankingKeywordItemProps) {
+function RankingKeywordItem({
+  keyword,
+  isLoading = false,
+}: RankingKeywordItemProps) {
   const router = useRouter();
   const handleRankingClick = (searchValue: string) => {
     if (searchValue) {

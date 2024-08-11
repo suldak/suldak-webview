@@ -52,7 +52,7 @@ function RecentSearchSection() {
           전체삭제
         </button>
       </div>
-      <div className="flex items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
+      <div className="flex h-[54px] items-start py-2 gap-2 w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
         {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
             <Tag tagId={index} tagColor="gray" key={index}>
@@ -63,7 +63,9 @@ function RecentSearchSection() {
             </Tag>
           ))
         ) : (
-          <span>최근 검색어가 없습니다.</span>
+          <div className="flex h-[54px] mt-[18px] text-suldak-gray-600 font-[14px]">
+            검색 시 자동으로 검색어가 저장됩니다.
+          </div>
         )}
       </div>
     </section>

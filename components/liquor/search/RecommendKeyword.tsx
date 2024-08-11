@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 function RecommendKeyword() {
   const router = useRouter();
   const { data: recommendKeywords } = useGetRecommendKeyword();
-  const handleClick = (text:string) => {
+  const handleClick = (text: string) => {
     router.push(`/liquor/search/result?q=${text}`);
   };
   return (

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import CurrentTimeDisplay from '../CurrentTimeDisplay';
 import SportsMedal from 'assets/icons/ico-sports-medal.svg';
 import RankingKeyword from '../ranking/RankingKeyword';
+import RankingKeywordSkeleton from '../ranking/RankingKeywordSkeleton';
 
 function SearchRankingSection() {
   return (
@@ -14,7 +15,7 @@ function SearchRankingSection() {
         </div>
         <CurrentTimeDisplay />
       </div>
-      <Suspense fallback={<>로딩중...</>}>
+      <Suspense fallback={<RankingKeywordSkeleton />}>
         <RankingKeyword />
       </Suspense>
     </section>
