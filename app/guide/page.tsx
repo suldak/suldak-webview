@@ -6,7 +6,7 @@ import HomeTab from 'components/guide/HomeTab';
 import GroupTab from 'components/guide/GroupTab';
 import CommunityTab from 'components/guide/CommunityTab';
 import MyPageTab from 'components/guide/MyPageTab';
-
+import GoBack from 'assets/icons/ico-head-back.svg';
 const tabs = ['홈', '검색', '모임', '마이페이지', '기타'];
 
 const sectionTitles = {
@@ -62,19 +62,26 @@ function AppGuidePage() {
 
   return (
     <div className="flex-col justify-center text-[14px]">
-      <h1 className="flex text-[18px]">술닥술닥 가이드</h1>
+      <div className="flex border-b justify-center items-center relative border-suldak-gray-200">
+        <div className="absolute left-[12px]">
+          <GoBack />
+        </div>
+        <h1 className="flex text-[18px] my-[14px]  font-bold text-suldak-gray-900">
+          술닥술닥 가이드
+        </h1>
+      </div>
 
       <div
         ref={tabBarRef}
-        className="sticky top-0 bg-white z-10 flex justify-around border-b border-gray-200"
+        className="sticky top-0 bg-white z-10 flex justify-evenly border-b border-suldak-gray-200"
       >
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`py-2 px-4 text-sm font-medium focus:outline-none ${
+            className={`py-2 px-5 text-[16px] font-medium focus:outline-none ${
               activeTab === tab
-                ? 'text-gray-700 border-b-2 border-gray-700'
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'text-suldak-mint-500 border-b-2 border-suldak-mint-500'
+                : 'text-suldak-gray-500'
             }`}
             onClick={() => scrollToSection(tab)}
           >
@@ -93,7 +100,7 @@ function AppGuidePage() {
           >
             {sectionTitles[tab as keyof typeof sectionTitles]}
           </h2>
-          <div className="flex-col mx-[20px]">
+          <div className="flex-col pb-[20px] px-[20px]">
             {tab === '홈' && <HomeTab />}
             {tab === '검색' && <SearchTab />}
             {tab === '모임' && <GroupTab />}
@@ -101,7 +108,7 @@ function AppGuidePage() {
             {tab === '기타' && <CommunityTab />}
           </div>
           {index < tabs.length - 1 && (
-            <div className="flex shrink-0 h-[10px] justify-center items-center bg-gray-200 border-gray-200"></div>
+            <div className="flex shrink-0 h-[10px] justify-center items-center bg-suldak-gray-200 border-suldak-gray-200"></div>
           )}
         </section>
       ))}
