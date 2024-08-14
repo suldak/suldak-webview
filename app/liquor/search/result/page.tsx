@@ -1,6 +1,5 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 import { Liquor } from 'models/liquor';
 import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
 import SearchInput from 'components/liquor/search/SearchInput';
@@ -10,6 +9,7 @@ import LiquorCard from 'components/shared/LiquorCard';
 import FilterButton from 'components/liquor/search/FilterButton';
 import { useEffect, useState } from 'react';
 import NoResultSection from 'components/liquor/search/section/NoResultSection';
+import RecommendList from 'components/liquor/search/RecommendList';
 
 function LiquorSearchResultPage() {
   const searchParams = useSearchParams();
@@ -46,19 +46,7 @@ function LiquorSearchResultPage() {
       <main>
         <SearchInput />
         {/* 추천 목록 */}
-        <section className="border-b border-suldak-gray-200">
-          <div className="flex items-center gap-2 px-5 py-3.5">
-            <span className="text-suldak-gray-900 text-sm font-semibold">
-              추천
-            </span>
-            <div className="text-suldak-gray-500">|</div>
-            <div className="flex items-center gap-4 text-suldak-mint-500 text-sm font-semibold">
-              <span>직장인</span>
-              <span>위스키 베이스</span>
-              <span>칵테일</span>
-            </div>
-          </div>
-        </section>
+        <RecommendList/>
 
         {/* 술 검색 목록 */}
         <section className="px-5">
