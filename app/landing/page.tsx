@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import GroupCarousel from 'components/landing/GroupCarousel';
 import DescriptSection from 'components/landing/DescriptSection';
 import ServiceSection from 'components/landing/ServiceSection';
+import ReviewSection from 'components/landing/ReviewSection';
+import ReservationImg from 'assets/pngs/bg-reservation.png';
+import TabBar from 'components/landing/TabBar';
 function LandingPage() {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -19,7 +22,7 @@ function LandingPage() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center relative min-h-screen pb-16">
       <div className="w-full relative aspect-[2.13]">
         <Image
           src={HeadImg}
@@ -60,6 +63,35 @@ function LandingPage() {
         <GroupCarousel />
       </section>
       <ServiceSection />
+      <ReviewSection />
+      <div className="w-full relative aspect-[2.80]">
+        <Image
+          src={ReservationImg}
+          alt={'사전예약'}
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
+          <div className="text-4xl font-bold mb-4">술닥술닥 사전예약</div>
+          <div className="text-xl mb-6">
+            메일주소를 입력하시면 술닥술닥의 오픈 소식을 알려드릴게요!
+          </div>
+          <div className="flex">
+            <input
+              className="w-[400px] h-[68px] px-4 text-black bg-white/50 rounded-[10px]"
+              placeholder=""
+            />
+            <button className="rounded-[10px] ml-[20px] text-[25px] bg-white text-suldak-mint-500 w-[233px] h-[68px] font-bold">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center z-50">
+        <div className="w-full max-w-screen-xl px-4">
+          <TabBar />
+        </div>
+      </div>
     </div>
   );
 }
