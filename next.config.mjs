@@ -15,6 +15,13 @@ const nextConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    // 폰트 파일을 위한 rule 추가
+    config.module.rules.push({
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+    });
+
     return config;
   },
   reactStrictMode: false,

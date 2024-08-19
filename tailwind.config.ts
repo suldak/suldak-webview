@@ -21,11 +21,14 @@ const config: Config = {
         'suldak-gray-400': '#e1e1e1',
         'suldak-gray-300': '#e8e8e8',
         'suldak-gray-200': '#f6f6f6',
+        'suldak-gray-100': '#f9f9f9',
         'suldak-orange-500': '#ff9300',
         'suldak-green-500': '#20bf27',
         'suldak-red-500': '#e45141',
         'suldak-mint-500': '#08beca',
         'suldak-mint-50': '#f6fdfe',
+        'suldak-mint-100': '#CEF2F4',
+        'suldak-mint-200': '#9CE5EA',
       },
       boxShadow: {
         'suldak-card': '2px 2px 20px -3px rgba(0, 0, 0, 0.13)',
@@ -56,6 +59,10 @@ const config: Config = {
       fontSize: {
         '2xs': '10px',
         '22px': '22px',
+      },
+      fontFamily: {
+        pretendard: ['Pretendard', 'sans-serif'],
+        WAGURI: ['WAGURI', 'sans-serif'],
       },
     },
   },
