@@ -16,11 +16,11 @@ function GroupCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     cssEase: 'linear',
     responsive: [
       {
@@ -45,10 +45,10 @@ function GroupCarousel() {
   };
 
   return (
-    <section className="w-full mt-[64px] relative">
-      <div className="carousel-container overflow-x-hidden overflow-y-visible">
+    <section className="w-full mt-[64px] relative bg-white">
+      <div className="carousel-container overflow-x-hidden">
         <Slider {...settings}>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -68,7 +68,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -89,7 +89,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -110,7 +110,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '오프라인', color: 'green' },
@@ -127,7 +127,7 @@ function GroupCarousel() {
           </div>
         </Slider>
       </div>
-      <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div>
+      {/* <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div> */}
     </section>
   );
 }

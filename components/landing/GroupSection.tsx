@@ -3,8 +3,8 @@ import GroupCarousel from './GroupCarousel';
 
 function GroupSection() {
   return (
-    <section className="flex flex-col h-[920px] w-full text-suldak-gray-900">
-      <div className="text-[32px] ml-[360px] mt-[184px] w-[309px]">
+    <section className="flex flex-col h-[920px] w-full py-[184px]  text-suldak-gray-900">
+      <div className="text-[32px] ml-[360px] w-[309px] h-[142px]">
         <div className="font-bold">
           <TalkImg />
           내가 있는 그곳이 바로! <br />

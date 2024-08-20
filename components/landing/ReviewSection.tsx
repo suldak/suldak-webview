@@ -77,11 +77,11 @@ function ReviewSection() {
   return (
     <div className="w-full py-16 bg-gray-100">
       <div className="max-w-[1920px] h-[950px] mx-auto px-4">
-        <div className="flex items-center mb-8 mt-[120px] ml-[360px]">
+        <div className="flex items-center mt-[120px] ml-[360px]">
           <TalkImg className="mr-4" />
-          <h2 className="text-3xl font-bold">당신이 궁금해하는 모든 것</h2>
+          <h2 className="text-[32px] font-bold">당신이 궁금해하는 모든 것</h2>
         </div>
-        <p className="text-lg mb-8 ml-[360px]">
+        <p className="text-[18px] font-normal mb-8 ml-[360px]">
           먹는 것에 진심인 사람들의 맛집 후기부터,
           <br /> 다양한 주제의 블로그 포스팅까지
         </p>
