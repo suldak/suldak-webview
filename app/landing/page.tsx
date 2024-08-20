@@ -3,26 +3,32 @@ import Image from 'next/image';
 import HeadRight from 'assets/icons/ico-head-right.svg';
 import HeadImg from 'assets/pngs/img-head.png';
 import TalkImg from 'assets/icons/ico-talk.svg';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GroupCarousel from 'components/landing/GroupCarousel';
 import DescriptSection from 'components/landing/DescriptSection';
 import ServiceSection from 'components/landing/ServiceSection';
 import ReviewSection from 'components/landing/ReviewSection';
 import ReservationImg from 'assets/pngs/bg-reservation.png';
 import TabBar from 'components/landing/TabBar';
+import Logo from 'assets/icons/ico-logo.svg';
 function LandingPage() {
   const [isMounted, setIsMounted] = useState(false);
+  const reservationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const scrollToReservation = () => {
+    reservationRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   if (!isMounted) {
     return null;
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center relative min-h-screen pb-16">
+    <div className="w-full flex flex-col items-center justify-center relative">
       <div className="w-full relative aspect-[2.13]">
         <Image
           src={HeadImg}
@@ -44,7 +50,10 @@ function LandingPage() {
           <br />
           당신의 취향을 술닥술닥에서 만나보세요.
         </div>
-        <button className="bg-white text-suldak-mint-500 flex font-bold items-center px-[20px] py-[16px] rounded-full mx-auto">
+        <button
+          className="bg-white text-suldak-mint-500 flex font-bold items-center px-[20px] py-[16px] rounded-full mx-auto"
+          onClick={scrollToReservation}
+        >
           지금 사전예약하기
           <HeadRight className="ml-2" />
         </button>
@@ -66,7 +75,7 @@ function LandingPage() {
       </section>
       <ServiceSection />
       <ReviewSection />
-      <div className="w-full relative aspect-[2.80]">
+      <div className="w-full relative h-[684px]" ref={reservationRef}>
         <Image
           src={ReservationImg}
           alt={'사전예약'}
@@ -89,8 +98,20 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="fixed w-full bottom-0 left-0 right-0 flex justify-center z-100">
-        <TabBar />
+      <div className="fixed bottom-0 left-0 right-0 justify-center  w-[1200px] flex bg-white text-[20px] items-center rounded-[20px] z-50">
+        <Logo />
+        <div>즐거운 술 문화를 위한 플랫폼</div>
+        <button
+          className="bg-suldak-mint-500 rounded-[30px] text-white px-[20px] py-[10px]"
+          onClick={scrollToReservation}
+        >
+          사전예약
+          <HeadRight />
+        </button>
+        <button className="bg-suldak-mint-500 rounded-[30px]  text-white px-[20px] py-[10px]">
+          블로그 보기
+          <HeadRight />
+        </button>
       </div>
     </div>
   );
