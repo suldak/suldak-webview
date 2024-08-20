@@ -11,11 +11,11 @@
 }
 
 @font-face {
-  font-family: 'WAGURI';
+  font-family: 'GMarket';
   font-style: normal;
   font-weight: 400;
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403@1.0/WAGURITTF.woff2')
-    format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
 }
 
 @font-face {

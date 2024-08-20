@@ -33,16 +33,18 @@ function LandingPage() {
         />
       </div>
       <section className="absolute top-[100px] left-1/2 transform -translate-x-1/2 text-center">
-        <div className="mb-4 text-[70px]  font-WAGURI text-white text-nowrap">
-          나와 우리, 그리고 한 잔의 술 <br />
-          술닥술닥에서 한 잔 하실래요?
+        <div className="mb-4 text-[42px] font-medium font-GMarket text-white text-nowrap">
+          나와 우리, 그리고 한 잔의 술
+          <div className="text-[64px] font-bold">
+            술닥술닥에서 한 잔 하실래요?
+          </div>
         </div>
-        <div className="text-[20px] text-white my-[16px]">
+        <div className="text-[20px] text-white my-[16px] font-medium">
           관심사를 함께 나누며 즐겁게 한 잔!
           <br />
           당신의 취향을 술닥술닥에서 만나보세요.
         </div>
-        <button className="bg-white text-suldak-mint-500 flex items-center px-4 py-2 rounded-full mx-auto">
+        <button className="bg-white text-suldak-mint-500 flex font-bold items-center px-[20px] py-[16px] rounded-full mx-auto">
           지금 사전예약하기
           <HeadRight className="ml-2" />
         </button>
@@ -72,13 +74,13 @@ function LandingPage() {
           objectFit="cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
-          <div className="text-4xl font-bold mb-4">술닥술닥 사전예약</div>
-          <div className="text-xl mb-6">
+          <div className="text-[80px] font-bold">술닥술닥 사전예약</div>
+          <div className="text-[30px] mb-[40px]">
             메일주소를 입력하시면 술닥술닥의 오픈 소식을 알려드릴게요!
           </div>
           <div className="flex">
             <input
-              className="w-[400px] h-[68px] px-4 text-black bg-white/50 rounded-[10px]"
+              className="w-[809px] h-[68px] px-4 text-black bg-white/50 rounded-[10px]"
               placeholder=""
             />
             <button className="rounded-[10px] ml-[20px] text-[25px] bg-white text-suldak-mint-500 w-[233px] h-[68px] font-bold">
@@ -87,10 +89,8 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center z-50">
-        <div className="w-full max-w-screen-xl px-4">
-          <TabBar />
-        </div>
+      <div className="fixed w-full bottom-0 left-0 right-0 flex justify-center z-100">
+        <TabBar />
       </div>
     </div>
   );

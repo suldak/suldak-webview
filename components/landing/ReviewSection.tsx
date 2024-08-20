@@ -15,7 +15,7 @@ import ReviewImg9 from 'assets/pngs/image-review-9.png';
 import ReviewImg10 from 'assets/pngs/image-review-10.png';
 
 function ReviewSection() {
-  const settings = {
+  const commonSettings = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -25,32 +25,38 @@ function ReviewSection() {
     autoplaySpeed: 3000,
     cssEase: 'linear',
     arrows: false,
-    centerMode: true,
-    centerPadding: '60px',
+    centerMode: false,
     variableWidth: true,
     responsive: [
       {
         breakpoint: 1920,
         settings: {
           slidesToShow: 3,
-          centerPadding: '40px',
         },
       },
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
-          centerPadding: '30px',
         },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: '20px',
         },
       },
     ],
+  };
+
+  const topSettings = {
+    ...commonSettings,
+    rtl: true,
+  };
+
+  const bottomSettings = {
+    ...commonSettings,
+    rtl: false,
   };
 
   const topImages = [
@@ -70,7 +76,7 @@ function ReviewSection() {
 
   return (
     <div className="w-full py-16 bg-gray-100">
-      <div className="w-max-[1920px] mx-auto px-4">
+      <div className="max-w-[1920px] h-[950px] mx-auto px-4">
         <div className="flex items-center mb-8 mt-[120px] ml-[360px]">
           <TalkImg className="mr-4" />
           <h2 className="text-3xl font-bold">당신이 궁금해하는 모든 것</h2>
@@ -79,12 +85,12 @@ function ReviewSection() {
           먹는 것에 진심인 사람들의 맛집 후기부터,
           <br /> 다양한 주제의 블로그 포스팅까지
         </p>
-        <div className="-my-4">
-          <div className="mb-2">
-            <Slider {...settings}>
+        <div className="space-y-4 overflow-hidden">
+          <div className="ml-[10px] overflow-hidden">
+            <Slider {...topSettings}>
               {topImages.map((img, index) => (
                 <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative">
+                  <div className="w-[416px] h-[250px] relative rounded-[20px]">
                     <Image
                       src={img}
                       alt={`Review image ${index + 1}`}
@@ -96,14 +102,14 @@ function ReviewSection() {
               ))}
             </Slider>
           </div>
-          <div className="mt-2">
-            <Slider {...settings}>
+          <div className="mr-[10px] overflow-hidden">
+            <Slider {...bottomSettings}>
               {bottomImages.map((img, index) => (
                 <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative">
+                  <div className="w-[416px] h-[250px] relative rounded-[20px]">
                     <Image
                       src={img}
-                      alt={`Review image ${index + 6}`}
+                      alt={`Review image ${index + 1}`}
                       layout="fill"
                       objectFit="cover"
                     />
