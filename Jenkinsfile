@@ -8,12 +8,18 @@ pipeline {
 
     stages {
         stage('Install') {
-            sh "npm install -g yarn"
-            sh "yarn install"
+            steps {
+                script {
+                    bat "npm install -g yarn"
+                    bat "yarn install"
+                }
+            }
         }
         stage('Build') {
             steps {
-                bat 'yarn build'
+                script {
+                    bat 'yarn build'
+                }
             }
         }
         stage('Deploy') {
