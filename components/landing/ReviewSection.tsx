@@ -93,7 +93,7 @@ function ReviewSection() {
           <TalkImg className="mr-4" />
           <h2 className="text-[32px] font-bold">당신이 궁금해하는 모든 것</h2>
         </div>
-        <p className="text-[18px] font-normal mb-8 ml-[360px]">
+        <p className="text-[18px] font-normal mb-[64px] ml-[360px]">
           먹는 것에 진심인 사람들의 맛집 후기부터,
           <br /> 다양한 주제의 블로그 포스팅까지
         </p>
