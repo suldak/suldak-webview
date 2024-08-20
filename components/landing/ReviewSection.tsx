@@ -18,15 +18,17 @@ function ReviewSection() {
   const commonSettings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 5000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 0,
     cssEase: 'linear',
     arrows: false,
     centerMode: false,
     variableWidth: true,
+    pauseOnHover: false,
+
     responsive: [
       {
         breakpoint: 1920,
@@ -51,15 +53,20 @@ function ReviewSection() {
 
   const topSettings = {
     ...commonSettings,
-    rtl: true,
+    rtl: false,
   };
 
   const bottomSettings = {
     ...commonSettings,
-    rtl: false,
+    rtl: true,
   };
 
   const topImages = [
+    ReviewImg1,
+    ReviewImg2,
+    ReviewImg3,
+    ReviewImg4,
+    ReviewImg5,
     ReviewImg1,
     ReviewImg2,
     ReviewImg3,
@@ -72,12 +79,17 @@ function ReviewSection() {
     ReviewImg8,
     ReviewImg9,
     ReviewImg10,
+    ReviewImg6,
+    ReviewImg7,
+    ReviewImg8,
+    ReviewImg9,
+    ReviewImg10,
   ];
 
   return (
-    <div className="w-full py-16 bg-gray-100">
-      <div className="max-w-[1920px] h-[950px] mx-auto px-4">
-        <div className="flex items-center mt-[120px] ml-[360px]">
+    <div className="w-full bg-gray-100 h-[950px] py-[120px]">
+      <div className="px-4">
+        <div className="flex items-center  ml-[360px]">
           <TalkImg className="mr-4" />
           <h2 className="text-[32px] font-bold">당신이 궁금해하는 모든 것</h2>
         </div>
@@ -85,15 +97,15 @@ function ReviewSection() {
           먹는 것에 진심인 사람들의 맛집 후기부터,
           <br /> 다양한 주제의 블로그 포스팅까지
         </p>
-        <div className="space-y-4 overflow-hidden">
-          <div className="ml-[10px] overflow-hidden">
+        <div className="space-y-4 overflow-hidden ">
+          <div className="ml-[20px] overflow-hidden h-[250px]">
             <Slider {...topSettings}>
               {topImages.map((img, index) => (
                 <div key={index} className="px-4">
                   <div className="w-[416px] h-[250px] relative rounded-[20px]">
                     <Image
                       src={img}
-                      alt={`Review image ${index + 1}`}
+                      alt={`Review image ${(index % 5) + 1}`}
                       layout="fill"
                       objectFit="cover"
                     />
@@ -102,14 +114,14 @@ function ReviewSection() {
               ))}
             </Slider>
           </div>
-          <div className="mr-[10px] overflow-hidden">
+          <div className="mr-[20px] overflow-hidden h-[250px]">
             <Slider {...bottomSettings}>
               {bottomImages.map((img, index) => (
-                <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative rounded-[20px]">
+                <div key={index} className="px-4 h-[250px]">
+                  <div className="w-[416px] h-[250px] rounded-[20px] relative">
                     <Image
                       src={img}
-                      alt={`Review image ${index + 1}`}
+                      alt={`Review image ${(index % 5) + 6}`}
                       layout="fill"
                       objectFit="cover"
                     />
