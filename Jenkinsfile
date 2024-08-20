@@ -1,9 +1,22 @@
 pipeline {
     agent any
+
+    environment {
+        BUILD_FILE_PATH = "C:\\suldak\\web"
+    }
+
     stages {
         stage('Build') {
             steps {
-                bat 'Hello!! Suldak'
+                bat 'yarn build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    def buildFilePath = "${WORKSPACE}\\build"
+                    bat "xcopy /s /e /y ${buildFilePath}\\* ${BUILD_FILE_PATH}"
+                }
             }
         }
     }
