@@ -35,7 +35,7 @@ function Header({ scrollToReservation }: HeaderProps) {
           onClick={scrollToReservation}
         >
           지금 사전예약하기
-          <HeadRight className="ml-2" />
+          <HeadRight className="ml-2" fill="#08BECA" />
         </button>
       </section>
     </>
