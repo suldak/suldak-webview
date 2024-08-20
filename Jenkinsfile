@@ -7,14 +7,15 @@ pipeline {
     }
 
     stages {
-        stage('Install') {
-            steps {
-                script {
-                    bat "npm install -g yarn"
-                    bat "yarn install"
-                }
-            }
-        }
+        // 필요 없나....
+        // stage('Install') {
+        //     steps {
+        //         script {
+        //             bat "npm install -g yarn"
+        //             bat "yarn install"
+        //         }
+        //     }
+        // }
         stage('Build') {
             steps {
                 script {
