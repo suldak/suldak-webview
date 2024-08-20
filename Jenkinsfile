@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PATH = "C:\\Windows\\System32;%PATH%;C:\\Program Files\\nodejs"
+        PATH = "C:\\Windows\\System32;%PATH%;C:\\Program Files\\nodejs;C:\\Users\\cms\\AppData\\Roaming\\npm\\node_modules\\yarn\\bin"
         BUILD_FILE_PATH = "C:\\suldak\\web"
     }
 
