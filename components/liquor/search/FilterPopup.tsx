@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CloseIcon from 'assets/icons/ico-close-black.svg';
 import LiquorClassSection from './section/LiquorClassSection';
 import LiquorTasteSection from './section/LiquorTasteSection';
