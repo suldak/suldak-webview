@@ -16,15 +16,15 @@ function GroupCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 300,
+    speed: 2000,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 0,
     cssEase: 'linear',
     responsive: [
       {
-        breakpoint: 1280,
+        breakpoint: 1820,
         settings: {
           slidesToShow: 3,
         },
