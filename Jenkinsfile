@@ -2,10 +2,15 @@ pipeline {
     agent any
 
     environment {
+        PATH = "%PATH%"
         BUILD_FILE_PATH = "C:\\suldak\\web"
     }
 
     stages {
+        stage('Install') {
+            sh "npm install -g yarn"
+            sh "yarn install"
+        }
         stage('Build') {
             steps {
                 bat 'yarn build'
