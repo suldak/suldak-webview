@@ -1,4 +1,3 @@
-import React from 'react';
 import HashTag from 'components/landing/HashTag';
 import LocationIcon from 'assets/icons/ico-location.svg';
 import GroupMember from 'assets/icons/ico-group-member.svg';

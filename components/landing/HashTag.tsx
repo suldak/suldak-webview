@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface HashTagProps {
   content: string;
   color: 'green' | 'orange' | 'gray';

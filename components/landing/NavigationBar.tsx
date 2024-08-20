@@ -1,11 +1,17 @@
 import Logo from 'assets/icons/ico-logo.svg';
 import HeadRight from 'assets/icons/ico-head-right.svg';
-function TabBar() {
+interface NavigationProps {
+  scrollToReservation: () => void;
+}
+function NavigationBar({ scrollToReservation }: NavigationProps) {
   return (
     <div className="fixed bottom-0 left-0 right-0 justify-center  w-[1200px] flex bg-white text-[20px] items-center rounded-[20px] z-50">
       <Logo />
       <div>즐거운 술 문화를 위한 플랫폼</div>
-      <button className="bg-suldak-mint-500 rounded-[30px] text-white px-[20px] py-[10px]">
+      <button
+        className="bg-suldak-mint-500 rounded-[30px] text-white px-[20px] py-[10px]"
+        onClick={scrollToReservation}
+      >
         사전예약
         <HeadRight />
       </button>
@@ -17,4 +23,4 @@ function TabBar() {
   );
 }
 
-export default TabBar;
+export default NavigationBar;
