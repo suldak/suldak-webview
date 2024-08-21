@@ -9,7 +9,7 @@ interface NavigationProps {
 
 function NavigationBar({ scrollToReservation }: NavigationProps) {
   return (
-    <div className="fixed bottom-0 flex justify-center w-full z-50">
+    <div className="fixed bottom-0 flex justify-center w-full z-40">
       <div className="w-full max-w-[1200px] bg-white shadow-suldak-card rounded-[20px]">
         <div className="flex justify-between items-center text-[20px] py-4 px-6">
           <div className="flex items-center">
