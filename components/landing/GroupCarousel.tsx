@@ -16,11 +16,11 @@ function GroupCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 2000,
-    slidesToShow: 4,
+    speed: 1500,
+    slidesToShow: 3.5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 0,
+    autoplaySpeed: 800,
     cssEase: 'linear',
     responsive: [
       {
@@ -46,7 +46,7 @@ function GroupCarousel() {
 
   return (
     <section className="w-full mt-[64px] relative bg-white">
-      <div className="carousel-container overflow-x-hidden">
+      <div className="w-full max-w-[1890px] carousel-container overflow-x-hidden">
         <Slider {...settings}>
           <div className="carousel-item my-3">
             <CarouselCard
