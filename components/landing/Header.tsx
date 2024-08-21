@@ -9,7 +9,7 @@ interface HeaderProps {
 function Header({ scrollToReservation }: HeaderProps) {
   return (
     <>
-      <div className="w-full relative h-[900px]">
+      <div className="w-full relative pb-[46.95%]">
         <Image
           src={HeadImg}
           alt="Header Image"
