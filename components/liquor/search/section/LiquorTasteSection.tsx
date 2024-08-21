@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import TasteIcon from 'assets/icons/ico-taste-good-emoji.svg';
 import Tag from 'components/shared/Tag';
 import { useGetLiquorTaste } from 'apis/tag/useGetLiquorTaste';

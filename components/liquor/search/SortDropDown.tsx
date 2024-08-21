@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import SortIcon from 'assets/icons/ico-filter-sort.svg';
 import { useRouter, useSearchParams } from 'next/navigation';
 

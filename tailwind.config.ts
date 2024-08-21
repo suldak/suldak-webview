@@ -62,7 +62,7 @@ const config: Config = {
       },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
-        WAGURI: ['WAGURI', 'sans-serif'],
+        GMarket: ['GMarket', 'sans-serif'],
       },
     },
   },

@@ -15,45 +15,58 @@ import ReviewImg9 from 'assets/pngs/image-review-9.png';
 import ReviewImg10 from 'assets/pngs/image-review-10.png';
 
 function ReviewSection() {
-  const settings = {
+  const commonSettings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 2000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 0,
     cssEase: 'linear',
     arrows: false,
-    centerMode: true,
-    centerPadding: '60px',
+    centerMode: false,
     variableWidth: true,
+    pauseOnHover: false,
+
     responsive: [
       {
         breakpoint: 1920,
         settings: {
           slidesToShow: 3,
-          centerPadding: '40px',
         },
       },
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
-          centerPadding: '30px',
         },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: '20px',
         },
       },
     ],
   };
 
+  const topSettings = {
+    ...commonSettings,
+    rtl: false,
+  };
+
+  const bottomSettings = {
+    ...commonSettings,
+    rtl: true,
+  };
+
   const topImages = [
+    ReviewImg1,
+    ReviewImg2,
+    ReviewImg3,
+    ReviewImg4,
+    ReviewImg5,
     ReviewImg1,
     ReviewImg2,
     ReviewImg3,
@@ -66,28 +79,33 @@ function ReviewSection() {
     ReviewImg8,
     ReviewImg9,
     ReviewImg10,
+    ReviewImg6,
+    ReviewImg7,
+    ReviewImg8,
+    ReviewImg9,
+    ReviewImg10,
   ];
 
   return (
-    <div className="w-full py-16 bg-gray-100">
-      <div className="w-max-[1920px] mx-auto px-4">
-        <div className="flex items-center mb-8 mt-[120px] ml-[360px]">
+    <div className="w-full bg-gray-100 h-[950px] py-[120px]">
+      <div className="px-4">
+        <div className="flex items-center  ml-[360px]">
           <TalkImg className="mr-4" />
-          <h2 className="text-3xl font-bold">당신이 궁금해하는 모든 것</h2>
+          <h2 className="text-[32px] font-bold">당신이 궁금해하는 모든 것</h2>
         </div>
-        <p className="text-lg mb-8 ml-[360px]">
+        <p className="text-[18px] font-normal mb-[64px] ml-[360px]">
           먹는 것에 진심인 사람들의 맛집 후기부터,
           <br /> 다양한 주제의 블로그 포스팅까지
         </p>
-        <div className="-my-4">
-          <div className="mb-2">
-            <Slider {...settings}>
+        <div className="space-y-4 overflow-hidden ">
+          <div className="ml-[20px] overflow-hidden h-[250px]">
+            <Slider {...topSettings}>
               {topImages.map((img, index) => (
                 <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative">
+                  <div className="w-[416px] h-[250px] relative rounded-[20px] overflow-hidden">
                     <Image
                       src={img}
-                      alt={`Review image ${index + 1}`}
+                      alt={`Review image ${(index % 5) + 1}`}
                       layout="fill"
                       objectFit="cover"
                     />
@@ -96,14 +114,14 @@ function ReviewSection() {
               ))}
             </Slider>
           </div>
-          <div className="mt-2">
-            <Slider {...settings}>
+          <div className="mr-[20px] overflow-hidden h-[250px] ">
+            <Slider {...bottomSettings}>
               {bottomImages.map((img, index) => (
-                <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative">
+                <div key={index} className="px-4 h-[250px]">
+                  <div className="w-[416px] h-[250px] rounded-[20px] relative overflow-hidden">
                     <Image
                       src={img}
-                      alt={`Review image ${index + 6}`}
+                      alt={`Review image ${(index % 5) + 6}`}
                       layout="fill"
                       objectFit="cover"
                     />

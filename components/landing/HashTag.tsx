@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface HashTagProps {
   content: string;
   color: 'green' | 'orange' | 'gray';
@@ -14,7 +12,7 @@ const colorClasses = {
 function HashTag({ content, color }: HashTagProps) {
   return (
     <div
-      className={`flex font-normal h-[53px] text-[24px] justify-center items-center ${colorClasses[color]} px-[12px] py-[14px] rounded-lg border`}
+      className={`flex font-normal h-[53px] text-[24px] justify-center items-center ${colorClasses[color]} px-[14px] py-[12px] rounded-lg border`}
     >
       {content}
     </div>

@@ -1,6 +1,6 @@
 import Logo from 'assets/icons/ico-logo.svg';
 import Line from 'assets/icons/ico-line.svg';
-function DescriptSection() {
+function CopySection() {
   return (
     <section className="flex flex-col font-light items-center justify-center  w-full py-[120px] h-[965px] text-[20px] bg-suldak-gray-100 text-suldak-gray-900">
       <div className="flex w-[397px] h-[56px] bg-suldak-mint-100 px-[30px] py-[16px] rounded-[40px] mb-[16px] items-center">
@@ -21,4 +21,4 @@ function DescriptSection() {
   );
 }
 
-export default DescriptSection;
+export default CopySection;

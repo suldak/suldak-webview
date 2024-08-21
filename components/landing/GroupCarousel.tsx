@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -17,15 +16,15 @@ function GroupCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 4,
+    speed: 1500,
+    slidesToShow: 3.5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 800,
     cssEase: 'linear',
     responsive: [
       {
-        breakpoint: 1280,
+        breakpoint: 1820,
         settings: {
           slidesToShow: 3,
         },
@@ -46,10 +45,10 @@ function GroupCarousel() {
   };
 
   return (
-    <section className="w-full mt-[64px] relative">
-      <div className="carousel-container overflow-x-hidden overflow-y-visible">
+    <section className="w-full mt-[64px] relative bg-white">
+      <div className="w-full max-w-[1890px] carousel-container overflow-x-hidden">
         <Slider {...settings}>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -69,7 +68,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -90,7 +89,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '온라인', color: 'orange' },
@@ -111,7 +110,7 @@ function GroupCarousel() {
               )}
             />
           </div>
-          <div className="carousel-item px-2">
+          <div className="carousel-item my-3">
             <CarouselCard
               tags={[
                 { content: '오프라인', color: 'green' },
@@ -128,7 +127,7 @@ function GroupCarousel() {
           </div>
         </Slider>
       </div>
-      <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div>
+      {/* <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div> */}
     </section>
   );
 }
