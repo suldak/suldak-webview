@@ -102,7 +102,7 @@ function ReviewSection() {
             <Slider {...topSettings}>
               {topImages.map((img, index) => (
                 <div key={index} className="px-4">
-                  <div className="w-[416px] h-[250px] relative rounded-[20px]">
+                  <div className="w-[416px] h-[250px] relative rounded-[20px] overflow-hidden">
                     <Image
                       src={img}
                       alt={`Review image ${(index % 5) + 1}`}
@@ -114,11 +114,11 @@ function ReviewSection() {
               ))}
             </Slider>
           </div>
-          <div className="mr-[20px] overflow-hidden h-[250px]">
+          <div className="mr-[20px] overflow-hidden h-[250px] ">
             <Slider {...bottomSettings}>
               {bottomImages.map((img, index) => (
                 <div key={index} className="px-4 h-[250px]">
-                  <div className="w-[416px] h-[250px] rounded-[20px] relative">
+                  <div className="w-[416px] h-[250px] rounded-[20px] relative overflow-hidden">
                     <Image
                       src={img}
                       alt={`Review image ${(index % 5) + 6}`}
