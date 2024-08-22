@@ -29,6 +29,7 @@ const config: Config = {
         "suldak-mint-50": "#f6fdfe",
         "suldak-mint-100": "#CEF2F4",
         "suldak-mint-200": "#9CE5EA",
+        "suldak-mint-600": "#0698A2",
       },
       boxShadow: {
         "suldak-card": "2px 2px 20px -3px rgba(0, 0, 0, 0.13)",
