@@ -28,7 +28,7 @@ const ReservationSection = React.forwardRef<HTMLDivElement, {}>(
     };
 
     return (
-      <div className="relative h-[684px] w-full" ref={ref}>
+      <div className="relative h-[684px] w-full mobile:h-[390px]" ref={ref}>
         <Image
           src={ReservationImg}
           alt={"사전예약"}
@@ -36,23 +36,33 @@ const ReservationSection = React.forwardRef<HTMLDivElement, {}>(
           objectFit="cover"
         />
         <div className="absolute inset-0 z-10 flex w-full flex-col items-center justify-center text-white">
-          <div className="text-[80px] font-bold">술닥술닥 사전예약</div>
-          <div className="mb-[40px] text-[30px]">
-            메일주소를 입력하시면 술닥술닥의 오픈 소식을 알려드릴게요!
+          <div className="text-[80px] font-bold mobile:text-[36px]">
+            술닥술닥 사전예약
           </div>
-          <div className="flex justify-center text-[25px]">
+          <div className="mb-[40px] text-center text-[30px] mobile:text-[16px]">
+            메일주소를 입력하시면 술닥술닥의 <br className="pc:hidden" />
+            오픈 소식을 알려드릴게요!
+          </div>
+          <div className="flex items-center text-[25px] mobile:flex-col mobile:justify-center mobile:space-y-[8px] mobile:text-[16px]">
             <input
-              className="h-[68px] w-[809px] rounded-[10px] bg-white/50 px-4 text-black"
+              className="h-[68px] w-[809px] rounded-[10px] bg-white/50 px-4 text-black mobile:h-[48px] mobile:w-[330px]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
             />
             <button
-              className="ml-[20px] h-[68px] w-[233px] rounded-[10px] bg-white text-[25px] font-bold text-suldak-mint-500"
+              className="ml-[20px] h-[68px] w-[233px] rounded-[10px] bg-white text-[25px] font-bold text-suldak-mint-500 mobile:hidden"
               onClick={handleSubscribe}
               disabled={enrollMutation.isPending || !email.trim()}
             >
               {enrollMutation.isPending ? "처리 중..." : "Subscribe"}
+            </button>
+            <button
+              className="h-[68px] w-[233px] rounded-[10px] bg-white text-[25px] font-bold text-suldak-mint-500 mobile:h-[48px] mobile:w-[330px] mobile:text-[16px] pc:hidden"
+              onClick={handleSubscribe}
+              disabled={enrollMutation.isPending || !email.trim()}
+            >
+              {enrollMutation.isPending ? "처리 중..." : "제출하기"}
             </button>
           </div>
         </div>
