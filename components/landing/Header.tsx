@@ -10,22 +10,20 @@ interface HeaderProps {
 function Header({ scrollToReservation }: HeaderProps) {
   return (
     <>
-      <div className="w-full relative pc:pb-[46.95%] mobile:invisible">
+      <div className="w-full relative pc:pb-[46%]">
         <Image
           src={HeadImg}
           alt="Header Image"
           layout="fill"
           objectFit="cover"
-          priority
         />
       </div>
-      <div className="w-full relative pc:invisible h-[600px]">
+      <div className="pc:invisible mobile:w-full relative mobile:h-[600px] pc:h-0">
         <Image
           src={HeadSmallImg}
           alt="Header Image"
           layout="fill"
           objectFit="cover"
-          priority
         />
       </div>
       <section className="absolute top-[100px] left-1/2 transform -translate-x-1/2 text-center">
