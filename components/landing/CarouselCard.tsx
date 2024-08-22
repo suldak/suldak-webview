@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import HashTag from "components/landing/HashTag";
-import LocationIcon from "assets/icons/ico-location.svg";
-import GroupMember from "assets/icons/ico-group-member.svg";
+import LocationIcon from "assets/pngs/image-location.png";
+import GroupMember from "assets/pngs/image-group-member.png";
 
 interface Tag {
   content: string;
@@ -9,7 +9,7 @@ interface Tag {
 }
 
 interface ProfilePic {
-  src: string;
+  src: StaticImageData;
   alt: string;
 }
 
@@ -35,32 +35,40 @@ function CarouselCard({
   ProfilePics,
 }: CarouselCardProps) {
   return (
-    <div className="flex w-[480px] justify-center px-[15px]">
-      <div className="group-card h-[347px] w-[450px] overflow-hidden rounded-[20px] p-[40px] shadow-suldak-card">
-        <div className="flex gap-x-[12px]">
+    <div className="flex justify-center pc:w-[480px] pc:px-[15px]">
+      <div className="group-card h-[347px] w-[450px] overflow-hidden rounded-[20px] shadow-suldak-card mobile:h-[167px] mobile:w-[200px] mobile:px-[16px] mobile:py-[20px] pc:p-[40px]">
+        <div className="tags flex gap-x-[12px] mobile:gap-x-[6px]">
           {tags.map((tag, index) => (
             <HashTag key={index} content={tag.content} color={tag.color} />
           ))}
         </div>
-        <div className="mt-[24px] flex text-[32px] font-semibold">{title}</div>
-        <div className="mt-[15px] flex h-[29px] items-center text-[24px] text-suldak-gray-500">
-          <LocationIcon />
+        <div className="mt-[24px] flex items-center text-[32px] font-semibold mobile:mt-[16px] mobile:h-[12px] mobile:text-[16px] mobile:font-medium">
+          {title}
+        </div>
+        <div className="location mt-[15px] flex items-center text-[24px] text-suldak-gray-600 mobile:mt-[12px] mobile:text-[12px] pc:h-[29px]">
+          <div className="relative h-[24px] w-[24px] mobile:h-[14px] mobile:w-[14px]">
+            <Image src={LocationIcon} alt="location" fill />
+          </div>
           {location} | {date} {time}
         </div>
-        <div className="mt-[26px] flex items-center">
+        <div className="mt-[26px] flex items-center mobile:mt-[18px]">
           {ProfilePics.map((pic, index) => (
-            <Image
-              key={index}
-              src={pic.src}
-              alt={pic.alt}
-              width={40}
-              height={40}
-              className={index > 0 ? "-ml-[16px]" : ""}
-            />
+            <div className="relative h-[72px] w-[72px] mobile:h-[32px] mobile:w-[32px]">
+              <Image
+                key={index}
+                src={pic.src}
+                alt={pic.alt}
+                fill
+                quality={100}
+              />
+            </div>
           ))}
-          <GroupMember className="ml-[20px]" />
-          <div className="text-[30px] font-normal text-suldak-gray-600">
-            <span className="ml-[10px] text-[30px] font-semibold text-suldak-mint-500">
+
+          <div className="relative ml-[20px] h-[36px] w-[36px] mobile:ml-[10px] mobile:h-[14px] mobile:w-[14px]">
+            <Image src={GroupMember} alt="location" fill />
+          </div>
+          <div className="text-[30px] font-normal text-suldak-gray-600 mobile:text-[14px]">
+            <span className="ml-[10px] font-semibold text-suldak-mint-500 mobile:ml-[4px]">
               {currentMembers}
             </span>
             /{maxMembers}

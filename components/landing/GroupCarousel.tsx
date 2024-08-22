@@ -29,34 +29,52 @@ function GroupCarousel() {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1660,
+        settings: {
+          slidesToShow: 2.75,
+        },
+      },
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2.25,
+        },
+      },
+      {
+        breakpoint: 1300,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.8,
         },
       },
     ],
   };
 
   return (
-    <section className="relative mt-[64px] w-full bg-white">
+    <section className="relative mt-[64px] w-full bg-white mobile:mt-[40px]">
       <div className="carousel-container w-full max-w-[1890px] overflow-x-hidden">
         <Slider {...settings}>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: "온라인", color: "orange" },
+                { content: "오프라인", color: "green" },
                 { content: "고민상담", color: "gray" },
               ]}
-              title="취준고민 상담"
-              location="구글밋"
-              date="9.11(수)"
-              time="오후 8:00"
+              title="해리포터 얘기 같이해요!"
+              location="홍대입구역"
+              date="9.21(토)"
+              time="오후 5:00"
               currentMembers={1}
               maxMembers={3}
               ProfilePics={[{ src: ProfileImg1, alt: "Profile 1" }]}
