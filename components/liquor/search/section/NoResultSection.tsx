@@ -1,9 +1,9 @@
-import NoResultIcon from 'assets/icons/ico-no-result.svg';
-import PensiveFace from 'assets/icons/ico-pensive-face.svg';
+import NoResultIcon from "assets/icons/ico-no-result.svg";
+import PensiveFace from "assets/icons/ico-pensive-face.svg";
 function NoResultSection() {
   return (
-    <div className="flex-row gap-y-[12px] items-center">
-      <div className="flex justify-center mb-[12px]">
+    <div className="flex-row items-center gap-y-[12px]">
+      <div className="mb-[12px] flex justify-center">
         <NoResultIcon />
       </div>
       <div className="flex justify-center text-suldak-gray-900">

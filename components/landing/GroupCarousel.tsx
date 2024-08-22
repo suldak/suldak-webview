@@ -1,16 +1,16 @@
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import ProfilePic1 from 'assets/icons/ico-profile-pic-1.svg';
-import ProfilePic2 from 'assets/icons/ico-profile-pic-2.svg';
-import ProfilePic3 from 'assets/icons/ico-profile-pic-3.svg';
-import ProfilePic4 from 'assets/icons/ico-profile-pic-4.svg';
-import ProfilePic5 from 'assets/icons/ico-profile-pic-5.svg';
-import ProfilePic6 from 'assets/icons/ico-profile-pic-6.svg';
-import ProfilePic7 from 'assets/icons/ico-profile-pic-7.svg';
-import ProfilePic8 from 'assets/icons/ico-profile-pic-8.svg';
-import ProfilePic9 from 'assets/icons/ico-profile-pic-9.svg';
-import CarouselCard from './CarouselCard';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ProfilePic1 from "assets/icons/ico-profile-pic-1.svg";
+import ProfilePic2 from "assets/icons/ico-profile-pic-2.svg";
+import ProfilePic3 from "assets/icons/ico-profile-pic-3.svg";
+import ProfilePic4 from "assets/icons/ico-profile-pic-4.svg";
+import ProfilePic5 from "assets/icons/ico-profile-pic-5.svg";
+import ProfilePic6 from "assets/icons/ico-profile-pic-6.svg";
+import ProfilePic7 from "assets/icons/ico-profile-pic-7.svg";
+import ProfilePic8 from "assets/icons/ico-profile-pic-8.svg";
+import ProfilePic9 from "assets/icons/ico-profile-pic-9.svg";
+import CarouselCard from "./CarouselCard";
 
 function GroupCarousel() {
   const settings = {
@@ -21,7 +21,7 @@ function GroupCarousel() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 800,
-    cssEase: 'linear',
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1820,
@@ -45,14 +45,14 @@ function GroupCarousel() {
   };
 
   return (
-    <section className="w-full mt-[64px] relative bg-white">
-      <div className="w-full max-w-[1890px] carousel-container overflow-x-hidden">
+    <section className="relative mt-[64px] w-full bg-white">
+      <div className="carousel-container w-full max-w-[1890px] overflow-x-hidden">
         <Slider {...settings}>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '고민상담', color: 'gray' },
+                { content: "온라인", color: "orange" },
+                { content: "고민상담", color: "gray" },
               ]}
               title="취준고민 상담"
               location="구글밋"
@@ -71,8 +71,8 @@ function GroupCarousel() {
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '스포츠', color: 'gray' },
+                { content: "온라인", color: "orange" },
+                { content: "스포츠", color: "gray" },
               ]}
               title="KBO같이 보며 한잔"
               location="구글밋"
@@ -92,8 +92,8 @@ function GroupCarousel() {
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '영화/드라마', color: 'gray' },
+                { content: "온라인", color: "orange" },
+                { content: "영화/드라마", color: "gray" },
               ]}
               title="공포영화 같이봐요👻"
               location="디스코드"
@@ -113,8 +113,8 @@ function GroupCarousel() {
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '오프라인', color: 'green' },
-                { content: '고민상담', color: 'gray' },
+                { content: "오프라인", color: "green" },
+                { content: "고민상담", color: "gray" },
               ]}
               title="마케터너들 주목✨🎉"
               location="강남역"

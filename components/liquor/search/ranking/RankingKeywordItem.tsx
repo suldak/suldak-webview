@@ -1,8 +1,8 @@
-'use client';
-import TodayUp from 'assets/icons/ico-today-up.svg';
-import TodayDown from 'assets/icons/ico-today-down.svg';
-import { RankingKeyword } from 'apis/keyword/types';
-import { useRouter } from 'next/navigation';
+"use client";
+import TodayUp from "assets/icons/ico-today-up.svg";
+import TodayDown from "assets/icons/ico-today-down.svg";
+import { RankingKeyword } from "apis/keyword/types";
+import { useRouter } from "next/navigation";
 
 interface RankingKeywordItemProps {
   keyword: RankingKeyword;
@@ -24,15 +24,15 @@ function RankingKeywordItem({
       className="flex items-center gap-3"
       onClick={() => handleRankingClick(keyword.text)}
     >
-      <div className="flex items-center justify-center text-suldak-gray-700 font-bold text-sm w-2.5">
+      <div className="flex w-2.5 items-center justify-center text-sm font-bold text-suldak-gray-700">
         {keyword.ranking}
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-suldak-gray-900 font-medium text-sm">
+        <span className="text-sm font-medium text-suldak-gray-900">
           {keyword.text}
         </span>
         {keyword.isNew && (
-          <span className="text-suldak-red-500 font-bold text-2xs">NEW!</span>
+          <span className="text-2xs font-bold text-suldak-red-500">NEW!</span>
         )}
         {keyword.isUp && <TodayUp />}
         {keyword.isDown && <TodayDown />}

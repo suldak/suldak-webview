@@ -1,10 +1,10 @@
-import TalkImg from 'assets/icons/ico-talk.svg';
-import GroupCarousel from './GroupCarousel';
+import TalkImg from "assets/icons/ico-talk.svg";
+import GroupCarousel from "./GroupCarousel";
 
 function GroupSection() {
   return (
-    <section className="flex flex-col h-[920px] w-full py-[184px] pr-[215px] text-suldak-gray-900">
-      <div className="text-[32px] ml-[360px] w-[309px] h-[142px]">
+    <section className="flex h-[920px] w-full flex-col py-[184px] pr-[215px] text-suldak-gray-900">
+      <div className="ml-[360px] h-[142px] w-[309px] text-[32px]">
         <div className="font-bold">
           <TalkImg />
           내가 있는 그곳이 바로! <br />

@@ -1,26 +1,26 @@
-'use client';
-import { TagProps } from './types';
+"use client";
+import { TagProps } from "./types";
 
 /** Tag 컴포넌트 */
 function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
-  let tagStyle = '';
+  let tagStyle = "";
 
   if (selected) {
     tagStyle =
-      'bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium';
+      "bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium";
   } else {
     switch (tagColor) {
-      case 'blue':
+      case "blue":
         tagStyle =
-          'bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium';
+          "bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium";
         break;
-      case 'gray':
+      case "gray":
         tagStyle =
-          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
+          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border";
         break;
       default:
         tagStyle =
-          'bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border';
+          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border";
         break;
     }
   }
@@ -34,7 +34,7 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
 
   return (
     <span
-      className={`inline-flex items-center justify-center py-2.5 px-4 rounded-30px text-black ${tagStyle}`}
+      className={`inline-flex items-center justify-center rounded-30px px-4 py-2.5 text-black ${tagStyle}`}
       onClick={handleClick}
     >
       {children}

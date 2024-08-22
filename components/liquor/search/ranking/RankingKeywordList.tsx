@@ -1,5 +1,5 @@
-import { RankingKeyword } from 'apis/keyword/types';
-import RankingKeywordItem from './RankingKeywordItem';
+import { RankingKeyword } from "apis/keyword/types";
+import RankingKeywordItem from "./RankingKeywordItem";
 
 interface RankingKeywordListProps {
   keywords: RankingKeyword[];
