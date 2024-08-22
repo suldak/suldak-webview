@@ -64,6 +64,10 @@ const config: Config = {
         pretendard: ['Pretendard', 'sans-serif'],
         GMarket: ['GMarket', 'sans-serif'],
       },
+      screens: {
+        mobile: '430px',
+        pc: '1200px',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
