@@ -1,3 +1,4 @@
+import Image from "next/image";
 import HashTag from "components/landing/HashTag";
 import LocationIcon from "assets/icons/ico-location.svg";
 import GroupMember from "assets/icons/ico-group-member.svg";
@@ -5,6 +6,11 @@ import GroupMember from "assets/icons/ico-group-member.svg";
 interface Tag {
   content: string;
   color: "green" | "orange" | "gray";
+}
+
+interface ProfilePic {
+  src: string;
+  alt: string;
 }
 
 interface CarouselCardProps {
@@ -15,7 +21,7 @@ interface CarouselCardProps {
   time: string;
   currentMembers: number;
   maxMembers: number;
-  ProfilePic: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  ProfilePics: ProfilePic[];
 }
 
 function CarouselCard({
@@ -26,7 +32,7 @@ function CarouselCard({
   time,
   currentMembers,
   maxMembers,
-  ProfilePic,
+  ProfilePics,
 }: CarouselCardProps) {
   return (
     <div className="flex w-[480px] justify-center px-[15px]">
@@ -42,7 +48,16 @@ function CarouselCard({
           {location} | {date} {time}
         </div>
         <div className="mt-[26px] flex items-center">
-          <ProfilePic />
+          {ProfilePics.map((pic, index) => (
+            <Image
+              key={index}
+              src={pic.src}
+              alt={pic.alt}
+              width={40}
+              height={40}
+              className={index > 0 ? "-ml-[16px]" : ""}
+            />
+          ))}
           <GroupMember className="ml-[20px]" />
           <div className="text-[30px] font-normal text-suldak-gray-600">
             <span className="ml-[10px] text-[30px] font-semibold text-suldak-mint-500">

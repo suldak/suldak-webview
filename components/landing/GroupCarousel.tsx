@@ -1,15 +1,14 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ProfilePic1 from "assets/icons/ico-profile-pic-1.svg";
-import ProfilePic2 from "assets/icons/ico-profile-pic-2.svg";
-import ProfilePic3 from "assets/icons/ico-profile-pic-3.svg";
-import ProfilePic4 from "assets/icons/ico-profile-pic-4.svg";
-import ProfilePic5 from "assets/icons/ico-profile-pic-5.svg";
-import ProfilePic6 from "assets/icons/ico-profile-pic-6.svg";
-import ProfilePic7 from "assets/icons/ico-profile-pic-7.svg";
-import ProfilePic8 from "assets/icons/ico-profile-pic-8.svg";
-import ProfilePic9 from "assets/icons/ico-profile-pic-9.svg";
+import ProfileImg1 from "assets/pngs/image-profile-1.png";
+import ProfileImg2 from "assets/pngs/image-profile-2.png";
+import ProfileImg3 from "assets/pngs/image-profile-3.png";
+import ProfileImg4 from "assets/pngs/image-profile-4.png";
+import ProfileImg5 from "assets/pngs/image-profile-5.png";
+import ProfileImg6 from "assets/pngs/image-profile-6.png";
+import ProfileImg7 from "assets/pngs/image-profile-7.png";
+import ProfileImg8 from "assets/pngs/image-profile-8.png";
 import CarouselCard from "./CarouselCard";
 
 function GroupCarousel() {
@@ -58,14 +57,9 @@ function GroupCarousel() {
               location="구글밋"
               date="9.11(수)"
               time="오후 8:00"
-              currentMembers={2}
+              currentMembers={1}
               maxMembers={3}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic1 />
-                  <ProfilePic2 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[{ src: ProfileImg1, alt: "Profile 1" }]}
             />
           </div>
           <div className="carousel-item my-3">
@@ -80,13 +74,11 @@ function GroupCarousel() {
               time="오후 6:30"
               currentMembers={4}
               maxMembers={6}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic3 />
-                  <ProfilePic4 className="-ml-[16px]" />
-                  <ProfilePic5 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[
+                { src: ProfileImg2, alt: "Profile 2" },
+                { src: ProfileImg3, alt: "Profile 3" },
+                { src: ProfileImg4, alt: "Profile 4" },
+              ]}
             />
           </div>
           <div className="carousel-item my-3">
@@ -101,13 +93,11 @@ function GroupCarousel() {
               time="오후 8:30"
               currentMembers={5}
               maxMembers={6}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic6 />
-                  <ProfilePic7 className="-ml-[16px]" />
-                  <ProfilePic8 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[
+                { src: ProfileImg5, alt: "Profile 5" },
+                { src: ProfileImg6, alt: "Profile 6" },
+                { src: ProfileImg7, alt: "Profile 7" },
+              ]}
             />
           </div>
           <div className="carousel-item my-3">
@@ -122,12 +112,11 @@ function GroupCarousel() {
               time="오후 8:00"
               currentMembers={1}
               maxMembers={4}
-              ProfilePic={() => <ProfilePic9 />}
+              ProfilePics={[{ src: ProfileImg8, alt: "Profile 8" }]}
             />
           </div>
         </Slider>
       </div>
-      {/* <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div> */}
     </section>
   );
 }
