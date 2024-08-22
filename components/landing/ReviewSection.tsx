@@ -87,49 +87,49 @@ function ReviewSection() {
   ];
 
   return (
-    <div className="h-[950px] w-full bg-gray-100 py-[120px]">
-      <div className="px-4">
-        <div className="ml-[360px] flex items-center">
-          <TalkImg className="mr-4" />
-          <h2 className="text-[32px] font-bold">당신이 궁금해하는 모든 것</h2>
+    <div className="h-[950px] w-full bg-gray-100 py-[120px] mobile:h-[516px] mobile:py-[60px] mobile:text-center">
+      <div className="flex items-center mobile:flex-col mobile:justify-center pc:ml-[360px]">
+        <TalkImg className="mr-4 mobile:mb-[8px]" />
+        <h2 className="text-[32px] font-bold mobile:text-[22px]">
+          당신이 궁금해하는 모든 것
+        </h2>
+      </div>
+      <p className="mb-[64px] text-[18px] font-normal mobile:mb-[40px] mobile:text-[14px] pc:ml-[360px]">
+        먹는 것에 진심인 사람들의 맛집 후기부터,
+        <br /> 다양한 주제의 블로그 포스팅까지
+      </p>
+      <div className="space-y-[20px] overflow-hidden mobile:space-y-[8px]">
+        <div className="ml-[20px] overflow-hidden mobile:ml-[8px] pc:h-[250px]">
+          <Slider {...topSettings}>
+            {topImages.map((img, index) => (
+              <div key={index} className="px-[10px] mobile:px-[4px]">
+                <div className="relative h-[250px] w-[416px] overflow-hidden rounded-[20px] mobile:h-[120px] mobile:w-[168px] mobile:rounded-[12px]">
+                  <Image
+                    src={img}
+                    alt={`Review image ${(index % 5) + 1}`}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
-        <p className="mb-[64px] ml-[360px] text-[18px] font-normal">
-          먹는 것에 진심인 사람들의 맛집 후기부터,
-          <br /> 다양한 주제의 블로그 포스팅까지
-        </p>
-        <div className="space-y-4 overflow-hidden">
-          <div className="ml-[20px] h-[250px] overflow-hidden">
-            <Slider {...topSettings}>
-              {topImages.map((img, index) => (
-                <div key={index} className="px-4">
-                  <div className="relative h-[250px] w-[416px] overflow-hidden rounded-[20px]">
-                    <Image
-                      src={img}
-                      alt={`Review image ${(index % 5) + 1}`}
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </div>
+        <div className="mr-[20px] overflow-hidden mobile:mr-[8px] pc:h-[250px]">
+          <Slider {...bottomSettings}>
+            {bottomImages.map((img, index) => (
+              <div key={index} className="h-[250px] px-[10px] mobile:px-[4px]">
+                <div className="relative h-[250px] w-[416px] overflow-hidden rounded-[20px] mobile:h-[120px] mobile:w-[168px] mobile:rounded-[12px]">
+                  <Image
+                    src={img}
+                    alt={`Review image ${(index % 5) + 6}`}
+                    layout="fill"
+                    objectFit="cover"
+                  />
                 </div>
-              ))}
-            </Slider>
-          </div>
-          <div className="mr-[20px] h-[250px] overflow-hidden">
-            <Slider {...bottomSettings}>
-              {bottomImages.map((img, index) => (
-                <div key={index} className="h-[250px] px-4">
-                  <div className="relative h-[250px] w-[416px] overflow-hidden rounded-[20px]">
-                    <Image
-                      src={img}
-                      alt={`Review image ${(index % 5) + 6}`}
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </div>
