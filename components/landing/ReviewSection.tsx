@@ -87,19 +87,19 @@ function ReviewSection() {
   ];
 
   return (
-    <div className="h-[950px] w-full bg-gray-100 py-[120px] mobile:h-[516px] mobile:py-[60px] mobile:text-center">
-      <div className="flex items-center mobile:flex-col mobile:justify-center pc:ml-[360px]">
+    <div className="h-[950px] w-full bg-gray-100 py-[120px] mobile:h-[516px] mobile:py-[60px] mobile:text-center tablet:text-center">
+      <div className="flex items-center mobile:flex-col mobile:justify-center tablet:justify-center pc:ml-[18%]">
         <TalkImg className="mr-4 mobile:mb-[8px]" />
         <h2 className="text-[32px] font-bold mobile:text-[22px]">
           당신이 궁금해하는 모든 것
         </h2>
       </div>
-      <p className="mb-[64px] text-[18px] font-normal mobile:mb-[40px] mobile:text-[14px] pc:ml-[360px]">
+      <p className="mb-[40px] text-[18px] font-normal mobile:text-[14px] pc:mb-[64px] pc:ml-[18%]">
         먹는 것에 진심인 사람들의 맛집 후기부터,
         <br /> 다양한 주제의 블로그 포스팅까지
       </p>
-      <div className="space-y-[20px] overflow-hidden mobile:space-y-[8px]">
-        <div className="ml-[20px] overflow-hidden mobile:ml-[8px] pc:h-[250px]">
+      <div className="space-y-[8px] overflow-hidden pc:space-y-[20px]">
+        <div className="ml-[20px] overflow-hidden mobile:ml-[8px] tablet:h-[250px] pc:h-[250px]">
           <Slider {...topSettings}>
             {topImages.map((img, index) => (
               <div key={index} className="px-[10px] mobile:px-[4px]">
@@ -115,7 +115,7 @@ function ReviewSection() {
             ))}
           </Slider>
         </div>
-        <div className="mr-[20px] overflow-hidden mobile:mr-[8px] pc:h-[250px]">
+        <div className="mr-[20px] overflow-hidden mobile:mr-[8px] tablet:h-[250px] pc:h-[250px]">
           <Slider {...bottomSettings}>
             {bottomImages.map((img, index) => (
               <div key={index} className="h-[250px] px-[10px] mobile:px-[4px]">

@@ -66,9 +66,9 @@ const config: Config = {
         GMarket: ["GMarket", "sans-serif"],
       },
       screens: {
-        mobile: { max: "768px" },
-        tablet: "769px",
-        pc: "1024px",
+        mobile: { max: "639px" },
+        tablet: { min: "640px", max: "1023px" },
+        pc: { min: "1024px" },
       },
     },
   },

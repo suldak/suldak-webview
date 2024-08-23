@@ -10,7 +10,7 @@ interface HeaderProps {
 function Header({ scrollToReservation }: HeaderProps) {
   return (
     <>
-      <div className="relative w-full pc:h-[900px]">
+      <div className="relative h-[900px] w-full tablet:hidden">
         <Image
           src={HeadImg}
           alt="Header Image"
@@ -18,10 +18,10 @@ function Header({ scrollToReservation }: HeaderProps) {
           objectFit="cover"
         />
       </div>
-      <div className="relative mobile:h-[600px] mobile:w-full pc:hidden">
+      <div className="relative h-[600px] w-full pc:hidden">
         <Image
           src={HeadSmallImg}
-          alt="Header Image"
+          alt="Header Small Image"
           layout="fill"
           objectFit="cover"
         />

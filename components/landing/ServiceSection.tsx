@@ -7,20 +7,20 @@ function ServiceSection() {
   return (
     <section className="text-suldak-gray-90 relative flex h-[933px] w-full flex-col bg-suldak-mint-50 mobile:h-[600px]">
       <div className="relative flex h-full w-full overflow-hidden mobile:flex-col pc:left-[200px] pc:items-center pc:justify-center">
-        <div className="absolute left-1/2 top-1/2 h-[1143px] w-[1143px] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-[#E6F8F9] mobile:mt-[88px] mobile:h-[515px] mobile:w-[515px]"></div>
-        <div className="absolute left-1/2 top-1/2 z-10 h-[826px] w-[826px] -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-suldak-mint-100 mobile:mt-[64px] mobile:h-[268px] mobile:w-[268px]"></div>
+        <div className="absolute left-1/2 top-1/2 h-[515px] w-[515px] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-[#E6F8F9] tablet:h-[828px] tablet:w-[828px] pc:h-[1143px] pc:w-[1143px]"></div>
+        <div className="absolute left-1/2 top-1/2 z-10 h-[268px] w-[268px] -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-suldak-mint-100 mobile:mt-[64px] tablet:h-[547px] tablet:w-[547px] pc:h-[826px] pc:w-[826px]"></div>
 
         <div className="relative z-20 flex w-full items-center justify-center mobile:top-[216px]">
-          <div className="mobile: relative h-[693px] w-[320px] mobile:h-[320px] mobile:w-[148px] pc:mr-4">
+          <div className="relative h-[320px] w-[148px] tablet:h-[496px] tablet:w-[233px] pc:mr-4 pc:h-[693px] pc:w-[320px]">
             <Image src={CopyImg1} alt="copy-image1" fill quality={100} />
           </div>
-          <div className="mobile: relative h-[693px] w-[320px] mobile:h-[320px] mobile:w-[148px]">
+          <div className="relative h-[320px] w-[148px] mobile:w-[148px] tablet:h-[496px] tablet:w-[233px] pc:h-[693px] pc:w-[320px]">
             <Image src={CopyImg2} alt="copy-image2" fill quality={100} />
           </div>
         </div>
       </div>
-      <div className="absolute z-30 flex w-full flex-col mobile:top-[60px] mobile:items-center mobile:text-center pc:left-[360px] pc:top-[120px]">
-        <TalkImg className="mobile:mb-[8px] pc:mb-4" />
+      <div className="absolute z-30 flex w-full flex-col mobile:top-[60px] mobile:items-center mobile:text-center tablet:top-[60px] tablet:items-center pc:top-[120px] pc:ml-[18%]">
+        <TalkImg className="mb-[8px] pc:mb-4" />
         <div className="text-[32px] font-bold mobile:text-[22px]">
           좋은 분위기에,
           <br /> 좋은 술이 따른다
