@@ -58,6 +58,12 @@ function GroupCarousel() {
           slidesToShow: 1.8,
         },
       },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1.5,
+        },
+      },
     ],
   };
 

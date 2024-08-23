@@ -17,14 +17,14 @@ function CopySection() {
       <div className="my-[60px] mobile:hidden">
         <Line />
       </div>
-      <div className="my-[60px] pc:hidden">
+      <div className="my-[60px] pc:hidden tablet:hidden">
         <SmallLine />
       </div>
       <div className="mb-[14px] text-[28px] mobile:mb-[10px] mobile:text-center mobile:text-[16px] mobile:font-light">
-        서로의 공통분모에서 시작하는 <br className="pc:hidden" />
+        서로의 공통분모에서 시작하는 <br className="pc:hidden tablet:hidden" />
         새로운 모임 플랫폼
       </div>
-      <div className="mobile:h-[74px] mobile:w-[136px] pc:h-[102px] pc:w-[190px]">
+      <div className="mobile:h-[74px] mobile:w-[136px] h-[102px] w-[190px]">
         <Image src={Logo} alt="logo" quality={100} />
       </div>
     </section>
