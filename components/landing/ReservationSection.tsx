@@ -1,14 +1,11 @@
 "use client";
 import Image from "next/image";
 import ReservationImg from "assets/pngs/bg-reservation.png";
-import React, { useState } from "react";
+import { forwardRef, ForwardedRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useEnrollReservation } from "apis/landing/useEnrollReservation";
 
-function ReservationSection(
-  _props: any,
-  ref: React.LegacyRef<HTMLDivElement> | undefined,
-) {
+function ReservationSection(props: any, ref: ForwardedRef<HTMLDivElement>) {
   const [email, setEmail] = useState("");
   const enrollMutation = useEnrollReservation();
 
@@ -75,7 +72,7 @@ function ReservationSection(
   );
 }
 
-const ForwardedReservationSection = React.forwardRef(ReservationSection);
+const ForwardedReservationSection = forwardRef(ReservationSection);
 
 ForwardedReservationSection.displayName = "ReservationSection";
 
