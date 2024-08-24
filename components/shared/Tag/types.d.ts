@@ -1,11 +1,11 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from "react";
 
-type TagColor = 'gray' | 'blue';
+type TagColor = "gray" | "blue";
 
 /**
  * 태그 인터페이스
  */
-interface TagProps extends Omit<ComponentPropsWithoutRef<'span'>, 'onClick'> {
+interface TagProps extends Omit<ComponentPropsWithoutRef<"span">, "onClick"> {
   tagId: number;
   onClick?: (text: string) => void;
   tagColor?: TagColor;

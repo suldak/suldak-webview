@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useGetLiquorDetail } from 'apis/liquor/useGetLiquorDetail';
-import DetailImage from './DetailImage';
-import DetailInfo from './DetailInfo';
-import DetailSnack from './DetailSnack';
+import { useGetLiquorDetail } from "apis/liquor/useGetLiquorDetail";
+import DetailImage from "./DetailImage";
+import DetailInfo from "./DetailInfo";
+import DetailSnack from "./DetailSnack";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
@@ -26,9 +26,9 @@ function LiquorDetail({ id }: { id: number }) {
         explanation={liquor.detailExplanation}
         tags={newTags}
       />
-      <div className="w-full h-2.5 bg-suldak-gray-200" />
+      <div className="h-2.5 w-full bg-suldak-gray-200" />
       <DetailSnack snacks={liquor.liquorSnackRes} />
-      <div className="w-full h-2.5 bg-suldak-gray-200" />
+      <div className="h-2.5 w-full bg-suldak-gray-200" />
     </>
   );
 }

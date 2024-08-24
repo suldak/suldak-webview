@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { CardProps } from './types';
-import LiquorTag from './LiquorTag';
-import { useRouter } from 'next/navigation';
+import Image from "next/image";
+import { CardProps } from "./types";
+import LiquorTag from "./LiquorTag";
+import { useRouter } from "next/navigation";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 /** 카드 컴포넌트 */
@@ -23,12 +23,12 @@ const LiquorCard = ({
 
   return (
     <div
-      className="w-full rounded-2xl flex items-center gap-3.5 h-card text-black bg-white shadow-suldak-card pl-[18px] py-[18px] cursor-pointer"
+      className="flex h-card w-full cursor-pointer items-center gap-3.5 rounded-2xl bg-white py-[18px] pl-[18px] text-black shadow-suldak-card"
       onClick={handleClick}
     >
-      <div className="rounded-full min-w-card-image h-card-image bg-orange-500">
+      <div className="h-card-image min-w-card-image rounded-full bg-orange-500">
         <Image
-          className="rounded-full w-card-image h-card-image bg-orange-500"
+          className="h-card-image w-card-image rounded-full bg-orange-500"
           src={`${BASE_URL + imgUrl}`}
           alt="술 이미지"
           width={100}
@@ -39,17 +39,17 @@ const LiquorCard = ({
       {/* 텍스트 영역 */}
       <div className="flex flex-col gap-1.5">
         <div className="flex flex-col gap-0.5">
-          <p className="text-suldak-orange-500 text-xs font-medium">
+          <p className="text-xs font-medium text-suldak-orange-500">
             ALC {liquorAbv}%
           </p>
-          <p className="text-suldak-gray-900 text-base font-semibold">
-            {name || 'Name None'}
+          <p className="text-base font-semibold text-suldak-gray-900">
+            {name || "Name None"}
           </p>
-          <p className="text-suldak-gray-600 text-sm font-medium leading-4">
-            {liquorDetail || 'Detail None'}
+          <p className="text-sm font-medium leading-4 text-suldak-gray-600">
+            {liquorDetail || "Detail None"}
           </p>
         </div>
-        <div className="flex flex-wrap flex-row gap-1.5">
+        <div className="flex flex-row flex-wrap gap-1.5">
           {liquorSellDtos.map(
             (liquorSell, index) =>
               liquorSell?.name && (

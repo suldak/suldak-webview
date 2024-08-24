@@ -1,16 +1,15 @@
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import ProfilePic1 from 'assets/icons/ico-profile-pic-1.svg';
-import ProfilePic2 from 'assets/icons/ico-profile-pic-2.svg';
-import ProfilePic3 from 'assets/icons/ico-profile-pic-3.svg';
-import ProfilePic4 from 'assets/icons/ico-profile-pic-4.svg';
-import ProfilePic5 from 'assets/icons/ico-profile-pic-5.svg';
-import ProfilePic6 from 'assets/icons/ico-profile-pic-6.svg';
-import ProfilePic7 from 'assets/icons/ico-profile-pic-7.svg';
-import ProfilePic8 from 'assets/icons/ico-profile-pic-8.svg';
-import ProfilePic9 from 'assets/icons/ico-profile-pic-9.svg';
-import CarouselCard from './CarouselCard';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ProfileImg1 from "assets/pngs/image-profile-1.png";
+import ProfileImg2 from "assets/pngs/image-profile-2.png";
+import ProfileImg3 from "assets/pngs/image-profile-3.png";
+import ProfileImg4 from "assets/pngs/image-profile-4.png";
+import ProfileImg5 from "assets/pngs/image-profile-5.png";
+import ProfileImg6 from "assets/pngs/image-profile-6.png";
+import ProfileImg7 from "assets/pngs/image-profile-7.png";
+import ProfileImg8 from "assets/pngs/image-profile-8.png";
+import CarouselCard from "./CarouselCard";
 
 function GroupCarousel() {
   const settings = {
@@ -21,7 +20,7 @@ function GroupCarousel() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 800,
-    cssEase: 'linear',
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1820,
@@ -30,49 +29,68 @@ function GroupCarousel() {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1660,
+        settings: {
+          slidesToShow: 2.75,
+        },
+      },
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2.25,
+        },
+      },
+      {
+        breakpoint: 1300,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.8,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1.5,
         },
       },
     ],
   };
 
   return (
-    <section className="w-full mt-[64px] relative bg-white">
-      <div className="w-full max-w-[1890px] carousel-container overflow-x-hidden">
+    <section className="relative mt-[64px] w-full bg-white mobile:mt-[40px]">
+      <div className="carousel-container w-full max-w-[1890px] overflow-x-hidden">
         <Slider {...settings}>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '고민상담', color: 'gray' },
+                { content: "오프라인", color: "green" },
+                { content: "고민상담", color: "gray" },
               ]}
-              title="취준고민 상담"
-              location="구글밋"
-              date="9.11(수)"
-              time="오후 8:00"
-              currentMembers={2}
+              title="해리포터 얘기 같이해요!"
+              location="홍대입구역"
+              date="9.21(토)"
+              time="오후 5:00"
+              currentMembers={1}
               maxMembers={3}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic1 />
-                  <ProfilePic2 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[{ src: ProfileImg1, alt: "Profile 1" }]}
             />
           </div>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '스포츠', color: 'gray' },
+                { content: "온라인", color: "orange" },
+                { content: "스포츠", color: "gray" },
               ]}
               title="KBO같이 보며 한잔"
               location="구글밋"
@@ -80,20 +98,18 @@ function GroupCarousel() {
               time="오후 6:30"
               currentMembers={4}
               maxMembers={6}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic3 />
-                  <ProfilePic4 className="-ml-[16px]" />
-                  <ProfilePic5 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[
+                { src: ProfileImg2, alt: "Profile 2" },
+                { src: ProfileImg3, alt: "Profile 3" },
+                { src: ProfileImg4, alt: "Profile 4" },
+              ]}
             />
           </div>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '온라인', color: 'orange' },
-                { content: '영화/드라마', color: 'gray' },
+                { content: "온라인", color: "orange" },
+                { content: "영화/드라마", color: "gray" },
               ]}
               title="공포영화 같이봐요👻"
               location="디스코드"
@@ -101,20 +117,18 @@ function GroupCarousel() {
               time="오후 8:30"
               currentMembers={5}
               maxMembers={6}
-              ProfilePic={() => (
-                <>
-                  <ProfilePic6 />
-                  <ProfilePic7 className="-ml-[16px]" />
-                  <ProfilePic8 className="-ml-[16px] mr-[20px]" />
-                </>
-              )}
+              ProfilePics={[
+                { src: ProfileImg5, alt: "Profile 5" },
+                { src: ProfileImg6, alt: "Profile 6" },
+                { src: ProfileImg7, alt: "Profile 7" },
+              ]}
             />
           </div>
           <div className="carousel-item my-3">
             <CarouselCard
               tags={[
-                { content: '오프라인', color: 'green' },
-                { content: '고민상담', color: 'gray' },
+                { content: "오프라인", color: "green" },
+                { content: "고민상담", color: "gray" },
               ]}
               title="마케터너들 주목✨🎉"
               location="강남역"
@@ -122,12 +136,11 @@ function GroupCarousel() {
               time="오후 8:00"
               currentMembers={1}
               maxMembers={4}
-              ProfilePic={() => <ProfilePic9 />}
+              ProfilePics={[{ src: ProfileImg8, alt: "Profile 8" }]}
             />
           </div>
         </Slider>
       </div>
-      {/* <div className="absolute top-0 right-0 w-[109px] h-full bg-white z-10"></div> */}
     </section>
   );
 }

@@ -1,6 +1,6 @@
-'use client';
-import { useGetRankingKeyword } from 'apis/keyword/useGetRankingKeyword';
-import RankingKeywordList from './RankingKeywordList';
+"use client";
+import { useGetRankingKeyword } from "apis/keyword/useGetRankingKeyword";
+import RankingKeywordList from "./RankingKeywordList";
 
 function RankingKeyword() {
   const { data: rankingKeywords } = useGetRankingKeyword();

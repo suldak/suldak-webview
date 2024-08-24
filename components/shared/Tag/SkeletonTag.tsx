@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 function SkeletonTag() {
   return (
-    <div className="inline-block bg-suldak-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2 animate-pulse">
+    <div className="mb-2 mr-2 inline-block animate-pulse rounded-full bg-suldak-gray-300 px-3 py-1 text-sm font-semibold text-gray-300">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
   );
