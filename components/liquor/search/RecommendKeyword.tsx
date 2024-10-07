@@ -8,9 +8,15 @@ import { useRouter } from "next/navigation";
 function RecommendKeyword() {
   const router = useRouter();
   const { data: recommendKeywords } = useGetRecommendKeyword();
-  const handleClick = (text: string) => {
+
+  const handleClick = (
+    event: React.MouseEvent<HTMLSpanElement>,
+    text: string,
+  ) => {
+    event.preventDefault();
     router.push(`/liquor/search/result?q=${text}`);
   };
+
   return (
     <>
       {recommendKeywords.map((recLiquor) => (
