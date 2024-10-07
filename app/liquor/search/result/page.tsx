@@ -1,6 +1,5 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 import { Liquor } from 'models/liquor';
 import { useLiquorSearch } from 'apis/liquor/useLiquorSearch';
 import SearchInput from 'components/liquor/search/SearchInput';
