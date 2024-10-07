@@ -7,7 +7,7 @@ type TagColor = "gray" | "blue";
  */
 interface TagProps extends Omit<ComponentPropsWithoutRef<"span">, "onClick"> {
   tagId: number;
-  onClick?: (text: string) => void;
+  onClick?: (event: React.MouseEvent<HTMLSpanElement>, text: string) => void;
   tagColor?: TagColor;
   selected?: boolean;
 }
