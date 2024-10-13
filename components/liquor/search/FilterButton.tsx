@@ -1,3 +1,4 @@
+"use client";
 import FilterIcon from "assets/icons/ico-filter-filter.svg";
 import { useRouter, useSearchParams } from "next/navigation";
 
