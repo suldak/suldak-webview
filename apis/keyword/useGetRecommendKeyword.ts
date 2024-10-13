@@ -15,7 +15,6 @@ const getRecommendKeyword = async (): Promise<
       },
     },
   );
-  console.log("data", data);
   return data;
 };
 
