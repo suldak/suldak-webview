@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 export default function Layout({
   children,
@@ -10,12 +10,12 @@ export default function Layout({
   filter: React.ReactNode;
 }) {
   const searchParams = useSearchParams();
-  const isFilterOpen = searchParams.get('filter') === 'open'; //filterpage를 조건부로 렌더링하기 위함
+  const isFilterOpen = searchParams.get("filter") === "open"; //filterpage를 조건부로 렌더링하기 위함
 
   return (
     <>
       {children}
-      {isFilterOpen && filter} 
+      {isFilterOpen && filter}
     </>
   );
 }
