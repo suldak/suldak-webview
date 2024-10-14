@@ -8,7 +8,7 @@ const getRecommendKeyword = async (): Promise<
 > => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const { data } = await axiosInstance.get<ResponseType<RecommendKeyword[]>>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/text/view/recommend`,
+    `api/search/text/view/recommend`,
     {
       params: {
         searchType: "LIQUOR",
