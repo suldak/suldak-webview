@@ -25,6 +25,14 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://122.45.170.200:8081/api/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
