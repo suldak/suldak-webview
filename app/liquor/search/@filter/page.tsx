@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import FilterPopup from 'components/liquor/search/FilterPopup';
-import { LiquorSearchParams } from 'apis/api';
+import { useRouter, useSearchParams } from "next/navigation";
+import FilterPopup from "components/liquor/search/FilterPopup";
+import { LiquorSearchParams } from "apis/api";
+import { Suspense } from "react";
 
 export default function FilterPage() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function FilterPage() {
 
   const handleClose = () => {
     const currentParams = new URLSearchParams(searchParams.toString());
-    currentParams.delete('filter');
+    currentParams.delete("filter");
     router.push(`/liquor/search/result?${currentParams.toString()}`, {
       scroll: false,
     });
@@ -18,7 +19,7 @@ export default function FilterPage() {
 
   const handleApply = (newOptions: LiquorSearchParams) => {
     const currentParams = new URLSearchParams(searchParams.toString());
-    currentParams.delete('filter');
+    currentParams.delete("filter");
     // URL에 filter option 추가
     Object.entries(newOptions).forEach(([key, value]) => {
       if (value) {
@@ -30,5 +31,9 @@ export default function FilterPage() {
     });
   };
 
-  return <FilterPopup onClose={handleClose} onApply={handleApply} />;
+  return (
+    <Suspense>
+      <FilterPopup onClose={handleClose} onApply={handleApply} />
+    </Suspense>
+  );
 }

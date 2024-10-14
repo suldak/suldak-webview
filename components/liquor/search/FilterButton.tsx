@@ -1,6 +1,7 @@
 "use client";
 import FilterIcon from "assets/icons/ico-filter-filter.svg";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 function FilterButton() {
   const router = useRouter();
@@ -17,13 +18,15 @@ function FilterButton() {
   };
 
   return (
-    <button
-      className="flex items-center gap-0.5 text-[14px] text-suldak-gray-600"
-      onClick={handleClick}
-    >
-      <FilterIcon />
-      필터
-    </button>
+    <Suspense>
+      <button
+        className="flex items-center gap-0.5 text-[14px] text-suldak-gray-600"
+        onClick={handleClick}
+      >
+        <FilterIcon />
+        필터
+      </button>
+    </Suspense>
   );
 }
 

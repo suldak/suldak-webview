@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import SortIcon from "assets/icons/ico-filter-sort.svg";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -24,39 +24,41 @@ function SortDropDown() {
   };
 
   return (
-    <div className="relative text-[14px]">
-      <div
-        className="flex cursor-pointer items-center gap-0.5 text-suldak-gray-600"
-        onClick={toggleDropdown}
-      >
-        <SortIcon />
-        {selectedOption}
-      </div>
-      {isOpen && (
-        <div className="absolute left-[-40px] top-full mt-1 h-[86px] w-[105px] border border-suldak-gray-500 bg-white text-[14px]">
-          <div
-            className={`mt-3 px-4 ${
-              selectedOption === "정확도순"
-                ? "text-suldak-gray-900"
-                : "text-suldak-gray-600"
-            }`}
-            onClick={() => handleOptionClick("정확도순")}
-          >
-            정확도순
-          </div>
-          <div
-            className={`mt-3 px-4 ${
-              selectedOption === "인기순"
-                ? "text-suldak-gray-900"
-                : "text-suldak-gray-600"
-            }`}
-            onClick={() => handleOptionClick("인기순")}
-          >
-            인기순
-          </div>
+    <Suspense>
+      <div className="relative text-[14px]">
+        <div
+          className="flex cursor-pointer items-center gap-0.5 text-suldak-gray-600"
+          onClick={toggleDropdown}
+        >
+          <SortIcon />
+          {selectedOption}
         </div>
-      )}
-    </div>
+        {isOpen && (
+          <div className="absolute left-[-40px] top-full mt-1 h-[86px] w-[105px] border border-suldak-gray-500 bg-white text-[14px]">
+            <div
+              className={`mt-3 px-4 ${
+                selectedOption === "정확도순"
+                  ? "text-suldak-gray-900"
+                  : "text-suldak-gray-600"
+              }`}
+              onClick={() => handleOptionClick("정확도순")}
+            >
+              정확도순
+            </div>
+            <div
+              className={`mt-3 px-4 ${
+                selectedOption === "인기순"
+                  ? "text-suldak-gray-900"
+                  : "text-suldak-gray-600"
+              }`}
+              onClick={() => handleOptionClick("인기순")}
+            >
+              인기순
+            </div>
+          </div>
+        )}
+      </div>
+    </Suspense>
   );
 }
 
