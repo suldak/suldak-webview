@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const cleanRecentSearch = async () => {
   const { data } = await axiosInstance.delete(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/search-text/clean`,
+    `/api/search/search-text/clean`,
   );
   return data;
 };
