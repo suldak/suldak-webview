@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Liquor } from "models/liquor";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
 import { useGetRecommendKeyword } from "apis/keyword/useGetRecommendKeyword";
@@ -34,6 +34,7 @@ function LiquorSearchContent({
 }: {
   searchParams: URLSearchParams;
 }) {
+  const router = useRouter();
   const { data, isLoading, error } = useLiquorSearch(
     {
       tag: searchParams.get("q") || undefined,
@@ -51,6 +52,10 @@ function LiquorSearchContent({
 
   const liquors: Liquor[] = data?.data.content || [];
   const keywords: RecommendKeyword[] = recommendKeywords || [];
+
+  const handleKeywordClick = (keyword: string) => {
+    router.push(`/liquor/search/result?q=${encodeURIComponent(keyword)}`);
+  };
 
   if (!liquors.length) {
     return (
@@ -75,7 +80,13 @@ function LiquorSearchContent({
           <div className="text-suldak-gray-500">|</div>
           <div className="flex items-center gap-4 text-sm font-semibold text-suldak-mint-500">
             {keywords.slice(0, 3).map((keyword: RecommendKeyword) => (
-              <span key={keyword.id}>{keyword.text}</span>
+              <span
+                key={keyword.id}
+                onClick={() => handleKeywordClick(keyword.text)}
+                className="cursor-pointer hover:underline"
+              >
+                {keyword.text}
+              </span>
             ))}
           </div>
         </div>
