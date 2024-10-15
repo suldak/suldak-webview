@@ -8,7 +8,7 @@ const getLiquorTaste = async (): Promise<
 > => {
   const { data } = await axiosInstance.get<
     ResponseType<{ content: TasteType[] }>
-  >(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tag/view/taste-type/`);
+  >(`/api/tag/view/taste-type/`);
   return data;
 };
 

@@ -1,17 +1,30 @@
 "use client";
 import FilterIcon from "assets/icons/ico-filter-filter.svg";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-function FilterButton() {
-  const router = useRouter();
+// SearchParamsHandler 컴포넌트
+function SearchParamsHandler({
+  children,
+}: {
+  children: (params: URLSearchParams) => React.ReactNode;
+}) {
   const searchParams = useSearchParams();
+  return <>{children(new URLSearchParams(searchParams.toString()))}</>;
+}
+
+// FilterButtonContent 컴포넌트
+function FilterButtonContent({
+  searchParams,
+}: {
+  searchParams: URLSearchParams;
+}) {
+  const router = useRouter();
 
   const handleClick = () => {
-    const currentParams = new URLSearchParams(searchParams.toString());
-    currentParams.set("filter", "open");
-
+    searchParams.set("filter", "open");
     // Parallel Routes를 사용하여 필터 페이지로 이동
-    router.push(`/liquor/search/result?${currentParams.toString()}`, {
+    router.push(`/liquor/search/result?${searchParams.toString()}`, {
       scroll: false,
     });
   };
@@ -24,6 +37,16 @@ function FilterButton() {
       <FilterIcon />
       필터
     </button>
+  );
+}
+
+function FilterButton() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchParamsHandler>
+        {(searchParams) => <FilterButtonContent searchParams={searchParams} />}
+      </SearchParamsHandler>
+    </Suspense>
   );
 }
 

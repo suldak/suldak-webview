@@ -1,15 +1,29 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import SortIcon from "assets/icons/ico-filter-sort.svg";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type SortOption = "정확도순" | "인기순";
 
-function SortDropDown() {
-  const [isOpen, setIsOpen] = useState(false); // 드롭다운 메뉴를 열고닫기 위함
-  const [selectedOption, setSelectedOption] = useState<SortOption>("정확도순"); // 메뉴 선택, 텍스트 적용을 위함
-  const router = useRouter();
+// SearchParamsHandler 컴포넌트
+function SearchParamsHandler({
+  children,
+}: {
+  children: (params: URLSearchParams) => React.ReactNode;
+}) {
   const searchParams = useSearchParams();
+  return <>{children(new URLSearchParams(searchParams.toString()))}</>;
+}
+
+// SortDropDownContent 컴포넌트
+function SortDropDownContent({
+  searchParams,
+}: {
+  searchParams: URLSearchParams;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<SortOption>("정확도순");
+  const router = useRouter();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -18,9 +32,8 @@ function SortDropDown() {
   const handleOptionClick = (option: SortOption) => {
     setIsOpen(false);
     setSelectedOption(option);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("sort", option);
-    router.push(`?${params.toString()}`);
+    searchParams.set("sort", option);
+    router.push(`?${searchParams.toString()}`);
   };
 
   return (
@@ -57,6 +70,16 @@ function SortDropDown() {
         </div>
       )}
     </div>
+  );
+}
+
+function SortDropDown() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchParamsHandler>
+        {(searchParams) => <SortDropDownContent searchParams={searchParams} />}
+      </SearchParamsHandler>
+    </Suspense>
   );
 }
 
