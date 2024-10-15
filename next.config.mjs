@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: ["122.45.170.200"],
     remotePatterns: [
       {
         protocol: "http",
         hostname: "122.45.170.200",
-        port: "8081",
+        port: "8080",
         pathname: "/**",
       },
     ],
@@ -25,14 +26,6 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: false,
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "http://122.45.170.200:8081/api/:path*",
-      },
-    ];
-  },
 };
 
 export default nextConfig;
