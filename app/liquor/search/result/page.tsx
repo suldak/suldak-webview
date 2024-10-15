@@ -33,6 +33,7 @@ function LiquorSearchContent({
       tastePriKeys: searchParams.get("taste") || "",
       liquorAbvPriKeys: searchParams.get("abv") || "",
       sellPriKeys: searchParams.get("seller") || "",
+      liquorDetailPriKeys: searchParams.get("subKey") || "",
     },
     searchParams.toString(),
   );
