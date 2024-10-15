@@ -10,6 +10,7 @@ import LiquorCard from "components/shared/LiquorCard";
 import FilterButton from "components/liquor/search/FilterButton";
 import { Suspense } from "react";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
+import LoadingCard from "components/shared/LiquorCard/LoadingCard";
 
 // RecommendKeyword 인터페이스 정의
 interface RecommendKeyword {
@@ -57,7 +58,53 @@ function LiquorSearchContent({
     router.push(`/liquor/search/result?q=${encodeURIComponent(keyword)}`);
   };
 
-  if (!liquors.length) {
+  // 로딩 중일 때 표시할 컴포넌트
+  if (isLoading) {
+    return (
+      <main className="flex min-h-screen flex-col">
+        <SearchInput />
+        <section className="border-b border-suldak-gray-200">
+          <div className="flex items-center gap-2 px-5 py-3.5">
+            <span className="text-sm font-semibold text-suldak-gray-900">
+              추천
+            </span>
+          </div>
+        </section>
+        <section className="px-5">
+          <div className="flex items-center justify-between pt-3.5">
+            <span className="text-xs font-medium text-suldak-gray-600">
+              총 00종
+            </span>
+            <div className="flex items-center gap-3 text-sm font-medium leading-5 text-suldak-gray-600">
+              <SortDropDown />
+              <FilterButton />
+            </div>
+          </div>
+        </section>
+        <section className="flex flex-col gap-2.5 overflow-y-auto px-5 py-3.5">
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+        </section>
+      </main>
+    );
+  }
+
+  // 에러가 발생했을 때 표시할 컴포넌트
+  if (error) {
+    return (
+      <main className="flex min-h-screen flex-col">
+        <SearchInput />
+        <div className="flex flex-grow items-center justify-center">
+          <p>오류가 발생했습니다. 다시 시도해주세요.</p>
+        </div>
+      </main>
+    );
+  }
+
+  // 검색 결과가 없을 때만 NoResultSection을 표시
+  if (!isLoading && liquors.length === 0) {
     return (
       <main className="flex min-h-screen flex-col">
         <SearchInput />
@@ -129,7 +176,7 @@ function LiquorSearchContent({
 
 function LiquorSearchResultPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <SearchParamsHandler>
         {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
       </SearchParamsHandler>
