@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import CockTailIcon from 'assets/icons/ico-cocktail-glass.svg';
-import Tag from 'components/shared/Tag';
-import { useGetLiquorName } from 'apis/tag/useGetLiquorName';
+import { useState } from "react";
+import CockTailIcon from "assets/icons/ico-cocktail-glass.svg";
+import Tag from "components/shared/Tag";
+import { useGetLiquorName } from "apis/tag/useGetLiquorName";
 
 interface LiquorClassSectionProps {
   selected: number[];
@@ -30,17 +30,17 @@ function LiquorClassSection({
 
   return (
     <section>
-      <div className="inline-flex text-[16px] mb-[16px] gap-x-[6px]  text-suldak-gray-900 font-bold">
+      <div className="mb-[16px] inline-flex items-center gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
         <CockTailIcon />
         주종
       </div>
-      <div className="flex flex-wrap gap-x-[8px]">
+      <div className="flex flex-wrap gap-2">
         {isValidLiquors &&
           liquors.map((liquor) => (
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagColor={selected.includes(liquor.id) ? 'blue' : 'gray'}
+              tagColor={selected.includes(liquor.id) ? "blue" : "gray"}
               selected={selected.includes(liquor.id)}
               onClick={() => handleTagClick(liquor.id)}
             >

@@ -8,8 +8,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((config) => {
   config.headers['Authorization'] = process.env.NEXT_PUBLIC_TOKEN;
 
-  console.log(config);
-
   return config;
 });
 

@@ -1,4 +1,4 @@
-import ReturnIcon from 'assets/icons/ico-return.svg';
+import ReturnIcon from "assets/icons/ico-return.svg";
 interface FilterResetButtonProps {
   onReset: () => void;
 }
@@ -6,7 +6,7 @@ interface FilterResetButtonProps {
 function FilterResetButton({ onReset }: FilterResetButtonProps) {
   return (
     <button
-      className="inline-flex items-center text-[18px] text-suldak-gray-500 py-[20px] gap-x-[10px]"
+      className="flex h-[60px] w-[81px] items-center justify-center gap-x-[10px] rounded-[15px] py-[20px] text-[18px] font-medium text-suldak-gray-500"
       onClick={onReset}
     >
       <ReturnIcon />

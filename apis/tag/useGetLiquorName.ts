@@ -8,7 +8,7 @@ const getLiquorNameTag = async (): Promise<
 > => {
   const { data } = await axiosInstance.get<
     ResponseType<{ content: LiquorName[] }>
-  >(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tag/view/liquor-name/`);
+  >(`/api/tag/view/liquor-name/`);
   return data;
 };
 

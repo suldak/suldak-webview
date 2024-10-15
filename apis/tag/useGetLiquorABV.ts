@@ -8,7 +8,7 @@ const getLiquorABV = async (): Promise<
 > => {
   const { data } = await axiosInstance.get<
     ResponseType<{ content: ABVType[] }>
-  >(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tag/view/liquor-abv/`);
+  >(`/api/tag/view/liquor-abv/`);
   return data;
 };
 

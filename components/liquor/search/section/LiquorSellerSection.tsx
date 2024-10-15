@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import CartIcon from 'assets/icons/ico-shopping-cart.svg';
-import Tag from 'components/shared/Tag';
-import { useGetLiquorSeller } from 'apis/tag/useGetLiquorSeller';
+import { useState } from "react";
+import CartIcon from "assets/icons/ico-shopping-cart.svg";
+import Tag from "components/shared/Tag";
+import { useGetLiquorSeller } from "apis/tag/useGetLiquorSeller";
 
 interface LiquorSellerSectionProps {
   selected: number[];
@@ -27,7 +27,7 @@ function LiquorSellerSection({
 
   return (
     <section className="my-[40px]">
-      <div className="inline-flex text-[16px] gap-x-[6px] mb-[16px] text-suldak-gray-900 font-bold">
+      <div className="mb-[16px] inline-flex items-center gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
         <CartIcon />
         구매 가능 장소
       </div>
@@ -37,7 +37,7 @@ function LiquorSellerSection({
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagColor={selected.includes(liquor.id) ? 'blue' : 'gray'}
+              tagColor={selected.includes(liquor.id) ? "blue" : "gray"}
               selected={selected.includes(liquor.id) ? true : false}
               onClick={() => handleTagClick(liquor.id)}
             >

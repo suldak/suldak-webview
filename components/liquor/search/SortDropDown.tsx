@@ -1,15 +1,29 @@
-'use client';
-import React, { useState } from 'react';
-import SortIcon from 'assets/icons/ico-filter-sort.svg';
-import { useRouter, useSearchParams } from 'next/navigation';
+"use client";
+import { Suspense, useState } from "react";
+import SortIcon from "assets/icons/ico-filter-sort.svg";
+import { useRouter, useSearchParams } from "next/navigation";
 
-type SortOption = '정확도순' | '인기순';
+type SortOption = "정확도순" | "인기순";
 
-function SortDropDown() {
-  const [isOpen, setIsOpen] = useState(false); // 드롭다운 메뉴를 열고닫기 위함
-  const [selectedOption, setSelectedOption] = useState<SortOption>('정확도순'); // 메뉴 선택, 텍스트 적용을 위함
-  const router = useRouter();
+// SearchParamsHandler 컴포넌트
+function SearchParamsHandler({
+  children,
+}: {
+  children: (params: URLSearchParams) => React.ReactNode;
+}) {
   const searchParams = useSearchParams();
+  return <>{children(new URLSearchParams(searchParams.toString()))}</>;
+}
+
+// SortDropDownContent 컴포넌트
+function SortDropDownContent({
+  searchParams,
+}: {
+  searchParams: URLSearchParams;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<SortOption>("정확도순");
+  const router = useRouter();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -18,45 +32,54 @@ function SortDropDown() {
   const handleOptionClick = (option: SortOption) => {
     setIsOpen(false);
     setSelectedOption(option);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('sort', option);
-    router.push(`?${params.toString()}`);
+    searchParams.set("sort", option);
+    router.push(`?${searchParams.toString()}`);
   };
 
   return (
     <div className="relative text-[14px]">
       <div
-        className="flex items-center gap-0.5  cursor-pointer text-suldak-gray-600"
+        className="flex cursor-pointer items-center gap-0.5 text-suldak-gray-600"
         onClick={toggleDropdown}
       >
         <SortIcon />
         {selectedOption}
       </div>
       {isOpen && (
-        <div className="w-[105px] h-[86px] text-[14px] absolute top-full left-[-40px] mt-1 bg-white border border-suldak-gray-500">
+        <div className="absolute left-[-40px] top-full mt-1 h-[86px] w-[105px] border border-suldak-gray-500 bg-white text-[14px]">
           <div
             className={`mt-3 px-4 ${
-              selectedOption === '정확도순'
-                ? 'text-suldak-gray-900'
-                : 'text-suldak-gray-600'
+              selectedOption === "정확도순"
+                ? "text-suldak-gray-900"
+                : "text-suldak-gray-600"
             }`}
-            onClick={() => handleOptionClick('정확도순')}
+            onClick={() => handleOptionClick("정확도순")}
           >
             정확도순
           </div>
           <div
             className={`mt-3 px-4 ${
-              selectedOption === '인기순'
-                ? 'text-suldak-gray-900'
-                : 'text-suldak-gray-600'
+              selectedOption === "인기순"
+                ? "text-suldak-gray-900"
+                : "text-suldak-gray-600"
             }`}
-            onClick={() => handleOptionClick('인기순')}
+            onClick={() => handleOptionClick("인기순")}
           >
             인기순
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function SortDropDown() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchParamsHandler>
+        {(searchParams) => <SortDropDownContent searchParams={searchParams} />}
+      </SearchParamsHandler>
+    </Suspense>
   );
 }
 

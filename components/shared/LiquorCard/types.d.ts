@@ -1,4 +1,4 @@
-import { LiquorSell, LiquorSnack } from 'models/liquor';
+import { LiquorSell, LiquorSnack } from "models/liquor";
 export interface CardProps {
   imgUrl: string; // 술 사진 이미지 주소
   liquorId: number;

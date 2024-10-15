@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import TasteIcon from 'assets/icons/ico-taste-good-emoji.svg';
-import Tag from 'components/shared/Tag';
-import { useGetLiquorTaste } from 'apis/tag/useGetLiquorTaste';
+import TasteIcon from "assets/icons/ico-taste-good-emoji.svg";
+import Tag from "components/shared/Tag";
+import { useGetLiquorTaste } from "apis/tag/useGetLiquorTaste";
 
 interface LiquorTasteSectionProps {
   selected: number[];
@@ -28,7 +27,7 @@ function LiquorTasteSection({
 
   return (
     <section className="mt-[40px]">
-      <div className="inline-flex text-[16px] gap-x-[6px]  mb-[16px] text-suldak-gray-900 font-bold">
+      <div className="mb-[16px] inline-flex items-center gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
         <TasteIcon />맛
       </div>
       <div className="flex flex-wrap gap-2">
@@ -37,7 +36,7 @@ function LiquorTasteSection({
             <Tag
               key={liquor.id}
               tagId={liquor.id}
-              tagColor={selected.includes(liquor.id) ? 'blue' : 'gray'}
+              tagColor={selected.includes(liquor.id) ? "blue" : "gray"}
               selected={selected.includes(liquor.id)}
               onClick={() => handleTagClick(liquor.id)}
             >
