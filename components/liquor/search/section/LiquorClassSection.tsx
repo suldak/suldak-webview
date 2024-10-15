@@ -34,7 +34,7 @@ function LiquorClassSection({
         <CockTailIcon />
         주종
       </div>
-      <div className="flex flex-wrap gap-x-[8px]">
+      <div className="flex flex-wrap gap-2">
         {isValidLiquors &&
           liquors.map((liquor) => (
             <Tag
