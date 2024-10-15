@@ -22,10 +22,10 @@ function LiquorABVSection({ selected, setSelected }: LiquorABVSectionProps) {
 
   return (
     <section className="mt-[40px]">
-      <div className="mb-[16px] inline-flex gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
+      <div className="mb-[16px] inline-flex items-center gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
         <BeerIcon /> 알코올 도수
       </div>
-      <div className="flex flex-wrap gap-x-[8px]">
+      <div className="flex flex-wrap gap-2">
         {isValidLiquors &&
           liquors.map((liquor) => (
             <Tag
