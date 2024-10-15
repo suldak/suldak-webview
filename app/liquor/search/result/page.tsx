@@ -1,13 +1,22 @@
 "use client";
+
 import { useSearchParams } from "next/navigation";
 import { Liquor } from "models/liquor";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
+import { useGetRecommendKeyword } from "apis/keyword/useGetRecommendKeyword";
 import SearchInput from "components/liquor/search/SearchInput";
 import SortDropDown from "components/liquor/search/SortDropDown";
 import LiquorCard from "components/shared/LiquorCard";
 import FilterButton from "components/liquor/search/FilterButton";
 import { Suspense } from "react";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
+
+// RecommendKeyword 인터페이스 정의
+interface RecommendKeyword {
+  id: number;
+  isActive: boolean;
+  text: string;
+}
 
 // SearchParamsHandler 컴포넌트
 function SearchParamsHandler({
@@ -38,7 +47,10 @@ function LiquorSearchContent({
     searchParams.toString(),
   );
 
+  const { data: recommendKeywords } = useGetRecommendKeyword();
+
   const liquors: Liquor[] = data?.data.content || [];
+  const keywords: RecommendKeyword[] = recommendKeywords || [];
 
   if (!liquors.length) {
     return (
@@ -62,9 +74,9 @@ function LiquorSearchContent({
           </span>
           <div className="text-suldak-gray-500">|</div>
           <div className="flex items-center gap-4 text-sm font-semibold text-suldak-mint-500">
-            <span>직장인</span>
-            <span>위스키 베이스</span>
-            <span>칵테일</span>
+            {keywords.slice(0, 3).map((keyword: RecommendKeyword) => (
+              <span key={keyword.id}>{keyword.text}</span>
+            ))}
           </div>
         </div>
       </section>
