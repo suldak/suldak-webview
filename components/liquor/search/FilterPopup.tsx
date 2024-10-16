@@ -91,7 +91,7 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
             setSelected={setSelectedSeller}
           />
         </div>
-        <div className="flex gap-x-[12px]">
+        <div className="flex w-full gap-x-[10px]">
           <FilterResetButton onReset={handleReset} />
           <FilterApplyButton onApply={handleApply} />
         </div>

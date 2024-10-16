@@ -27,7 +27,7 @@ function LiquorSellerSection({
 
   return (
     <section className="my-[40px]">
-      <div className="mb-[16px] inline-flex gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
+      <div className="mb-[16px] inline-flex items-center gap-x-[6px] text-[16px] font-bold text-suldak-gray-900">
         <CartIcon />
         구매 가능 장소
       </div>

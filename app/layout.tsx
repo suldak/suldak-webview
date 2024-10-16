@@ -4,7 +4,6 @@ import Provider from "provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -13,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`mx-auto bg-white text-suldak-gray-900 ${inter.className}`}
+        className={`mx-auto bg-white font-pretendard text-suldak-gray-900 ${inter.className}`}
       >
         <Provider>{children}</Provider>
       </body>
