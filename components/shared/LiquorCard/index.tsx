@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-/** 카드 컴포넌트 */
 function LiquorCard({
   imgUrl,
   liquorId,
@@ -25,37 +24,34 @@ function LiquorCard({
   // 모든 태그를 하나의 배열로 결합
   const allTags = [...liquorSellDtos, ...tasteTypeDtos, ...liquorSnackRes]
     .filter((item) => item?.name)
-    .slice(0, 4); // 최대 4개로 제한
+    .slice(0, 3); // 최대 4개로 제한
 
   return (
     <div
-      className="flex h-card w-full cursor-pointer items-center rounded-2xl bg-white p-[18px] text-black shadow-suldak-card"
+      className="flex h-[144px] w-[335px] cursor-pointer items-center text-wrap rounded-[16px] bg-white p-3 text-black shadow-suldak-card"
       onClick={handleClick}
     >
-      <div className="mr-[14px] h-card-image min-w-card-image rounded-full bg-orange-500">
+      <div className="mr-3 h-20 w-20 flex-shrink-0 mobile:mr-4 mobile:h-24 mobile:w-24">
         <Image
-          className="h-card-image w-card-image rounded-full bg-orange-500"
+          className="h-full w-full rounded-full object-cover"
           src={`${BASE_URL + imgUrl}`}
           alt="술 이미지"
-          width={100}
-          height={100}
+          width={96}
+          height={96}
         />
       </div>
 
-      {/* 텍스트 영역 */}
-      <div className="flex flex-col">
-        <div className="flex flex-col">
-          <p className="text-[12px] font-medium text-suldak-orange-500">
-            ALC {liquorAbv}%
-          </p>
-          <p className="text-[16px] font-semibold text-suldak-gray-900">
-            {name || "Name None"}
-          </p>
-          <p className="flex max-h-[38px] overflow-hidden text-[14px] text-suldak-gray-600">
-            {liquorDetail || "주류 정보 추가 예정입니다."}
-          </p>
-        </div>
-        <div className="mt-[2px] flex w-[193px] gap-x-[6px] overflow-hidden">
+      <div className="flex min-w-0 flex-grow flex-col">
+        <p className="text-xs font-medium text-suldak-orange-500 mobile:text-sm">
+          ALC {liquorAbv}%
+        </p>
+        <p className="truncate text-sm font-semibold text-suldak-gray-900 mobile:text-base">
+          {name || "Name None"}
+        </p>
+        <p className="mt-1 line-clamp-2 text-xs text-suldak-gray-600 mobile:text-sm">
+          {liquorDetail || "주류 정보 추가 예정입니다."}
+        </p>
+        <div className="mt-2 flex gap-1">
           {allTags.map((tag, index) => (
             <LiquorTag key={index} name={tag.name} />
           ))}
