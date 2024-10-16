@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Liquor } from "models/liquor";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
@@ -21,9 +22,7 @@ function SearchParamsHandler({
   children,
 }: {
   children: (params: URLSearchParams) => React.ReactNode;
-};
-
-function SearchParamsHandler({ children }: SearchParamsHandlerProps) {
+}) {
   const searchParams = useSearchParams();
   return <>{children(new URLSearchParams(searchParams.toString()))}</>;
 }
@@ -81,6 +80,26 @@ function SearchInfoSection({
   );
 }
 
+function LiquorList({ liquors }: { liquors: Liquor[] }) {
+  return (
+    <section className="flex flex-col gap-2.5 overflow-y-auto px-5 py-3.5">
+      {liquors.map((liquor: Liquor) => (
+        <LiquorCard
+          key={liquor.id}
+          imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
+          liquorId={liquor.id}
+          liquorDetail={liquor.detailExplanation}
+          liquorAbv={liquor.detailAbv}
+          name={liquor.name}
+          liquorSellDtos={liquor.liquorSellDtos}
+          liquorSnackRes={liquor.liquorSnackRes}
+          tasteTypeDtos={liquor.tasteTypeDtos}
+        />
+      ))}
+    </section>
+  );
+}
+
 function LiquorSearchContent({
   searchParams,
 }: {
@@ -104,6 +123,7 @@ function LiquorSearchContent({
 
   const liquors: Liquor[] = data?.data.content || [];
   const keywords: RecommendKeyword[] = recommendKeywords || [];
+  const liquorSubKey = searchParams.get("subKey");
 
   const handleKeywordClick = (keyword: string) => {
     router.push(`/liquor/search/result?q=${encodeURIComponent(keyword)}`);
@@ -120,30 +140,19 @@ function LiquorSearchContent({
     );
   }
 
-  if (!isLoading && liquors.length === 0) {
-    return (
-      <main className="flex min-h-screen flex-col">
-        <SearchInput />
-        <div className="flex flex-grow items-center justify-center">
-          <NoResultSection />
-        </div>
-      </main>
-    );
-  }
-
-function RecommendationSection() {
   return (
     <main className="flex min-h-screen flex-col">
-      <SearchInput />
-      <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
-      <SearchInfoSection count={isLoading ? 0 : liquors.length}>
-        <SortDropDown />
-        <FilterButton />
-      </SearchInfoSection>
-      <section
-        className="flex flex-col gap-2.5 overflow-y-auto px-5 py-3.5"
-        style={{ maxHeight: `calc(100dvh - 100px)` }}
-      >
+      {!liquorSubKey && <SearchInput />}
+      {!liquorSubKey && (
+        <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
+      )}
+      {!liquorSubKey && (
+        <SearchInfoSection count={isLoading ? 0 : liquors.length}>
+          <SortDropDown />
+          <FilterButton />
+        </SearchInfoSection>
+      )}
+      <section className="flex flex-col gap-2.5 overflow-y-auto px-5 py-3.5">
         {isLoading ? (
           <>
             <LoadingCard />
@@ -151,29 +160,19 @@ function RecommendationSection() {
             <LoadingCard />
             <LoadingCard />
           </>
+        ) : liquors.length === 0 ? (
+          <NoResultSection />
         ) : (
-          liquors.map((liquor: Liquor) => (
-            <LiquorCard
-              key={liquor.id}
-              imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
-              liquorId={liquor.id}
-              liquorDetail={liquor.detailExplanation}
-              liquorAbv={liquor.detailAbv}
-              name={liquor.name}
-              liquorSellDtos={liquor.liquorSellDtos}
-              liquorSnackRes={liquor.liquorSnackRes}
-              tasteTypeDtos={liquor.tasteTypeDtos}
-            />
-          ))
+          <LiquorList liquors={liquors} />
         )}
       </section>
-    </>
+    </main>
   );
 }
 
 function LiquorSearchResultPage() {
   return (
-    <Suspense>
+    <Suspense fallback>
       <SearchParamsHandler>
         {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
       </SearchParamsHandler>
