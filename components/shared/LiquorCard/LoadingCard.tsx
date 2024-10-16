@@ -1,9 +1,7 @@
 /** 카드 컴포넌트 */
 function LoadingCard() {
   return (
-    <div className="flex h-card w-full cursor-pointer items-center rounded-2xl bg-white p-[18px] text-black shadow-suldak-card">
-      <div className="mr-[14px] h-card-image min-w-card-image rounded-full bg-orange-500"></div>
-
+    <div className="flex h-[144px] w-[335px] cursor-pointer items-center rounded-[16px] bg-white p-[18px] text-black shadow-suldak-card">
       {/* 텍스트 영역 */}
       <div className="flex flex-col">
         <div className="flex flex-col">
