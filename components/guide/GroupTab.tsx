@@ -1,20 +1,22 @@
-import GroupTabImg from 'assets/icons/ico-group-tab.svg';
-import GroupHomeTabImg from 'assets/icons/ico-group-home-tab.svg';
-import JoinTabImg from 'assets/icons/ico-join-tab.svg';
-import NewGroupTabImg from 'assets/icons/ico-new-group-tab.svg';
-import MyGroupTabImg from 'assets/icons/ico-my-group-tab.svg';
+import GroupTabImg from "assets/icons/ico-group-tab.svg";
+import GroupHomeTabImg from "assets/icons/ico-group-home-tab.svg";
+import JoinTabImg from "assets/icons/ico-join-tab.svg";
+import NewGroupTabImg from "assets/icons/ico-new-group-tab.svg";
+import MyGroupTabImg from "assets/icons/ico-my-group-tab.svg";
 
 function GroupTab() {
   return (
-    <div>
-      <p className="mb-[20px]">
-        [친구찾기] 탭에서는 모임을 만들거나 <br /> 다른 사람이 만든 모임에
-        참여할 수 있어요
+    <div className="flex w-full flex-col justify-center">
+      <p className="mb-[20px] px-[20px]">
+        [친구찾기] 탭에서는 모임을 만들거나 다른 사람이 만든 모임에 참여할 수
+        있어요
       </p>
-      <GroupTabImg />
-      <div className="mt-[12px] mb-[40px]">
-        <h3 className="text-[16px] text-suldak-mint-500 font-semibold">홈</h3>
-        <ul className="space-y-2 list-disc pl-[20px]">
+      <div className="flex justify-center">
+        <GroupTabImg />
+      </div>
+      <div className="mb-[40px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">홈</h3>
+        <ul className="list-disc space-y-2 pl-[20px]">
           <li className="indent">
             모임 유형(온라인/오프라인)과 이야기 카테고리, 모임명 등을 보고
             참여하고 싶은 모임을 찾아보세요👀
@@ -24,12 +26,14 @@ function GroupTab() {
           </li>
         </ul>
       </div>
-      <GroupHomeTabImg />
-      <div className="mt-[12px] mb-[40px]">
-        <h3 className="text-[16px] text-suldak-mint-500 font-semibold">
+      <div className="flex justify-center">
+        <GroupHomeTabImg />
+      </div>
+      <div className="mb-[40px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">
           상세페이지, 프로필
         </h3>
-        <ul className="space-y-2 list-disc pl-[20px]">
+        <ul className="list-disc space-y-2 pl-[20px]">
           <li className="indent">
             모임에 참여하고 싶다면 상세페이지의 [참가 신청하기] 버튼을
             눌러주세요!
@@ -48,12 +52,14 @@ function GroupTab() {
           </li>
         </ul>
       </div>
-      <JoinTabImg />
-      <div className="mt-[12px] mb-[40px]">
-        <h3 className=" text-[16px] text-suldak-mint-500 font-semibold">
+      <div className="flex justify-center">
+        <JoinTabImg />
+      </div>
+      <div className="mb-[40px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">
           참여확정, 연락수단
         </h3>
-        <ul className="space-y-2 list-disc pl-[20px]">
+        <ul className="list-disc space-y-2 pl-[20px]">
           <li className="indent">
             참여가 확정되면 알림과 함께 상세페이지의 버튼이 바뀌게 될 거에요
           </li>
@@ -62,9 +68,9 @@ function GroupTab() {
             꼭 확인해주세요✨
           </li>
         </ul>
-        <div className="mt-[12px] text-suldak-gray-700 bg-suldak-mint-50 rounded-[16px] p-[16px]">
+        <div className="mt-[12px] rounded-[16px] bg-suldak-mint-50 p-[16px] text-suldak-gray-700">
           <p className="text-[16px] font-semibold">📌 여기서 잠깐!</p>
-          <ul className="text-[14px] space-y-2 list-disc pl-[20px]">
+          <ul className="list-disc space-y-2 pl-[20px] text-[14px]">
             <li className="indent">
               모든 모임은 “
               <span className="font-semibold text-suldak-mint-500">
@@ -87,13 +93,14 @@ function GroupTab() {
           </ul>
         </div>
       </div>
-
-      <NewGroupTabImg />
-      <div className="mt-[12px] mb-[40px]">
-        <h3 className="text-[16px] text-suldak-mint-500 font-semibold">
+      <div className="flex justify-center">
+        <NewGroupTabImg />
+      </div>
+      <div className="mb-[40px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">
           모임만들기
         </h3>
-        <ul className="space-y-2 list-disc pl-[20px]">
+        <ul className="list-disc space-y-2 pl-[20px]">
           <li className="indent">
             [+] 버튼의 [모임만들기]를 눌러 직접 모임을 생성할 수 있어요!
           </li>
@@ -103,12 +110,14 @@ function GroupTab() {
           </li>
         </ul>
       </div>
-      <MyGroupTabImg />
-      <div className="mt-[12px] mb-[20px]">
-        <h3 className="text-[16px] text-suldak-mint-500 font-semibold">
+      <div className="flex justify-center">
+        <MyGroupTabImg />
+      </div>
+      <div className="mb-[20px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">
           내 모임
         </h3>
-        <ul className="space-y-2 list-disc pl-[20px]">
+        <ul className="list-disc space-y-2 pl-[20px]">
           <li className="indent">
             [+] 버튼의 [내 모임] - [모임 모아보기]에서는 [내가 만든 모임], [참여
             확정 모임], 그리고 [대기 중인 모임]을 한눈에 볼 수 있어요
