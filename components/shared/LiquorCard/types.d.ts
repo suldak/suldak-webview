@@ -13,3 +13,18 @@ export interface LiquorTagProps {
   name: string;
   key: number | string;
 }
+// window 객체에 대한 타입 선언 확장
+declare global {
+  interface Window {
+    AndroidBridge?: {
+      goBack: () => void;
+    };
+    webkit?: {
+      messageHandlers: {
+        goBack: {
+          postMessage: (message: string) => void;
+        };
+      };
+    };
+  }
+}
