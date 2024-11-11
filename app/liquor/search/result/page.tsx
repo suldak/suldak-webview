@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Liquor } from "models/liquor";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
@@ -8,7 +9,6 @@ import SearchInput from "components/liquor/search/SearchInput";
 import SortDropDown from "components/liquor/search/SortDropDown";
 import LiquorCard from "components/shared/LiquorCard";
 import FilterButton from "components/liquor/search/FilterButton";
-import { Suspense } from "react";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
 
@@ -36,7 +36,7 @@ function RecommendSection({
 }) {
   return (
     <section className="border-b border-suldak-gray-200">
-      <div className="flex items-center gap-2 px-5 py-3.5">
+      <div className="flex items-center gap-2 px-[20px] py-3.5">
         <span className="text-sm font-semibold text-suldak-gray-900">추천</span>
         {keywords.length > 0 && (
           <>
@@ -67,7 +67,7 @@ function SearchInfoSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="px-5">
+    <section className="h-[44px] px-[20px]">
       <div className="flex items-center justify-between pt-3.5">
         <span className="text-xs font-medium text-suldak-gray-600">
           총 {count}종
@@ -76,6 +76,26 @@ function SearchInfoSection({
           {children}
         </div>
       </div>
+    </section>
+  );
+}
+
+function LiquorList({ liquors }: { liquors: Liquor[] }) {
+  return (
+    <section className="flex w-full flex-col items-center justify-center gap-y-2.5 overflow-y-auto">
+      {liquors.map((liquor: Liquor) => (
+        <LiquorCard
+          key={liquor.id}
+          imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
+          liquorId={liquor.id}
+          liquorDetail={liquor.summaryExplanation}
+          liquorAbv={liquor.detailAbv}
+          name={liquor.name}
+          liquorSellDtos={liquor.liquorSellDtos}
+          liquorSnackRes={liquor.liquorSnackRes}
+          tasteTypeDtos={liquor.tasteTypeDtos}
+        />
+      ))}
     </section>
   );
 }
@@ -103,6 +123,7 @@ function LiquorSearchContent({
 
   const liquors: Liquor[] = data?.data.content || [];
   const keywords: RecommendKeyword[] = recommendKeywords || [];
+  const liquorSubKey = searchParams.get("subKey");
 
   const handleKeywordClick = (keyword: string) => {
     router.push(`/liquor/search/result?q=${encodeURIComponent(keyword)}`);
@@ -119,59 +140,42 @@ function LiquorSearchContent({
     );
   }
 
-  if (!isLoading && liquors.length === 0) {
-    return (
-      <main className="flex min-h-screen flex-col">
-        <SearchInput />
-        <div className="flex flex-grow items-center justify-center">
-          <NoResultSection />
-        </div>
-      </main>
-    );
-  }
-
   return (
-    <main className="flex min-h-screen flex-col">
-      <SearchInput />
-      <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
-      <SearchInfoSection count={isLoading ? 0 : liquors.length}>
-        <SortDropDown />
-        <FilterButton />
-      </SearchInfoSection>
-      <section
-        className="flex flex-col gap-2.5 overflow-y-auto px-5 py-3.5"
-        style={{ maxHeight: `calc(100dvh - 100px)` }}
-      >
-        {isLoading ? (
-          <>
-            <LoadingCard />
-            <LoadingCard />
-            <LoadingCard />
-            <LoadingCard />
-          </>
-        ) : (
-          liquors.map((liquor: Liquor) => (
-            <LiquorCard
-              key={liquor.id}
-              imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
-              liquorId={liquor.id}
-              liquorDetail={liquor.detailExplanation}
-              liquorAbv={liquor.detailAbv}
-              name={liquor.name}
-              liquorSellDtos={liquor.liquorSellDtos}
-              liquorSnackRes={liquor.liquorSnackRes}
-              tasteTypeDtos={liquor.tasteTypeDtos}
-            />
-          ))
-        )}
-      </section>
+    <main className="flex min-h-screen flex-col pb-[10px]">
+      {!liquorSubKey && <SearchInput />}
+      {!liquorSubKey && (
+        <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
+      )}
+      {!liquorSubKey && (
+        <SearchInfoSection count={isLoading ? 0 : liquors.length}>
+          <SortDropDown />
+          <FilterButton />
+        </SearchInfoSection>
+      )}
+      {liquorSubKey && (
+        <SearchInfoSection count={isLoading ? 0 : liquors.length}>
+          <div />
+        </SearchInfoSection>
+      )}
+      {isLoading ? (
+        <section className="flex flex-col items-center justify-center gap-2.5 overflow-y-auto px-[20px]">
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+        </section>
+      ) : liquors.length === 0 ? (
+        <NoResultSection />
+      ) : (
+        <LiquorList liquors={liquors} />
+      )}
     </main>
   );
 }
 
 function LiquorSearchResultPage() {
   return (
-    <Suspense>
+    <Suspense fallback>
       <SearchParamsHandler>
         {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
       </SearchParamsHandler>
