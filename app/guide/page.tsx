@@ -24,6 +24,31 @@ function AppGuidePage() {
   );
   const tabBarRef = useRef<HTMLDivElement>(null);
 
+  const sendMessageToFlutter = () => {
+    console.log("Attempting to send message to Flutter...");
+
+    try {
+      // Android의 경우
+      if (window.AndroidBridge) {
+        console.log("Android bridge detected, sending message...");
+        window.AndroidBridge.goBack();
+        console.log("Message sent to Android successfully");
+      }
+      // iOS의 경우
+      else if (window.webkit && window.webkit.messageHandlers) {
+        console.log("iOS bridge detected, sending message...");
+        window.webkit.messageHandlers.goBack.postMessage("goBack");
+        console.log("Message sent to iOS successfully");
+      } else {
+        console.warn(
+          "No Flutter bridge detected. Are you running in a Flutter WebView?",
+        );
+      }
+    } catch (error) {
+      console.error("Error sending message to Flutter:", error);
+    }
+  };
+
   const scrollToSection = (tab: string) => {
     if (refs.current[tab] && tabBarRef.current) {
       const tabBarHeight = tabBarRef.current.offsetHeight;
@@ -63,7 +88,7 @@ function AppGuidePage() {
   return (
     <div className="flex-col justify-center text-[14px]">
       <div className="relative flex items-center justify-center border-b border-suldak-gray-200">
-        <button className="absolute left-[12px]">
+        <button className="absolute left-[12px]" onClick={sendMessageToFlutter}>
           <GoBack />
         </button>
         <h1 className="my-[14px] flex text-[18px] font-bold text-suldak-gray-900">
