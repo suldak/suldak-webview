@@ -125,7 +125,7 @@ function AppGuidePage() {
           >
             {sectionTitles[tab as keyof typeof sectionTitles]}
           </h2>
-          <div className="flex-col px-[20px] pb-[20px]">
+          <div className="flex-col pb-[20px]">
             {tab === "홈" && <HomeTab />}
             {tab === "검색" && <SearchTab />}
             {tab === "모임" && <GroupTab />}
