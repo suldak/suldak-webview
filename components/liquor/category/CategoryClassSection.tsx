@@ -26,14 +26,20 @@ function CategoryClassSection({
   };
 
   return (
-    <section className="flex gap-2 overflow-x-scroll max-w-full scrollbar-hide">
+    <section className="flex max-w-full gap-2 overflow-x-scroll scrollbar-hide">
       {isValidLiquors &&
         liquors.map((liquor) => (
           <Tag
             key={liquor.id}
             tagId={liquor.id}
-            tagColor={queryClass === liquor.name || selected.includes(liquor.name) ? "blue" : "gray"}
-            selected={queryClass === liquor.name || selected.includes(liquor.name)}
+            tagColor={
+              queryClass === liquor.name || selected.includes(liquor.name)
+                ? "mint"
+                : "gray"
+            }
+            selected={
+              queryClass === liquor.name || selected.includes(liquor.name)
+            }
             onClick={() => handleTagClick(liquor.name)}
           >
             {liquor.name}
