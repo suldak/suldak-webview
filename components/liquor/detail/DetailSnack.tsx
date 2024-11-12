@@ -19,7 +19,7 @@ function DetailSnack({ snacks }: DetailSnackProps) {
       </div>
       <div className="mt-5 flex gap-3">
         {snacks.map((snack) => (
-          <LiquorSnack key={snack.id} name={snack.name} />
+          <LiquorSnack key={snack.id} name={snack.name} imgUrl={snack.fileBaseNm} />
         ))}
       </div>
     </section>
