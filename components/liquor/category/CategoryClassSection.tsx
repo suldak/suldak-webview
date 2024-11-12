@@ -1,6 +1,7 @@
 import Tag from "components/shared/Tag";
 import { useGetLiquorName } from "apis/tag/useGetLiquorName";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 interface LiquorClassSectionProps {
   selected: string[];
@@ -16,7 +17,14 @@ function CategoryClassSection({
   const router = useRouter();
 
   const isValidLiquors = Array.isArray(liquors) && liquors.length > 0;
-  const queryClass = searchParams.get("q") || "전체"; // q가 없을 때 "전체"로 설정
+  const queryClass = searchParams.get("q");
+
+  // q 값이 없으면 q=전체로 리다이렉트
+  useEffect(() => {
+    if (!queryClass) {
+      router.push(`/liquor/category/result?q=전체`);
+    }
+  }, [queryClass, router]);
 
   // 태그 클릭 핸들러
   const handleTagClick = (name: string) => {
