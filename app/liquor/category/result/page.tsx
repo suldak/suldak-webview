@@ -19,11 +19,7 @@ function CategoryParamsHandler({
   return <>{children(new URLSearchParams(searchParams.toString()))}</>;
 }
 
-function SearchInfoSection({
-  count,
-}: {
-  count: number;
-}) {
+function SearchInfoSection({ count }: { count: number }) {
   return (
     <section className="h-[44px] px-[20px]">
       <div className="flex items-center justify-between pt-3.5">
@@ -60,9 +56,12 @@ function LiquorCategoryContent({
 }: {
   searchParams: URLSearchParams;
 }) {
+  const query = searchParams.get("q");
+  const tag = !query || query === "전체" ? undefined : query;
+
   const { data, isLoading, error } = useLiquorSearch(
     {
-      tag: searchParams.get("q") || undefined,
+      tag,
       recordSize: 100,
     },
     searchParams.toString(),
@@ -86,7 +85,7 @@ function LiquorCategoryContent({
     <main className="flex min-h-screen flex-col pb-[10px]">
       <CategoryHeader tagValue={tagValue} />
       <CategoryFilter />
-      <SearchInfoSection count={isLoading ? 0 : liquors.length}/>
+      <SearchInfoSection count={isLoading ? 0 : liquors.length} />
       {isLoading ? (
         <section className="flex flex-col items-center justify-center gap-2.5 overflow-y-auto px-[20px]">
           <LoadingCard />
@@ -107,7 +106,9 @@ function LiquorCategoryResultPage() {
   return (
     <Suspense fallback>
       <CategoryParamsHandler>
-        {(searchParams) => <LiquorCategoryContent searchParams={searchParams} />}
+        {(searchParams) => (
+          <LiquorCategoryContent searchParams={searchParams} />
+        )}
       </CategoryParamsHandler>
     </Suspense>
   );

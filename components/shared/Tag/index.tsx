@@ -8,6 +8,9 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
   if (selected) {
     tagStyle =
       "bg-suldak-mint-50 border border-suldak-mint-500 text-suldak-mint-500 text-[14px] font-medium";
+    if (tagColor == "mint") {
+      tagStyle = "bg-suldak-mint-500 text-white text-[14px]";
+    }
   } else {
     switch (tagColor) {
       case "blue":

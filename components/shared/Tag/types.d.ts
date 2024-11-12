@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 
-type TagColor = "gray" | "blue";
+type TagColor = "gray" | "blue" | "mint";
 
 /**
  * 태그 인터페이스
