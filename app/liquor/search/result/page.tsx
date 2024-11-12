@@ -114,6 +114,7 @@ function LiquorSearchContent({
       tastePriKeys: searchParams.get("taste") || "",
       liquorAbvPriKeys: searchParams.get("abv") || "",
       sellPriKeys: searchParams.get("seller") || "",
+      recordSize: 100, // 최대 100개 까지의 목록을 가져옵니다.
       liquorDetailPriKeys: searchParams.get("subKey") || "",
     },
     searchParams.toString(),

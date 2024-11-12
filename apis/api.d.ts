@@ -14,4 +14,5 @@ export interface LiquorSearchParams {
   sellPriKeys?: string;
   tastePriKeys?: string;
   statePriKeys?: number;
+  recordSize?: number; // 술 목록 recordSize
 }

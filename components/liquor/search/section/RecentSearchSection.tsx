@@ -41,9 +41,10 @@ function RecentSearchSection() {
   };
 
   return (
-    <section className="px-5">
+    /**패딩이 두 번 적용 되는 부분이 있어 제거 하였습니다. */
+    <section>
       <SearchInput />
-      <div className="flex items-end justify-between pb-2 pt-10">
+      <div className="flex items-end justify-between pb-2 pt-10 px-5">
         <span className="text-base font-bold">최근 검색어</span>
         <button
           className="text-xs font-medium text-suldak-gray-500"
@@ -52,7 +53,7 @@ function RecentSearchSection() {
           전체삭제
         </button>
       </div>
-      <div className="flex h-[54px] w-full items-start gap-2 overflow-x-scroll whitespace-nowrap py-2 scrollbar-hide">
+      <div className="flex h-[54px] w-full items-start gap-2 overflow-x-scroll whitespace-nowrap py-2 scrollbar-hide px-5">
         {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
             <Tag tagId={index} tagColor="gray" key={index}>

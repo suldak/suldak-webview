@@ -15,7 +15,8 @@ export interface Liquor {
 
   liquorDetailDto: unknown;
 
-  liquorMaterialDtos: unknown;
+  liquorMaterialDtos: LiquorMaterial[];
+  // liquorMaterialDtos: string[]; 백오피스 수정 후 문자열로 바뀔 예정입니다.
 
   liquorNameDto: {
     fileBaseNm: string;
@@ -25,7 +26,7 @@ export interface Liquor {
 
   liquorPictureUrl: string; // 술 사진 URL
 
-  liquorRecipe: unknown; // 술 레시피
+  liquorRecipe: string[]; // 술 레시피
 
   // 술 판매처 목록
   liquorSellDtos: LiquorSell[];
@@ -41,6 +42,11 @@ export interface Liquor {
   summaryExplanation: string; // 술 요약 설명
 
   tasteTypeDtos: TasteType[];
+}
+
+export interface LiquorMaterial {
+  id: number;
+  name: string;
 }
 
 // 술 판매처

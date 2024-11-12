@@ -4,6 +4,7 @@ import { useGetLiquorDetail } from "apis/liquor/useGetLiquorDetail";
 import DetailImage from "./DetailImage";
 import DetailInfo from "./DetailInfo";
 import DetailSnack from "./DetailSnack";
+import DetailRecipe from "./DetailRecipe";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
@@ -19,7 +20,7 @@ function LiquorDetail({ id }: { id: number }) {
 
   return (
     <>
-      <DetailImage name={liquor.name} imgUrl={liquor.liquorPictureUrl} />
+      {liquor.liquorPictureUrl && <DetailImage name={liquor.name} imgUrl={liquor.liquorPictureUrl} />}
       <DetailInfo
         name={liquor.name}
         detailAbv={liquor.detailAbv}
@@ -29,6 +30,7 @@ function LiquorDetail({ id }: { id: number }) {
       <div className="h-2.5 w-full bg-suldak-gray-200" />
       <DetailSnack snacks={liquor.liquorSnackRes} />
       <div className="h-2.5 w-full bg-suldak-gray-200" />
+      <DetailRecipe recipe={liquor.liquorRecipe} material={liquor.liquorMaterialDtos} />
     </>
   );
 }
