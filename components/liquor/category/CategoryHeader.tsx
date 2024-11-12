@@ -14,10 +14,10 @@ function CategoryHeader({ tagValue }: CategoryHeaderProps) {
   };
 
   return (
-    <div className="relative w-full pt-1 flex items-center px-2">
+    <div className="relative flex h-[48px] w-full items-center border-b px-2 pt-1">
       <HeadBackIcon onClick={handleBackHome} />
-      <div className="relative flex w-full items-center justify-center">
-        <div className="w-full py-2 text-center mr-8">{tagValue}</div>
+      <div className="border-b-1 relative flex w-full items-center justify-center">
+        <div className="mr-8 w-full py-2 text-center"></div>
       </div>
     </div>
   );
