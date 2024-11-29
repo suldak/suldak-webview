@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CardProps } from "./types";
 import LiquorTag from "./LiquorTag";
 import { useRouter } from "next/navigation";
+import DefaultImg from "assets/pngs/image-default-alchol.png";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -26,6 +27,13 @@ function LiquorCard({
     .filter((item) => item?.name)
     .slice(0, 3); // 최대 4개로 제한
 
+  // DefaultImg를 import한 경우, 해당 이미지의 실제 경로를 가져와야 합니다
+  const defaultImgSrc = DefaultImg?.src || DefaultImg;
+
+  // imgUrl이 falsy(undefined, null, empty string)인 경우 defaultImgSrc 사용
+  const imageSource =
+    imgUrl && imgUrl.trim() ? `${BASE_URL}${imgUrl}` : defaultImgSrc;
+
   return (
     <div
       className="flex h-[144px] w-[335px] cursor-pointer items-center text-wrap rounded-[16px] bg-white p-3 text-black shadow-suldak-card"
@@ -34,7 +42,7 @@ function LiquorCard({
       <div className="mr-3 h-20 w-20 flex-shrink-0 mobile:mr-4 mobile:h-24 mobile:w-24">
         <Image
           className="h-full w-full rounded-full object-cover"
-          src={`${BASE_URL + imgUrl}`}
+          src={imageSource}
           alt="술 이미지"
           width={96}
           height={96}

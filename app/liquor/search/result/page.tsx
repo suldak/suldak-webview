@@ -86,7 +86,7 @@ function LiquorList({ liquors }: { liquors: Liquor[] }) {
       {liquors.map((liquor: Liquor) => (
         <LiquorCard
           key={liquor.id}
-          imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
+          imgUrl={liquor.liquorPictureUrl}
           liquorId={liquor.id}
           liquorDetail={liquor.summaryExplanation}
           liquorAbv={liquor.detailAbv}
