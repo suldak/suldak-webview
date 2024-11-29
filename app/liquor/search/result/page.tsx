@@ -46,7 +46,7 @@ function RecommendSection({
                 <span
                   key={keyword.id}
                   onClick={() => onClick(keyword.text)}
-                  className="cursor-pointer hover:underline"
+                  className="cursor-pointer"
                 >
                   {keyword.text}
                 </span>
