@@ -86,10 +86,7 @@ function RecentSearchSection() {
           {isValidRecent ? (
             recent.map((search: SearchText, index: number) => (
               <Tag tagId={index} tagColor="gray" key={index}>
-                <div
-                  className="flex items-center justify-center gap-5px"
-                  draggable={false}
-                >
+                <div className="flex items-center justify-center gap-5px">
                   <span onClick={handleRecentClick}>{search.searchText}</span>
                   <DeleteIcon onClick={() => handleDeleteClick(search.id)} />
                 </div>
