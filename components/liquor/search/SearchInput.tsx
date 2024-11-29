@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ClearIcon from "assets/icons/ico-clear-gray.svg";
 import SearchIcon from "assets/icons/ico-search-gray.svg";
-import HeadBackIcon from "assets/icons/ico-head-back.svg";
 
 function SearchInput() {
   const [searchValue, setSearchValue] = useState("");
@@ -23,13 +22,8 @@ function SearchInput() {
     }
   };
 
-  const handleBackHome = () => {
-    router.push(`/`);
-  }
-
   return (
-    <div className="relative w-full pt-1 flex items-center gap-2 px-4">
-      <HeadBackIcon onClick={handleBackHome} />
+    <div className="relative flex w-full items-center gap-2">
       <div className="relative flex w-full items-center">
         <div className="absolute left-4 flex items-center">
           <SearchIcon />

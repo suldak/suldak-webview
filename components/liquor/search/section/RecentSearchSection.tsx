@@ -7,6 +7,7 @@ import DeleteIcon from "assets/icons/ico-head-close.svg";
 import { SearchText } from "models/searchText";
 import { useCleanRecentSearch } from "apis/keyword/useCleanRecentSearch";
 import { useDeleteRecentSearch } from "apis/keyword/useDeleteRecentSearch";
+import HeadBackIcon from "assets/icons/ico-head-back.svg";
 
 function RecentSearchSection() {
   const router = useRouter();
@@ -39,12 +40,39 @@ function RecentSearchSection() {
       console.error("Failed to delete recent search text:", error);
     }
   };
+  // 앱으로 돌아가기
+  const sendMessageToFlutter = () => {
+    console.log("Attempting to send message to Flutter...");
 
+    try {
+      // Android의 경우
+      if (window.AndroidBridge) {
+        console.log("Android bridge detected, sending message...");
+        window.AndroidBridge.goBack();
+        console.log("Message sent to Android successfully");
+      }
+      // iOS의 경우
+      else if (window.webkit && window.webkit.messageHandlers) {
+        console.log("iOS bridge detected, sending message...");
+        window.webkit.messageHandlers.goBack.postMessage("goBack");
+        console.log("Message sent to iOS successfully");
+      } else {
+        console.warn(
+          "No Flutter bridge detected. Are you running in a Flutter WebView?",
+        );
+      }
+    } catch (error) {
+      console.error("Error sending message to Flutter:", error);
+    }
+  };
   return (
     /**패딩이 두 번 적용 되는 부분이 있어 제거 하였습니다. */
     <section>
-      <SearchInput />
-      <div className="flex items-end justify-between pb-2 pt-10 px-5">
+      <div className="flex items-center justify-center gap-x-[8px] pl-[12px] pr-[20px] pt-[2px]">
+        <HeadBackIcon onClick={sendMessageToFlutter} />
+        <SearchInput />
+      </div>
+      <div className="flex items-end justify-between px-5 pb-2 pt-10">
         <span className="text-base font-bold">최근 검색어</span>
         <button
           className="text-xs font-medium text-suldak-gray-500"
@@ -53,7 +81,7 @@ function RecentSearchSection() {
           전체삭제
         </button>
       </div>
-      <div className="flex h-[54px] w-full items-start gap-2 overflow-x-scroll whitespace-nowrap py-2 scrollbar-hide px-5">
+      <div className="flex h-[54px] w-full items-start gap-2 overflow-x-scroll whitespace-nowrap px-5 py-2 scrollbar-hide">
         {isValidRecent ? (
           recent.map((search: SearchText, index: number) => (
             <Tag tagId={index} tagColor="gray" key={index}>

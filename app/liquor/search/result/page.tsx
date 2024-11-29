@@ -11,6 +11,7 @@ import LiquorCard from "components/shared/LiquorCard";
 import FilterButton from "components/liquor/search/FilterButton";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
+import HeadBackIcon from "assets/icons/ico-head-back.svg";
 
 interface RecommendKeyword {
   id: number;
@@ -140,10 +141,17 @@ function LiquorSearchContent({
       </main>
     );
   }
-
+  const handleBackHome = () => {
+    router.push(`/`);
+  };
   return (
     <main className="flex min-h-screen flex-col pb-[10px]">
-      {!liquorSubKey && <SearchInput />}
+      {!liquorSubKey && (
+        <div className="flex items-center justify-center gap-x-[8px] pl-[12px] pr-[20px] pt-[2px]">
+          <HeadBackIcon onClick={handleBackHome} />
+          <SearchInput />
+        </div>
+      )}
       {!liquorSubKey && (
         <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
       )}
