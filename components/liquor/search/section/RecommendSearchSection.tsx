@@ -18,7 +18,7 @@ function RecommendedSearchSection() {
 function SkeletonLoading() {
   return (
     <>
-      {[...Array(6)].map((_, index) => (
+      {[...Array(3)].map((_, index) => (
         <SkeletonTag key={index} />
       ))}
     </>

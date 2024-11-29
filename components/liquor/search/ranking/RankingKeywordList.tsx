@@ -13,7 +13,7 @@ function RankingKeywordList({
   isLoading = false,
 }: RankingKeywordListProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-y-[13px]">
       {keywords.map((keyword, index) => (
         <RankingKeywordItem
           key={startIndex + index}

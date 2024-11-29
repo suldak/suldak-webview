@@ -1,12 +1,12 @@
 "use client";
 import { useGetRecentSearch } from "apis/keyword/useGetRecentSearch";
 import { useRouter } from "next/navigation";
-import Tag from "components/shared/Tag";
-import SearchInput from "../SearchInput";
-import DeleteIcon from "assets/icons/ico-head-close.svg";
 import { SearchText } from "models/searchText";
 import { useCleanRecentSearch } from "apis/keyword/useCleanRecentSearch";
 import { useDeleteRecentSearch } from "apis/keyword/useDeleteRecentSearch";
+import Tag from "components/shared/Tag";
+import SearchInput from "../SearchInput";
+import DeleteIcon from "assets/icons/ico-head-close.svg";
 import HeadBackIcon from "assets/icons/ico-head-back.svg";
 
 function RecentSearchSection() {
