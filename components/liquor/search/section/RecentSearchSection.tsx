@@ -81,21 +81,26 @@ function RecentSearchSection() {
           전체삭제
         </button>
       </div>
-      <div className="flex h-[54px] w-full items-start gap-2 overflow-x-scroll whitespace-nowrap px-5 py-2 scrollbar-hide">
-        {isValidRecent ? (
-          recent.map((search: SearchText, index: number) => (
-            <Tag tagId={index} tagColor="gray" key={index}>
-              <div className="flex items-center justify-center gap-5px">
-                <span onClick={handleRecentClick}>{search.searchText}</span>
-                <DeleteIcon onClick={() => handleDeleteClick(search.id)} />
-              </div>
-            </Tag>
-          ))
-        ) : (
-          <div className="mt-[18px] flex h-[54px] font-[14px] text-suldak-gray-600">
-            검색 시 자동으로 검색어가 저장됩니다.
-          </div>
-        )}
+      <div className="touch-pan-x overflow-x-scroll whitespace-nowrap px-5 scrollbar-hide">
+        <div className="inline-flex h-[54px] w-max items-start gap-2">
+          {isValidRecent ? (
+            recent.map((search: SearchText, index: number) => (
+              <Tag tagId={index} tagColor="gray" key={index}>
+                <div
+                  className="flex items-center justify-center gap-5px"
+                  draggable={false}
+                >
+                  <span onClick={handleRecentClick}>{search.searchText}</span>
+                  <DeleteIcon onClick={() => handleDeleteClick(search.id)} />
+                </div>
+              </Tag>
+            ))
+          ) : (
+            <div className="mt-[18px] flex h-[54px] font-[14px] text-suldak-gray-600">
+              검색 시 자동으로 검색어가 저장됩니다.
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

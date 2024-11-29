@@ -19,11 +19,11 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
         break;
       case "gray":
         tagStyle =
-          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border";
+          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px] border";
         break;
       default:
         tagStyle =
-          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px]  border";
+          "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px] border";
         break;
     }
   }
@@ -42,11 +42,14 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
 
   return (
     <span
-      className={`inline-flex cursor-default select-none items-center justify-center rounded-30px px-4 py-2.5 text-black ${tagStyle}`}
+      className={`inline-flex cursor-default select-none items-center justify-center rounded-30px px-4 py-2.5 text-black [-webkit-user-drag:none] [user-drag:none] ${tagStyle}`}
       onClick={handleClick}
       draggable={false}
-      onDragStart={(e) => preventDefault}
-      onMouseDown={(e) => preventDefault}
+      onDragStart={preventDefault}
+      onMouseDown={preventDefault}
+      onTouchStart={preventDefault}
+      onTouchMove={preventDefault}
+      onTouchEnd={preventDefault}
     >
       {children}
     </span>
