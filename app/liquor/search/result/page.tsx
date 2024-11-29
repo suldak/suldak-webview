@@ -82,7 +82,7 @@ function SearchInfoSection({
 
 function LiquorList({ liquors }: { liquors: Liquor[] }) {
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-y-2.5 overflow-y-auto">
+    <section className="flex h-full w-full flex-col items-center justify-center gap-y-2.5">
       {liquors.map((liquor: Liquor) => (
         <LiquorCard
           key={liquor.id}
