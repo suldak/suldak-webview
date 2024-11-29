@@ -33,10 +33,20 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
       onClick(event, children as string);
     }
   };
+
+  // 모든 마우스/터치 관련 이벤트를 방지하는 핸들러
+  const preventDefault = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-30px px-4 py-2.5 text-black ${tagStyle}`}
+      className={`inline-flex cursor-default select-none items-center justify-center rounded-30px px-4 py-2.5 text-black ${tagStyle}`}
       onClick={handleClick}
+      draggable={false}
+      onDragStart={(e) => preventDefault}
+      onMouseDown={(e) => preventDefault}
     >
       {children}
     </span>
