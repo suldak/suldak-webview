@@ -33,11 +33,11 @@ function SearchInfoSection({ count }: { count: number }) {
 
 function LiquorList({ liquors }: { liquors: Liquor[] }) {
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-y-2.5 overflow-y-auto">
+    <section className="gap-y-2. flex h-full w-full flex-col items-center justify-center">
       {liquors.map((liquor: Liquor) => (
         <LiquorCard
           key={liquor.id}
-          imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
+          imgUrl={liquor.liquorPictureUrl}
           liquorId={liquor.id}
           liquorDetail={liquor.summaryExplanation}
           liquorAbv={liquor.detailAbv}

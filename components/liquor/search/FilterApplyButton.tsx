@@ -5,7 +5,7 @@ interface FilterApplyButtonProps {
 function FilterApplyButton({ onApply }: FilterApplyButtonProps) {
   return (
     <button
-      className="flex h-[60px] w-[242px] items-center justify-center rounded-[16px] bg-suldak-mint-500 py-[20px] text-[18px] font-bold text-white"
+      className="flex h-[60px] w-[242px] items-center justify-center rounded-[16px] bg-suldak-mint-500 py-[20px] text-[18px] font-bold text-white xs:text-[15px]"
       onClick={onApply}
     >
       필터 적용하기

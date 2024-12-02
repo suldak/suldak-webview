@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Liquor } from "models/liquor";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
@@ -11,6 +11,7 @@ import LiquorCard from "components/shared/LiquorCard";
 import FilterButton from "components/liquor/search/FilterButton";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
+import HeadBackIcon from "assets/icons/ico-head-back.svg";
 
 interface RecommendKeyword {
   id: number;
@@ -46,7 +47,7 @@ function RecommendSection({
                 <span
                   key={keyword.id}
                   onClick={() => onClick(keyword.text)}
-                  className="cursor-pointer hover:underline"
+                  className="cursor-pointer"
                 >
                   {keyword.text}
                 </span>
@@ -82,11 +83,11 @@ function SearchInfoSection({
 
 function LiquorList({ liquors }: { liquors: Liquor[] }) {
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-y-2.5 overflow-y-auto">
+    <section className="flex h-full w-full flex-col items-center justify-center gap-y-2.5">
       {liquors.map((liquor: Liquor) => (
         <LiquorCard
           key={liquor.id}
-          imgUrl={liquor.liquorPictureUrl || "/default-image-url.jpg"}
+          imgUrl={liquor.liquorPictureUrl}
           liquorId={liquor.id}
           liquorDetail={liquor.summaryExplanation}
           liquorAbv={liquor.detailAbv}
@@ -125,6 +126,7 @@ function LiquorSearchContent({
   const liquors: Liquor[] = data?.data.content || [];
   const keywords: RecommendKeyword[] = recommendKeywords || [];
   const liquorSubKey = searchParams.get("subKey");
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const handleKeywordClick = (keyword: string) => {
     router.push(`/liquor/search/result?q=${encodeURIComponent(keyword)}`);
@@ -140,10 +142,44 @@ function LiquorSearchContent({
       </main>
     );
   }
+  const handleBackHome = () => {
+    router.push(`/`);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartX) return;
+
+    const touchEndX = e.touches[0].clientX;
+    const diffX = touchEndX - touchStartX;
+
+    if (diffX > 100) {
+      // 스와이프 거리가 100px 이상일 때만 동작
+      handleBackHome();
+      setTouchStartX(null); // 스와이프 처리 후 초기화
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStartX(null); // 터치 종료 시 초기화
+  };
 
   return (
-    <main className="flex min-h-screen flex-col pb-[10px]">
-      {!liquorSubKey && <SearchInput />}
+    <main
+      className="flex min-h-screen flex-col pb-[10px]"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {!liquorSubKey && (
+        <div className="flex items-center justify-center gap-x-[8px] pl-[12px] pr-[20px] pt-[2px]">
+          <HeadBackIcon onClick={handleBackHome} />
+          <SearchInput />
+        </div>
+      )}
       {!liquorSubKey && (
         <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
       )}
