@@ -6,7 +6,7 @@ import { Liquor } from "models/liquor";
 const getLiquorDetail = async (id: number): Promise<ResponseType<Liquor>> => {
   try {
     const { data } = await axiosInstance.get<ResponseType<Liquor>>(
-      `http://122.45.170.200:8080/api/liquor/${id}`,
+      `/api/liquor/${id}`,
     );
 
     return data;
