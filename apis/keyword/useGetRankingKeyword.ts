@@ -9,7 +9,8 @@ const getRankingKeyword = async (): Promise<ResponseType<RankingKeyword[]>> => {
     `/api/search/text/view/ranking`,
     {
       params: {
-        searchHour: 14,
+        searchHour: 0,
+        limitNum: 10,
         searchType: 'LIQUOR',
       },
     },
