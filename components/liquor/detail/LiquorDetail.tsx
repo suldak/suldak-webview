@@ -7,7 +7,7 @@ import DetailSnack from "./DetailSnack";
 import DetailRecipe from "./DetailRecipe";
 import HeadBackIcon from "assets/icons/ico-head-back-circle.svg";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
@@ -24,56 +24,50 @@ function LiquorDetail({ id }: { id: number }) {
     ...liquor.tasteTypeDtos.map((taste) => taste.name),
   ];
 
-  const handleBack = () => {
-    // Flutter 브릿지를 통한 뒤로가기
-    const sendMessageToFlutter = () => {
-      console.log("Attempting to send message to Flutter...");
-      try {
-        if (window.FlutterBridge) {
-          console.log("Flutter bridge detected, sending message...");
-          window.FlutterBridge.postMessage("goBack");
-          console.log("Message sent to Flutter successfully");
-        } else {
-          console.warn(
-            "No Flutter bridge detected. Are you running in a Flutter WebView?",
-          );
-        }
-      } catch (error) {
-        console.error("Error sending message to Flutter:", error);
-      }
-    };
-
-    // 이전 페이지 존재 여부 확인
-    const hasHistory = window.history.length > 1;
+  const handleBack = useCallback(() => {
     const fromApp = searchParams.get("source") === "app";
+    const hasHistory = window.history.length > 1;
 
     if (fromApp) {
       sendMessageToFlutter();
     } else if (hasHistory) {
       router.back();
+    } else {
+      // history가 없는 경우에도 Flutter로 돌아가기
+      sendMessageToFlutter();
     }
-  };
+  }, [searchParams, router]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
-  };
+  }, []);
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!touchStartX) return;
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!touchStartX) return;
 
-    const touchEndX = e.touches[0].clientX;
-    const diffX = touchEndX - touchStartX;
+      const touchEndX = e.touches[0].clientX;
+      const diffX = touchEndX - touchStartX;
 
-    if (diffX > 100) {
-      // 스와이프 거리가 100px 이상일 때만 동작
-      handleBack();
-      setTouchStartX(null); // 스와이프 처리 후 초기화
-    }
-  };
+      if (diffX > 100) {
+        // 스와이프 거리가 100px 이상일 때만 동작
+        handleBack();
+        setTouchStartX(null); // 스와이프 처리 후 초기화
+      }
+    },
+    [touchStartX, handleBack],
+  );
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     setTouchStartX(null); // 터치 종료 시 초기화
-  };
+  }, []);
+
+  // 컴포넌트 언마운트 시 cleanup
+  useEffect(() => {
+    return () => {
+      setTouchStartX(null);
+    };
+  }, []);
 
   return (
     <>
