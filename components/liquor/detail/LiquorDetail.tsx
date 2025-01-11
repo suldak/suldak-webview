@@ -6,13 +6,14 @@ import DetailInfo from "./DetailInfo";
 import DetailSnack from "./DetailSnack";
 import DetailRecipe from "./DetailRecipe";
 import HeadBackIcon from "assets/icons/ico-head-back-circle.svg";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useCallback, useEffect } from "react";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
   const { data: liquor } = useGetLiquorDetail(id);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   // 표시할 태그 목록
@@ -23,30 +24,50 @@ function LiquorDetail({ id }: { id: number }) {
     ...liquor.tasteTypeDtos.map((taste) => taste.name),
   ];
 
-  const handleBack = () => {
-    router.back();
-  };
+  const handleBack = useCallback(() => {
+    const fromApp = searchParams.get("source") === "app";
+    const hasHistory = window.history.length > 1;
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!touchStartX) return;
-
-    const touchEndX = e.touches[0].clientX;
-    const diffX = touchEndX - touchStartX;
-
-    if (diffX > 100) {
-      // 스와이프 거리가 100px 이상일 때만 동작
-      handleBack();
-      setTouchStartX(null); // 스와이프 처리 후 초기화
+    if (fromApp) {
+      sendMessageToFlutter();
+    } else if (hasHistory) {
+      router.back();
+    } else {
+      // history가 없는 경우에도 Flutter로 돌아가기
+      sendMessageToFlutter();
     }
-  };
+  }, [searchParams, router]);
 
-  const handleTouchEnd = () => {
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  }, []);
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!touchStartX) return;
+
+      const touchEndX = e.touches[0].clientX;
+      const diffX = touchEndX - touchStartX;
+
+      if (diffX > 100) {
+        // 스와이프 거리가 100px 이상일 때만 동작
+        handleBack();
+        setTouchStartX(null); // 스와이프 처리 후 초기화
+      }
+    },
+    [touchStartX, handleBack],
+  );
+
+  const handleTouchEnd = useCallback(() => {
     setTouchStartX(null); // 터치 종료 시 초기화
-  };
+  }, []);
+
+  // 컴포넌트 언마운트 시 cleanup
+  useEffect(() => {
+    return () => {
+      setTouchStartX(null);
+    };
+  }, []);
 
   return (
     <>

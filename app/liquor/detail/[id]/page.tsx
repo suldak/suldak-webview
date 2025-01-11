@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useParams } from "next/navigation";
-import LiquorDetail from "components/liquor/detail";
+import LiquorDetail from "components/liquor/detail/LiquorDetail";
 
 /** 술 상세 페이지 */
 function LiquorDetailPage() {
