@@ -5,7 +5,7 @@ import NoResultSection from "components/liquor/search/section/NoResultSection";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
 import CategoryFilter from "components/liquor/category/CategoryFilter";
 import LiquorList from "components/liquor/category/LiquorList";
-import SearchInfoSection from "components/liquor/category/SearchInfoSection";
+import SearchInfoSection from "components/liquor/search/section/SearchInfoSection";
 
 function LiquorCategoryContent({
   searchParams,
