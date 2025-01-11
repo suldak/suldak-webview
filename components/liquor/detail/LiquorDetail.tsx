@@ -6,13 +6,14 @@ import DetailInfo from "./DetailInfo";
 import DetailSnack from "./DetailSnack";
 import DetailRecipe from "./DetailRecipe";
 import HeadBackIcon from "assets/icons/ico-head-back-circle.svg";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
   const { data: liquor } = useGetLiquorDetail(id);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   // 표시할 태그 목록
@@ -24,7 +25,33 @@ function LiquorDetail({ id }: { id: number }) {
   ];
 
   const handleBack = () => {
-    router.back();
+    // Flutter 브릿지를 통한 뒤로가기
+    const sendMessageToFlutter = () => {
+      console.log("Attempting to send message to Flutter...");
+      try {
+        if (window.FlutterBridge) {
+          console.log("Flutter bridge detected, sending message...");
+          window.FlutterBridge.postMessage("goBack");
+          console.log("Message sent to Flutter successfully");
+        } else {
+          console.warn(
+            "No Flutter bridge detected. Are you running in a Flutter WebView?",
+          );
+        }
+      } catch (error) {
+        console.error("Error sending message to Flutter:", error);
+      }
+    };
+
+    // 이전 페이지 존재 여부 확인
+    const hasHistory = window.history.length > 1;
+    const fromApp = searchParams.get("source") === "app";
+
+    if (fromApp) {
+      sendMessageToFlutter();
+    } else if (hasHistory) {
+      router.back();
+    }
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
