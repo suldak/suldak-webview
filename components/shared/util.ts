@@ -16,3 +16,5 @@ const sendMessageToFlutter = () => {
     console.error("Error sending message to Flutter:", error);
   }
 };
+
+export default sendMessageToFlutter;

@@ -7,6 +7,7 @@ import GroupTab from "components/guide/GroupTab";
 import CommunityTab from "components/guide/CommunityTab";
 import MyPageTab from "components/guide/MyPageTab";
 import GoBack from "assets/icons/ico-head-back.svg";
+import sendMessageToFlutter from "components/shared/util";
 const tabs = ["홈", "검색", "모임", "마이페이지", "기타"];
 
 const sectionTitles = {
