@@ -9,6 +9,12 @@ const nextConfig = {
         port: "8080",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.suldak.co.kr",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   webpack: (config) => {
