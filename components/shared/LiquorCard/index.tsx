@@ -36,10 +36,10 @@ function LiquorCard({
 
   return (
     <div
-      className="flex h-[144px] w-[335px] cursor-pointer items-center text-wrap rounded-[16px] bg-white p-3 text-black shadow-suldak-card"
+      className="flex h-[140px] w-[335px] cursor-pointer items-center text-wrap rounded-[16px] bg-white p-[18px] text-black shadow-suldak-card"
       onClick={handleClick}
     >
-      <div className="mr-3 h-20 w-20 flex-shrink-0 mobile:mr-4 mobile:h-24 mobile:w-24">
+      <div className="h-20 w-20 flex-shrink-0 mobile:mr-4 mobile:h-24 mobile:w-24">
         <Image
           className="h-full w-full rounded-full object-cover"
           src={imageSource}
@@ -50,13 +50,13 @@ function LiquorCard({
       </div>
 
       <div className="flex min-w-0 flex-grow flex-col">
-        <p className="text-xs font-medium text-suldak-orange-500 mobile:text-sm">
+        <p className="text-[12px] font-medium text-suldak-orange-500">
           ALC {liquorAbv}%
         </p>
-        <p className="truncate text-sm font-semibold text-suldak-gray-900 mobile:text-base">
+        <p className="truncate text-[16px] font-semibold text-suldak-gray-900">
           {name || "Name None"}
         </p>
-        <p className="mt-1 line-clamp-2 text-xs text-suldak-gray-600 mobile:text-sm">
+        <p className="mt-[2px] text-xs text-suldak-gray-600 mobile:text-[14px]">
           {liquorDetail || "주류 정보 추가 예정입니다."}
         </p>
         <div className="mt-2 flex gap-1">
