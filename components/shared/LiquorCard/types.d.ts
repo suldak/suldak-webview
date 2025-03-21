@@ -19,5 +19,6 @@ declare global {
     FlutterBridge?: {
       postMessage(message: string): void;
     };
+    receiveToken?: (token: string) => void;
   }
 }
