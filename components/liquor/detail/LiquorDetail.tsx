@@ -6,9 +6,10 @@ import DetailInfo from "./DetailInfo";
 import DetailSnack from "./DetailSnack";
 import DetailRecipe from "./DetailRecipe";
 import HeadBackIcon from "assets/icons/ico-head-back-circle.svg";
-import sendMessageToFlutter from "components/shared/util";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useCallback, useEffect } from "react";
+import { sendMessageToFlutter } from "app/liquor/utils/flutterBridge";
 
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
