@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 /** 추천 검색어 컴포넌트 */
 function RecommendKeyword() {
   const router = useRouter();
-  const { data: recommendKeywords } = useGetRecommendKeyword();
+  const { data: recommendKeywords = [] } = useGetRecommendKeyword();
 
   const handleClick = (
     event: React.MouseEvent<HTMLSpanElement>,

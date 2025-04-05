@@ -3,7 +3,7 @@ import { useGetRankingKeyword } from "apis/keyword/useGetRankingKeyword";
 import RankingKeywordList from "./RankingKeywordList";
 
 function RankingKeyword() {
-  const { data: rankingKeywords } = useGetRankingKeyword();
+  const { data: rankingKeywords = [] } = useGetRankingKeyword();
 
   return (
     <div className="flex items-center gap-14">
