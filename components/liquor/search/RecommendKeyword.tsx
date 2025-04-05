@@ -9,6 +9,14 @@ function RecommendKeyword() {
   const router = useRouter();
   const { data: recommendKeywords } = useGetRecommendKeyword();
 
+  // 데이터가 없을 경우 처리
+  if (
+    !recommendKeywords ||
+    !Array.isArray(recommendKeywords) ||
+    recommendKeywords.length === 0
+  ) {
+    return <></>;
+  }
   const handleClick = (
     event: React.MouseEvent<HTMLSpanElement>,
     text: string,
