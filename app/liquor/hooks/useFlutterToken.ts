@@ -1,3 +1,5 @@
+"use client"; 
+
 import { useEffect, useState } from "react";
 import { receiveTokenFromFlutter, requestTokenFromFlutter } from "../utils/flutterBridge";
 import { getToken } from "../utils/tokenStore";
