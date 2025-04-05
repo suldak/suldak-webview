@@ -3,15 +3,8 @@ import { useGetRankingKeyword } from "apis/keyword/useGetRankingKeyword";
 import RankingKeywordList from "./RankingKeywordList";
 
 function RankingKeyword() {
-  const { data: rankingKeywords } = useGetRankingKeyword();
-  // 데이터가 없을 경우 처리
-  if (
-    !rankingKeywords ||
-    !Array.isArray(rankingKeywords) ||
-    rankingKeywords.length === 0
-  ) {
-    return <></>;
-  }
+  const { data: rankingKeywords = [] } = useGetRankingKeyword();
+
   return (
     <div className="flex items-center gap-14">
       <RankingKeywordList
