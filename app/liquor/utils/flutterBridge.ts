@@ -1,5 +1,8 @@
 import { setToken } from "./tokenStore";
 const sendMessageToFlutter = () => {
+  // window 객체 존재 여부 확인
+  if (typeof window === "undefined") return;
+
   console.log("Attempting to send message to Flutter...");
 
   try {
@@ -20,6 +23,9 @@ const sendMessageToFlutter = () => {
 
 // 플러터로부터 토큰을 받는 함수
 const receiveTokenFromFlutter = () => {
+  // window 객체 존재 여부 확인
+  if (typeof window === "undefined") return;
+
   try {
     // Window 객체에 메서드 추가
     window.receiveToken = (token: string) => {
@@ -35,6 +41,9 @@ const receiveTokenFromFlutter = () => {
 
 // 플러터에 토큰 요청
 const requestTokenFromFlutter = () => {
+  // window 객체 존재 여부 확인
+  if (typeof window === "undefined") return;
+  
   try {
     if (window.FlutterBridge) {
       console.log("Requesting token from Flutter...");
