@@ -6,6 +6,7 @@ export const useFlutterToken = () => {
   const [isTokenInitialized, setIsTokenInitialized] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     // 플러터에서 토큰을 받기 위한 수신자 설정 (항상 실행)
     receiveTokenFromFlutter();
 
