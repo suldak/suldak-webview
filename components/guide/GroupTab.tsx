@@ -72,11 +72,11 @@ function GroupTab() {
           <p className="text-[16px] font-semibold">📌 여기서 잠깐!</p>
           <ul className="list-disc space-y-2 pl-[20px] text-[14px]">
             <li className="indent">
-              모든 모임은 "
+              모든 모임은 &quot;
               <span className="font-semibold text-suldak-mint-500">
                 호스트 승인제
               </span>
-              "로 이루어져요. (호스트 승인제란, 멤버가 참여 신청을 하면 호스트가
+              &quot; 로 이루어져요. (호스트 승인제란, 멤버가 참여 신청을 하면 호스트가
               해당 신청을 확인 후 승인하는 제도입니다)
             </li>
             <li className="indent">
