@@ -72,11 +72,11 @@ function GroupTab() {
           <p className="text-[16px] font-semibold">📌 여기서 잠깐!</p>
           <ul className="list-disc space-y-2 pl-[20px] text-[14px]">
             <li className="indent">
-              모든 모임은 “
+              모든 모임은 "
               <span className="font-semibold text-suldak-mint-500">
                 호스트 승인제
               </span>
-              ”로 이루어져요. (호스트 승인제란, 멤버가 참여 신청을 하면 호스트가
+              "로 이루어져요. (호스트 승인제란, 멤버가 참여 신청을 하면 호스트가
               해당 신청을 확인 후 승인하는 제도입니다)
             </li>
             <li className="indent">
@@ -140,6 +140,36 @@ function GroupTab() {
           <li className="indent">
             참여 완료한 모임에 대한 피드백도 보낼 수 있어요
           </li>
+        </ul>
+      </div>
+      <div className="mb-[20px] mt-[12px] px-[20px]">
+        <h3 className="text-[16px] font-semibold text-suldak-mint-500">
+          모임 운영 정책
+        </h3>
+        <ul className="space-y-2 pl-[20px]">
+          <li className="list-disc">
+            즐겁고 건전한 모임을 위해 술닥술닥에서는 [경고 점수] 제도를 시행하고
+            있어요.
+          </li>
+          <li className="list-disc">
+            경고 점수는 모임 노쇼(No-Show), 모임 시작 시간이 임박하여 모임을
+            삭제한 경우 등 다른 멤버에게 피해를 주는 경우 부여됩니다.
+          </li>
+          <li className="list-disc">
+            자세한 경고 점수 부여 기준과 누적 경고 점수 별 제한사항은{" "}
+            <a
+              href="https://suldak.notion.site/4919c81e56134f4bb67cda343b129823"
+              className="font-semibold"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              모임 운영 정책
+            </a>
+            을 참고해주세요!
+          </li>
+        </ul>
+        <ul className="mt-2 pl-[6px]">
+          *경고 점수에 따라 최소 서비스 이용 제한, 최대 이용 정지될 수 있습니다.
         </ul>
       </div>
     </div>
