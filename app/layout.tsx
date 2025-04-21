@@ -15,24 +15,46 @@ export default function RootLayout({
         className={`mx-auto bg-white font-pretendard text-suldak-gray-900 ${inter.className}`}
       >
         <Provider>{children}</Provider>
-        {/* 헤더 확인 스크립트 추가 */}
+        {/* 토큰 초기화 스크립트 */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
           // 페이지 로드 시 실행
           (function() {
             try {
-              // 이미 저장된 토큰이 있는지 확인
-              const storedToken = localStorage.getItem('authToken');
-              if (storedToken) {
-                console.log('Using stored token');
-                return;
-              }
+              // 토큰 확인 함수
+              const checkForToken = function() {
+                // 1. 쿠키에서 토큰 확인
+                const getCookieToken = function() {
+                  const cookies = document.cookie.split(';');
+                  for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.startsWith('authToken=')) {
+                      return cookie.substring('authToken='.length, cookie.length);
+                    }
+                  }
+                  return null;
+                };
+                
+                const cookieToken = getCookieToken();
+                if (cookieToken) {
+                  console.log('Found token in cookie, saving to localStorage');
+                  localStorage.setItem('authToken', cookieToken);
+                  return true;
+                }
+                
+                // 2. 로컬 스토리지 확인
+                const storedToken = localStorage.getItem('authToken');
+                if (storedToken) {
+                  console.log('Using stored token');
+                  return true;
+                }
+                
+                return false;
+              };
               
-              // window.receiveToken 함수가 있는지 확인 (함수는 나중에 설정될 수 있음)
-              const setupTokenRequest = function() {
-                // 웹뷰 컨트롤러의 헤더 정보가 직접 접근 불가능하므로
-                // 첫 페이지 로드 후 5초 동안 플러터에 토큰을 요청
+              // 토큰이 없으면 FlutterBridge에 요청
+              if (!checkForToken()) {
                 let attempts = 0;
                 const maxAttempts = 5;
                 
@@ -42,7 +64,6 @@ export default function RootLayout({
                   attempts++;
                   console.log('Requesting token from Flutter, attempt ' + attempts);
                   
-                  // FlutterBridge가 있으면 토큰 요청
                   if (window.FlutterBridge) {
                     try {
                       window.FlutterBridge.postMessage('requestToken');
@@ -53,12 +74,12 @@ export default function RootLayout({
                 };
                 
                 // 즉시 한번 요청
-                requestToken();
+                setTimeout(requestToken, 500);
                 
                 // 1초마다 재시도 (최대 5회)
                 const interval = setInterval(() => {
                   // 토큰이 이미 설정되었으면 중단
-                  if (localStorage.getItem('authToken')) {
+                  if (checkForToken()) {
                     clearInterval(interval);
                     return;
                   }
@@ -69,14 +90,6 @@ export default function RootLayout({
                     clearInterval(interval);
                   }
                 }, 1000);
-              };
-              
-              // DOM 로드 완료 후 토큰 요청 시작
-              if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setupTokenRequest);
-              } else {
-                // DOM이 이미 로드됨
-                setupTokenRequest();
               }
             } catch (e) {
               console.error('Error in token initialization script:', e);

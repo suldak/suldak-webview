@@ -1,4 +1,5 @@
 import { setToken } from "./tokenStore";
+
 const sendMessageToFlutter = () => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
@@ -36,10 +37,10 @@ const receiveTokenFromFlutter = () => {
         return;
       }
 
-      // 토큰 저장 (메모리 + localStorage)
+      // 토큰 저장
       setToken(token);
 
-      // 페이지가 이미 로드된 경우 API 요청 갱신을 위해 이벤트 발생
+      // 토큰 업데이트 이벤트 발생
       const tokenUpdateEvent = new CustomEvent("tokenUpdated", {
         detail: token,
       });
