@@ -10,17 +10,18 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((config) => {
   const token = getToken();
 
- if (token) {
-   // 플러터 앱과 같은 형식으로 설정
-   config.headers["Authorization"] = token;
- } else {
-   // 토큰이 없으면 환경변수 사용 
-   const envToken = process.env.NEXT_PUBLIC_TOKEN;
-   if (envToken) {
-     config.headers["Authorization"] = envToken;
-     console.log("환경변수 토큰을 사용중입니다.");
-   }
- }
+  if (token) {
+    // 플러터 앱과 같은 형식으로 설정
+    config.headers["Authorization"] = token;
+    console.log("사용자 토큰 사용 중"); // 테스트용 코드
+  } else {
+    // 토큰이 없으면 환경변수 사용
+    const envToken = process.env.NEXT_PUBLIC_TOKEN;
+    if (envToken) {
+      config.headers["Authorization"] = envToken;
+      console.log("환경변수 토큰을 사용중입니다.");
+    }
+  }
 
   return config;
 });
