@@ -16,20 +16,22 @@ export const setToken = (token: string) => {
   }
 };
 
-//토큰 가져오기 함수
+// 토큰 가져오기 함수
 export const getToken = () => {
-  if (typeof window === "undefined") return;
-  // 메모리에 없으면 로컬 스토리지에서 복구
-  if (!userToken) {
+  if (typeof window === "undefined") return null;
+  
+  // 항상 localStorage를 먼저 확인하고 메모리에 복원
+  if (typeof window !== "undefined") {
     try {
-      userToken = localStorage.getItem("authToken");
-      if (userToken) {
-        console.log("Token restored from localStorage");
+      const storedToken = localStorage.getItem('authToken');
+      if (storedToken && (!userToken || userToken !== storedToken)) {
+        console.log("Restoring token from localStorage");
+        userToken = storedToken;
       }
     } catch (error) {
       console.error("Error reading token from localStorage:", error);
     }
   }
-
+  
   return userToken;
 };
