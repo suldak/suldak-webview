@@ -60,7 +60,6 @@ function RecentSearchSection() {
     }
   };
   return (
-    /**패딩이 두 번 적용 되는 부분이 있어 제거 하였습니다. */
     <section>
       <div className="flex items-center justify-center gap-x-[8px] pl-[12px] pr-[20px] pt-[2px]">
         <HeadBackIcon onClick={sendMessageToFlutter} />

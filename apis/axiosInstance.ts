@@ -37,7 +37,6 @@ axiosInstance.interceptors.response.use(
     // 401 에러 등이 발생하면 토큰 문제일 수 있음
     if (error.response && error.response.status === 401) {
       console.warn("Received 401 unauthorized error. Token might be invalid.");
-      // 여기서 토큰 재요청 로직을 추가할 수도 있습니다
     }
     return Promise.reject(error);
   },
