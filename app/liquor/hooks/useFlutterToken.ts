@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { receiveTokenFromFlutter, requestTokenFromFlutter } from "../utils/flutterBridge";
 import { getToken } from "../utils/tokenStore";
-import { extractTokenFromHeaders } from "../utils/headerTokenExtractor";
 
 export const useFlutterToken = () => {
   const [isTokenInitialized, setIsTokenInitialized] = useState(false);
@@ -21,12 +20,6 @@ export const useFlutterToken = () => {
       }
 
       // 헤더에서 토큰 확인
-      const foundToken = await extractTokenFromHeaders();
-      if (foundToken) {
-        console.log("Token extracted from headers successfully");
-        setIsTokenInitialized(true);
-        return;
-      }
 
       // 3. 헤더에서도 못 찾았고 아직 초기화되지 않았을 때만 JavaScript 인터페이스로 요청
       if (!isTokenInitialized) {
