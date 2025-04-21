@@ -11,23 +11,23 @@ export const useFlutterToken = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // 항상 receiveTokenFromFlutter 설정 (JavaScript 인터페이스)
+    // 플러터에서 토큰을 받기 위한 수신자 설정 (항상 실행)
     receiveTokenFromFlutter();
 
-    // localStorage에서 토큰 확인
+    // 토큰이 이미 있는지 확인
     const existingToken = getToken();
 
     // 토큰이 없고 아직 초기화되지 않았을 때만 요청
     if (!existingToken && !isTokenInitialized) {
-      console.log("No token found, requesting from Flutter...");
-
-      // 토큰 요청 시도
+      // 약간의 지연 후 토큰 요청 (페이지 로드 완료 후)
       setTimeout(() => {
         requestTokenFromFlutter();
         setIsTokenInitialized(true);
-      }, 500); // 약간의 지연을 두어 페이지 로드 완료 후 요청
+      }, 300);
     } else {
       setIsTokenInitialized(true);
     }
   }, [isTokenInitialized]);
+
+  return { isTokenInitialized };
 };

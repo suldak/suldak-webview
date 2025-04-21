@@ -9,36 +9,33 @@ import { getToken } from "../utils/tokenStore";
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
-  const [tokenState, setTokenState] = useState<string | null>(null);
+  const [hasToken, setHasToken] = useState<boolean>(false);
+  const { isTokenInitialized } = useFlutterToken();
 
-  // 이 페이지에서만 플러터 토큰을 요청
-  useFlutterToken();
-
-  // 토큰 업데이트 이벤트 리스너 추가
+  // 토큰 상태 체크 및 업데이트 이벤트 리스너
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // 초기 토큰 상태 설정
-    setTokenState(getToken());
+    // 초기 토큰 상태 확인
+    const checkToken = () => {
+      const token = getToken();
+      setHasToken(!!token);
+    };
+
+    checkToken();
 
     // 토큰 업데이트 이벤트 리스너
-    const handleTokenUpdate = (event: CustomEvent) => {
+    const handleTokenUpdate = () => {
       console.log("Token updated event received");
-      setTokenState(event.detail);
-
+      checkToken();
     };
 
-    window.addEventListener("tokenUpdated", handleTokenUpdate as EventListener);
+    window.addEventListener("tokenUpdated", handleTokenUpdate);
 
     return () => {
-      window.removeEventListener(
-        "tokenUpdated",
-        handleTokenUpdate as EventListener,
-      );
+      window.removeEventListener("tokenUpdated", handleTokenUpdate);
     };
-  }, []);
-
-
+  }, [isTokenInitialized]);
 
   return (
     <>
