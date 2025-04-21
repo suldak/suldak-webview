@@ -30,7 +30,11 @@ const receiveTokenFromFlutter = () => {
     // Window 객체에 메서드 추가
     window.receiveToken = (token: string) => {
       console.log("Token received from Flutter");
-      setToken(token);
+      if (token) {
+        setToken(token);
+      } else {
+        console.warn("Received empty token from Flutter"); //디버깅용 콘솔 출력 추가
+      }
     };
 
     console.log("Token receiver initialized");
