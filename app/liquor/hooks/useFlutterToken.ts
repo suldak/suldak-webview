@@ -1,41 +1,33 @@
 import { useEffect, useState } from "react";
-import { receiveTokenFromFlutter, requestTokenFromFlutter } from "../utils/flutterBridge";
+import {
+  receiveTokenFromFlutter,
+  requestTokenFromFlutter,
+} from "../utils/flutterBridge";
 import { getToken } from "../utils/tokenStore";
-import { extractTokenFromHeaders } from "../utils/headerTokenExtractor";
 
 export const useFlutterToken = () => {
   const [isTokenInitialized, setIsTokenInitialized] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     // 플러터에서 토큰을 받기 위한 수신자 설정 (항상 실행)
     receiveTokenFromFlutter();
 
-    // 2. 헤더에서 토큰 확인 시도
-    const checkHeaderToken = async () => {
-      // 이미 토큰이 있으면 스킵
-      const existingToken = getToken();
-      if (existingToken) {
-        console.log("Token already exists, skipping header check");
-        return;
-      }
+    // 토큰이 이미 있는지 확인
+    const existingToken = getToken();
 
-      // 헤더에서 토큰 확인
-      const foundToken = await extractTokenFromHeaders();
-      if (foundToken) {
-        console.log("Token extracted from headers successfully");
-        setIsTokenInitialized(true);
-        return;
-      }
-
-      // 3. 헤더에서도 못 찾았고 아직 초기화되지 않았을 때만 JavaScript 인터페이스로 요청
-      if (!isTokenInitialized) {
-        console.log("No token found, requesting from Flutter bridge...");
+    // 토큰이 없고 아직 초기화되지 않았을 때만 요청
+    if (!existingToken && !isTokenInitialized) {
+      // 약간의 지연 후 토큰 요청 (페이지 로드 완료 후)
+      setTimeout(() => {
         requestTokenFromFlutter();
         setIsTokenInitialized(true);
-      }
-    };
-
-    checkHeaderToken();
+      }, 300);
+    } else {
+      setIsTokenInitialized(true);
+    }
   }, [isTokenInitialized]);
+
+  return { isTokenInitialized };
 };
