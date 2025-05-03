@@ -40,56 +40,23 @@ export default function RootLayout({
                 if (cookieToken) {
                   console.log('Found token in cookie, saving to localStorage');
                   localStorage.setItem('authToken', cookieToken);
-                  return true;
+                  return true; // 쿠키에서 토큰을 찾으면 로컬 스토리지에 저장하고 true 반환
                 }
                 
-                // 2. 로컬 스토리지 확인
+                // 2. 로컬 스토리지 확인 (쿠키에 없으면 로컬 스토리지 확인)
                 const storedToken = localStorage.getItem('authToken');
                 if (storedToken) {
-                  console.log('Using stored token');
-                  return true;
+                  console.log('Using stored token from localStorage');
+                  return true; // 로컬 스토리지에 토큰이 있으면 true 반환
                 }
                 
-                return false;
+                return false; // 쿠키와 로컬 스토리지 모두에 토큰이 없음
               };
               
-              // 토큰이 없으면 FlutterBridge에 요청
+              // 토큰 확인 실행 (FlutterBridge 요청 부분 제거됨)
               if (!checkForToken()) {
-                let attempts = 0;
-                const maxAttempts = 5;
-                
-                const requestToken = function() {
-                  if (attempts >= maxAttempts) return;
-                  
-                  attempts++;
-                  console.log('Requesting token from Flutter, attempt ' + attempts);
-                  
-                  if (window.FlutterBridge) {
-                    try {
-                      window.FlutterBridge.postMessage('requestToken');
-                    } catch (e) {
-                      console.error('Error requesting token:', e);
-                    }
-                  }
-                };
-                
-                // 즉시 한번 요청
-                setTimeout(requestToken, 500);
-                
-                // 1초마다 재시도 (최대 5회)
-                const interval = setInterval(() => {
-                  // 토큰이 이미 설정되었으면 중단
-                  if (checkForToken()) {
-                    clearInterval(interval);
-                    return;
-                  }
-                  
-                  requestToken();
-                  
-                  if (attempts >= maxAttempts) {
-                    clearInterval(interval);
-                  }
-                }, 1000);
+                console.log('No token found in cookies or localStorage. Waiting for potential header injection or using fallback.');
+                // 필요한 경우 여기에 환경 변수 토큰 사용 등의 대체 로직 추가 가능
               }
             } catch (e) {
               console.error('Error in token initialization script:', e);
