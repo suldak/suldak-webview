@@ -23,7 +23,7 @@ function SearchInput() {
   };
 
   return (
-    <div className="relative my-[2px] flex w-full items-center gap-2">
+    <div className="relative flex w-full items-center gap-2">
       <div className="relative flex w-full items-center">
         <div className="absolute left-4 flex items-center">
           <SearchIcon />
