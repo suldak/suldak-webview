@@ -22,7 +22,8 @@ const sendMessageToFlutter = () => {
   }
 };
 
-// 플러터로부터 토큰을 받는 함수
+// 플러터로부터 토큰을 받는 함수 (제거됨)
+/*
 const receiveTokenFromFlutter = () => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
@@ -52,8 +53,10 @@ const receiveTokenFromFlutter = () => {
     console.error("Error setting up token receiver:", error);
   }
 };
+*/
 
-// 플러터에 토큰 요청
+// 플러터에 토큰 요청 (제거됨)
+/*
 const requestTokenFromFlutter = () => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
@@ -71,9 +74,10 @@ const requestTokenFromFlutter = () => {
     console.error("Error requesting token from Flutter:", error);
   }
 };
+*/
 
 export {
   sendMessageToFlutter,
-  receiveTokenFromFlutter,
-  requestTokenFromFlutter,
+  // receiveTokenFromFlutter, // 제거됨
+  // requestTokenFromFlutter, // 제거됨
 };
