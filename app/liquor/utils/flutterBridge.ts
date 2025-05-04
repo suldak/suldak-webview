@@ -22,62 +22,41 @@ const sendMessageToFlutter = () => {
   }
 };
 
-// 플러터로부터 토큰을 받는 함수 (제거됨)
-/*
-const receiveTokenFromFlutter = () => {
+// 플러터로부터 토큰을 받는 함수
+const receiveTokenFromFlutter = (token: string) => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
 
   try {
-    // Window 객체에 메서드 추가
-    window.receiveToken = (token: string) => {
-      console.log("Token received from Flutter");
+    console.log("Token received from Flutter");
 
-      if (!token) {
-        console.warn("Received empty token from Flutter");
-        return;
-      }
-
-      // 토큰 저장
-      setToken(token);
-
-      // 토큰 업데이트 이벤트 발생
-      const tokenUpdateEvent = new CustomEvent("tokenUpdated", {
-        detail: token,
-      });
-      window.dispatchEvent(tokenUpdateEvent);
-    };
-
-    console.log("Token receiver initialized");
-  } catch (error) {
-    console.error("Error setting up token receiver:", error);
-  }
-};
-*/
-
-// 플러터에 토큰 요청 (제거됨)
-/*
-const requestTokenFromFlutter = () => {
-  // window 객체 존재 여부 확인
-  if (typeof window === "undefined") return;
-
-  try {
-    if (window.FlutterBridge) {
-      console.log("Requesting token from Flutter...");
-      window.FlutterBridge.postMessage("requestToken");
-    } else {
-      console.warn(
-        "No Flutter bridge detected. Are you running in a Flutter WebView?",
-      );
+    if (!token) {
+      console.warn("Received empty token from Flutter");
+      return;
     }
+
+    // 토큰 저장
+    setToken(token);
+
+    // 토큰 업데이트 이벤트 발생
+    const tokenUpdateEvent = new CustomEvent("tokenUpdated", {
+      detail: token,
+    });
+    window.dispatchEvent(tokenUpdateEvent);
+
+    console.log("Token receiver processed the token");
   } catch (error) {
-    console.error("Error requesting token from Flutter:", error);
+    console.error("Error in receiveTokenFromFlutter:", error);
   }
 };
-*/
+
+// Flutter가 호출할 수 있도록 전역 스코프에 함수 등록
+if (typeof window !== "undefined") {
+  (window as any).receiveToken = receiveTokenFromFlutter;
+}
 
 export {
   sendMessageToFlutter,
-  // receiveTokenFromFlutter, // 제거됨
+  receiveTokenFromFlutter, // Flutter 호출용으로 전역 등록, export도 유지
   // requestTokenFromFlutter, // 제거됨
 };

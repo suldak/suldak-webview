@@ -4,7 +4,8 @@ import { Suspense, useEffect, useState } from "react";
 import RecentSearchSection from "components/liquor/search/section/RecentSearchSection";
 import RecommendedSearchSection from "components/liquor/search/section/RecommendSearchSection";
 import SearchRankingSection from "components/liquor/search/section/SearchRankingSection";
-import { getToken } from "../utils/tokenStore";
+import { getToken, setToken } from "../utils/tokenStore";
+import "../utils/flutterBridge";
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
@@ -13,38 +14,49 @@ function LiquorSearchPage() {
   const [debugCookieValue, setDebugCookieValue] = useState<string>("");
 
   // 토큰 상태 체크 및 디버그 정보 업데이트
-  useEffect(() => {
+  const checkToken = () => {
     if (typeof window === "undefined") return;
+    const token = getToken();
+    setHasToken(!!token);
+    setDebugTokenValue(token);
+    setDebugCookieValue(document.cookie); // 쿠키는 이제 토큰과 직접 관련 없지만 디버깅 위해 유지
 
+    if (token) {
+      console.log("Token found, proceeding with authenticated actions.");
+    } else {
+      console.log(
+        "No token found, proceeding with public actions or using fallback.",
+      );
+    }
+  };
+
+  useEffect(() => {
     // 초기 토큰 상태 확인
-    const checkToken = () => {
-      const token = getToken();
-      setHasToken(!!token);
-      setDebugTokenValue(token); // 디버그용 상태 업데이트
-      setDebugCookieValue(document.cookie); // 디버그용 쿠키 상태 업데이트
-
-      // 토큰 유무에 따라 필요한 로직 수행 (예: API 호출)
-      if (token) {
-        console.log("Token found, proceeding with authenticated actions.");
-      } else {
-        console.log(
-          "No token found, proceeding with public actions or using fallback.",
-        );
-        // 필요한 경우 환경 변수 토큰 사용 로직 호출 등
-      }
-    };
-
     checkToken();
 
-    // tokenUpdated 이벤트 리스너 제거
-    // const handleTokenUpdate = () => {
-    //   console.log("Token updated event received");
-    //   checkToken();
-    // };
-    // window.addEventListener("tokenUpdated", handleTokenUpdate);
-    // return () => {
-    //   window.removeEventListener("tokenUpdated", handleTokenUpdate);
-    // };
+    // tokenUpdated 이벤트 리스너 등록
+    const handleTokenUpdate = (event: Event) => {
+      console.log("Token updated event received in page");
+      // CustomEvent 타입인지 확인하고 detail에서 토큰 추출
+      if (event instanceof CustomEvent) {
+        const newToken = event.detail;
+        if (newToken) {
+          // 상태 업데이트 (이미 setToken에서 메모리/스토리지는 업데이트 됨)
+          checkToken(); // 상태 및 디버그 정보 업데이트
+        } else {
+          console.warn("Received tokenUpdated event with no token in detail");
+        }
+      } else {
+        // 일반 Event 타입인 경우 (이 경우는 없어야 함)
+        checkToken(); // 일단 상태 체크 다시 실행
+      }
+    };
+    window.addEventListener("tokenUpdated", handleTokenUpdate);
+
+    // 컴포넌트 언마운트 시 리스너 제거
+    return () => {
+      window.removeEventListener("tokenUpdated", handleTokenUpdate);
+    };
   }, []); // 의존성 배열 비움 (최초 마운트 시에만 실행)
 
   return (
@@ -70,7 +82,7 @@ function LiquorSearchPage() {
           Detected Token: {debugTokenValue ? debugTokenValue : "null"}
         </p>
         <p style={{ margin: "2px 0 0 0" }}>
-          Cookies: {debugCookieValue || "(empty)"}
+          Cookies: {debugCookieValue || "(empty)"} {/* 쿠키는 토큰과 무관 */}
         </p>
       </div>
       {/* --- 디버깅 정보 표시 끝 --- */}
