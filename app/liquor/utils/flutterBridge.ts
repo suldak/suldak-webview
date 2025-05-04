@@ -55,8 +55,4 @@ if (typeof window !== "undefined") {
   (window as any).receiveToken = receiveTokenFromFlutter;
 }
 
-export {
-  sendMessageToFlutter,
-  receiveTokenFromFlutter, // Flutter 호출용으로 전역 등록, export도 유지
-  // requestTokenFromFlutter, // 제거됨
-};
+export { sendMessageToFlutter, receiveTokenFromFlutter };
