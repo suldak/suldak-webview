@@ -21,6 +21,10 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
         tagStyle =
           "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px] border";
         break;
+      case "mint":
+        tagStyle =
+          "bg-suldak-mint-50 text-suldak-mint-500 text-[14px] font-medium";
+        break;
       default:
         tagStyle =
           "bg-white text-suldak-gray-900 border-suldak-gray-400 text-[14px] border";
@@ -33,7 +37,6 @@ function Tag({ children, tagColor, tagId, selected, onClick }: TagProps) {
       onClick(event, children as string);
     }
   };
-
 
   return (
     <span

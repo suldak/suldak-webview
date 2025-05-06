@@ -15,7 +15,7 @@ export interface Liquor {
 
   liquorDetailDto: unknown;
 
-  liquorMaterialDtos: LiquorMaterial[];
+  liquorMaterialList: string[]; // 술 재료 목록
   // liquorMaterialDtos: string[]; 백오피스 수정 후 문자열로 바뀔 예정입니다.
 
   liquorNameDto: {
