@@ -14,6 +14,9 @@ import { sendMessageToFlutter } from "app/liquor/utils/flutterBridge";
 /** 술 상세 컴포넌트 */
 function LiquorDetail({ id }: { id: number }) {
   const { data: liquor } = useGetLiquorDetail(id);
+  console.log("Fetched Liquor Data:", liquor);
+  console.log("Liquor Material List:", liquor?.liquorMaterialList);
+  console.log("Liquor Recipe:", liquor?.liquorRecipe);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
@@ -95,7 +98,7 @@ function LiquorDetail({ id }: { id: number }) {
       <div className="h-2.5 w-full bg-suldak-gray-200" />
       <DetailRecipe
         recipe={liquor.liquorRecipe}
-        material={liquor.liquorMaterialDtos}
+        material={liquor.liquorMaterialList}
       />
     </>
   );
