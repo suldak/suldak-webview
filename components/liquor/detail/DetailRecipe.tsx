@@ -15,9 +15,9 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
 
   return (
     <section className="px-5 pb-50px pt-50px">
-      <div className="flex items-center gap-1.5 pb-50px">
+      <div className="flex items-center gap-1.5 pb-[20px]">
         <RecipeIcon />
-        <span className="text-lg font-bold text-suldak-gray-900">
+        <span className="font-bold text-[18p] text-suldak-gray-900">
           직접 만들어볼까요?
         </span>
       </div>
@@ -25,7 +25,9 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
         <DetailMaterial material={material} />
       )}
       <div className="flex items-center gap-2">
-        <span className="text-lg font-bold text-suldak-gray-900">레시피</span>
+        <span className="text-[16px] font-bold text-suldak-gray-900">
+          레시피
+        </span>
         <span className="text-sm text-suldak-red-500">*1oz는 약 30ml에요</span>
       </div>
       <div className="mt-5 flex flex-col">
