@@ -17,8 +17,6 @@ export const setToken = (token: string) => {
   }
 };
 
-
-
 // 토큰 가져오기 함수
 export const getToken = () => {
   if (typeof window === "undefined") return null;
@@ -40,3 +38,11 @@ export const getToken = () => {
 
   return null;
 };
+
+// Flutter 앱으로부터 토큰을 받기 위한 함수
+if (typeof window !== "undefined") {
+  (window as any).authorizationToken = (token: string) => {
+    console.log("Received token from Flutter: ", token);
+    setToken(token);
+  };
+}
