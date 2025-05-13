@@ -1,5 +1,9 @@
 "use client";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 import { getToken } from "app/liquor/utils/tokenStore";
 
 const axiosInstance = axios.create({
@@ -7,12 +11,12 @@ const axiosInstance = axios.create({
   timeout: 5000,
 });
 
-axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getToken();
 
   if (token) {
     // 플러터 앱과 같은 형식으로 설정
-    config.headers["Authorization"] = token;
+    (config.headers as any)["Authorization"] = token;
     console.log("사용자 토큰 사용 중"); // 테스트용 코드
     if (typeof window !== "undefined" && (window as any).__setLastApiToken) {
       (window as any).__setLastApiToken(token);
@@ -24,7 +28,7 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     // 토큰이 없으면 환경변수 사용
     const envToken = process.env.NEXT_PUBLIC_TOKEN;
     if (envToken) {
-      config.headers["Authorization"] = envToken;
+      (config.headers as any)["Authorization"] = envToken;
       console.log("Using environment token for API request");
       if (typeof window !== "undefined" && (window as any).__setLastApiToken) {
         (window as any).__setLastApiToken(envToken);
