@@ -6,6 +6,7 @@ import RecommendedSearchSection from "components/liquor/search/section/Recommend
 import SearchRankingSection from "components/liquor/search/section/SearchRankingSection";
 import { getToken } from "../utils/tokenStore";
 import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
+import DebugTokenInfo from "components/shared/DebugTokenInfo";
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
@@ -44,6 +45,7 @@ function LiquorSearchPage() {
 
   return (
     <>
+      <DebugTokenInfo />
       <RecentSearchSection />
       <Suspense>
         <RecommendedSearchSection />
