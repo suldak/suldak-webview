@@ -13,13 +13,17 @@ function DetailSnack({ snacks }: DetailSnackProps) {
     <section className="px-5 pb-50px pt-50px">
       <div className="flex items-center gap-1.5">
         <SnackIcon />
-        <span className="text-lg font-bold text-suldak-gray-900">
+        <span className="text-[18px] font-bold text-suldak-gray-900">
           이런 안주와 어울려요
         </span>
       </div>
       <div className="mt-5 flex gap-3">
         {snacks.map((snack) => (
-          <LiquorSnack key={snack.id} name={snack.name} imgUrl={snack.fileBaseNm} />
+          <LiquorSnack
+            key={snack.id}
+            name={snack.name}
+            imgUrl={snack.fileBaseNm}
+          />
         ))}
       </div>
     </section>
