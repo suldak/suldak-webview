@@ -14,10 +14,10 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
   }
 
   return (
-    <section className="px-5 pb-50px pt-50px">
-      <div className="flex items-center gap-1.5 pb-[20px]">
+    <section className="mb-[64px] mt-[50px] px-5">
+      <div className="flex items-center gap-[2px] pb-[20px]">
         <RecipeIcon />
-        <span className="font-bold text-[18p] text-suldak-gray-900">
+        <span className="text-[18px] font-bold text-suldak-gray-900">
           직접 만들어볼까요?
         </span>
       </div>
@@ -25,23 +25,25 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
         <DetailMaterial material={material} />
       )}
       <div className="flex items-center gap-2">
-        <span className="text-[16px] font-bold text-suldak-gray-900">
+        <span className="text-[16px] font-semibold text-suldak-gray-900">
           레시피
         </span>
         <span className="text-sm text-suldak-red-500">*1oz는 약 30ml에요</span>
       </div>
-      <div className="mt-5 flex flex-col">
+      <div className="mt-[20px] flex flex-col">
         {recipe.map((rec, index) => (
-          <div className="flex h-auto w-full items-start gap-4" key={index}>
+          <div className="flex w-full items-start gap-x-[10px]" key={index}>
             <div className="relative flex flex-shrink-0 flex-col items-center">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-suldak-gray-300 text-suldak-gray-600">
+              <div className="flex h-[21px] w-[21px] items-center justify-center rounded-full bg-suldak-gray-300 text-suldak-gray-600">
                 {index + 1}
               </div>
               {index < recipe.length - 1 && (
-                <div className="h-12 w-px bg-suldak-gray-300" />
+                <div className="min-h-[30px] w-[2px] flex-1 bg-suldak-gray-300" />
               )}
             </div>
-            <span className="flex-grow text-gray-500">{rec}</span>
+            <span className="text-normal flex-grow text-[14px] text-base leading-normal text-gray-500">
+              {rec}
+            </span>
           </div>
         ))}
       </div>
