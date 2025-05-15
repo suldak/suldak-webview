@@ -14,7 +14,7 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
   }
 
   return (
-    <section className="px-5 mb-[50px] mt-[50px]">
+    <section className="mb-[50px] mt-[50px] px-5">
       <div className="flex items-center gap-[2px] pb-[20px]">
         <RecipeIcon />
         <span className="text-[18px] font-bold text-suldak-gray-900">
@@ -33,18 +33,20 @@ function DetailRecipe({ recipe, material }: DetailRecipeProps) {
       <div className="mt-[20px] flex flex-col">
         {recipe.map((rec, index) => (
           <div
-            className="flex h-auto w-full items-start gap-x-[10px]"
+            className="my-[9px] flex h-auto w-full items-start gap-x-[10px]"
             key={index}
           >
-            <div className="relative flex flex-shrink-0 flex-col items-center">
-              <div className="flex h-8 w-8 items-center justify-center gap-y-[9px] rounded-full bg-suldak-gray-300 text-suldak-gray-600">
+            <div className="relative flex flex-shrink-0 flex-col items-start">
+              <div className="flex h-[21px] w-[21px] items-center justify-center rounded-full bg-suldak-gray-300 text-suldak-gray-600">
                 {index + 1}
               </div>
               {index < recipe.length - 1 && (
                 <div className="h-12 bg-suldak-gray-300" />
               )}
             </div>
-            <span className="flex-grow text-gray-500">{rec}</span>
+            <span className="flex-grow text-base leading-normal text-gray-500">
+              {rec}
+            </span>
           </div>
         ))}
       </div>
