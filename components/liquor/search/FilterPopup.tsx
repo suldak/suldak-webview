@@ -64,7 +64,7 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
         isVisible ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="relative flex h-full flex-col justify-center overflow-y-scroll p-[20px] scrollbar-hide">
+      <div className="relative m-0 flex h-full flex-col justify-center overflow-y-scroll p-[20px] scrollbar-hide">
         <button className="absolute right-4 top-4" onClick={handleClose}>
           <CloseIcon />
         </button>
@@ -93,7 +93,7 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
               setSelected={setSelectedSeller}
             />
 
-            <div className="flex w-full items-end">
+            <div className="mb-0 flex w-full items-end gap-x-[10px]">
               <div className="inline-flex h-[60px] grow-[1]">
                 <FilterResetButton onReset={handleReset} />
               </div>
