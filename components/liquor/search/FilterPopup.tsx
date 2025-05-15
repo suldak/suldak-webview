@@ -64,36 +64,44 @@ function FilterPopup({ onClose, onApply }: FilterPopupProps) {
         isVisible ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="relative h-full flex-col justify-center overflow-y-scroll p-[20px] scrollbar-hide">
+      <div className="relative m-0 flex h-full flex-col justify-center overflow-y-scroll p-[20px] scrollbar-hide">
         <button className="absolute right-4 top-4" onClick={handleClose}>
           <CloseIcon />
         </button>
+
         <div className="flex items-center justify-center text-[18px] font-bold text-suldak-gray-900">
           필터
         </div>
         <div className="absolute left-0 top-[48px] w-full border-t border-suldak-gray-200"></div>
-        <div className="mt-[20px]"></div>
-        <div className="gap-y-[40px]">
-          <LiquorClassSection
-            selected={selectedClass}
-            setSelected={setSelectedClass}
-          />
-          <LiquorTasteSection
-            selected={selectedTaste}
-            setSelected={setSelectedTaste}
-          />
-          <LiquorABVSection
-            selected={selectedABV}
-            setSelected={setSelectedABV}
-          />
-          <LiquorSellerSection
-            selected={selectedSeller}
-            setSelected={setSelectedSeller}
-          />
-        </div>
-        <div className="flex w-full gap-x-[10px]">
-          <FilterResetButton onReset={handleReset} />
-          <FilterApplyButton onApply={handleApply} />
+        <div className="flex h-full w-full flex-col">
+          <div className="mt-[20px]"></div>
+          <div className="gap-y-[40px]">
+            <LiquorClassSection
+              selected={selectedClass}
+              setSelected={setSelectedClass}
+            />
+            <LiquorTasteSection
+              selected={selectedTaste}
+              setSelected={setSelectedTaste}
+            />
+            <LiquorABVSection
+              selected={selectedABV}
+              setSelected={setSelectedABV}
+            />
+            <LiquorSellerSection
+              selected={selectedSeller}
+              setSelected={setSelectedSeller}
+            />
+
+            <div className="mb-0 flex w-full items-end gap-x-[10px]">
+              <div className="inline-flex h-[60px] grow-[1]">
+                <FilterResetButton onReset={handleReset} />
+              </div>
+              <div className="inline-flex h-[60px] grow-[3]">
+                <FilterApplyButton onApply={handleApply} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
