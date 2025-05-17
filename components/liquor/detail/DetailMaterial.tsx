@@ -15,7 +15,7 @@ function DetailMaterial({ material }: DetailMaterialProps) {
       </div>
       <div className="flex flex-wrap gap-[8px]">
         {material.map((item, index) => (
-          <Tag key={item} tagId={index} tagColor="gray">
+          <Tag key={`${item}-${index}`} tagId={index} tagColor="gray">
             {item}
           </Tag>
         ))}
