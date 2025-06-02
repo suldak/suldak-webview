@@ -38,3 +38,36 @@ export const useLiquorSearch = (
     enabled: !!searchKey,
   });
 };
+
+const getLiquorCategorySearch = async ({
+  liquorNamePriKeys,
+  ...priKeys
+}: LiquorSearchParams): Promise<ResponseType<{ content: Liquor[] }>> => {
+  const { data } = await axiosInstance.get<ResponseType<{ content: Liquor[] }>>(
+    `/api/liquor/view/liquor-search/`,
+    {
+      params: {
+        liquorNamePriKeys,
+        ...priKeys,
+      },
+    },
+  );
+
+  return data;
+};
+
+export const useLiquorCategorySearch = (
+  { liquorNamePriKeys, ...priKeys }: LiquorSearchParams,
+  searchKey: string,
+) => {
+  return useQuery({
+    queryKey: ["liquor-category-search", searchKey, liquorNamePriKeys],
+    queryFn: () =>
+      getLiquorCategorySearch({
+        liquorNamePriKeys,
+        ...priKeys,
+      }),
+    select: (data) => ({ data: data.data }),
+    enabled: !!searchKey && liquorNamePriKeys !== undefined,
+  });
+};
