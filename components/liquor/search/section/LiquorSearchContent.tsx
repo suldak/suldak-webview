@@ -5,7 +5,7 @@ import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
 import LiquorList from "components/liquor/category/LiquorList";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
 import { Liquor } from "models/liquor";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import FilterButton from "components/liquor/search/FilterButton";
 import SearchInput from "components/liquor/search/SearchInput";
@@ -15,12 +15,20 @@ import RecommendSection from "components/liquor/search/section/RecommendSection"
 import HeadBackIcon from "assets/icons/ico-head-back.svg";
 import SearchInfoSection from "components/liquor/search/section/SearchInfoSection";
 
+const PAGE_SIZE = 20;
+
 function LiquorSearchContent({
   searchParams,
 }: {
   searchParams: URLSearchParams;
 }) {
   const router = useRouter();
+  // 무한스크롤 상태
+  const [pageNum, setPageNum] = useState(0);
+  const [liquors, setLiquors] = useState<Liquor[]>([]);
+  const [hasNext, setHasNext] = useState(true);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
+
   const { data, isLoading, error } = useLiquorSearch(
     {
       tag: searchParams.get("q") || undefined,
@@ -29,15 +37,57 @@ function LiquorSearchContent({
       tastePriKeys: searchParams.get("taste") || "",
       liquorAbvPriKeys: searchParams.get("abv") || "",
       sellPriKeys: searchParams.get("seller") || "",
-      recordSize: 100, // 최대 100개 까지의 목록을 가져옵니다.
+      recordSize: PAGE_SIZE,
       liquorDetailPriKeys: searchParams.get("subKey") || "",
+      pageNum,
     },
-    searchParams.toString(),
+    searchParams.toString() + `-page-${pageNum}`,
   );
 
-  const { data: recommendKeywords } = useGetRecommendKeyword();
+  const totalCount = data?.data.totalElements ?? liquors.length;
 
-  const liquors: Liquor[] = data?.data.content || [];
+  useEffect(() => {
+    if (data) {
+      if (pageNum === 0) {
+        setLiquors(data.data.content);
+      } else {
+        setLiquors((prev) => [...prev, ...data.data.content]);
+      }
+      setHasNext(data.data.content.length === PAGE_SIZE);
+      setIsFirstLoading(false);
+    }
+  }, [data, pageNum]);
+
+  // 검색 조건이 바뀌면 초기화
+  useEffect(() => {
+    setPageNum(0);
+    setLiquors([]);
+    setHasNext(true);
+    setIsFirstLoading(true);
+  }, [searchParams.toString()]);
+
+  // 무한스크롤 감지용 ref
+  const observerRef = useRef<HTMLDivElement | null>(null);
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasNext && !isLoading && !isFirstLoading) {
+        setPageNum((prev) => prev + 1);
+      }
+    },
+    [hasNext, isLoading, isFirstLoading],
+  );
+
+  useEffect(() => {
+    const option = { threshold: 1.0 };
+    const observer = new window.IntersectionObserver(handleObserver, option);
+    if (observerRef.current) observer.observe(observerRef.current);
+    return () => {
+      if (observerRef.current) observer.unobserve(observerRef.current);
+    };
+  }, [handleObserver]);
+
+  const { data: recommendKeywords } = useGetRecommendKeyword();
   const keywords: RecommendKeyword[] = recommendKeywords || [];
   const liquorSubKey = searchParams.get("subKey");
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
@@ -98,24 +148,28 @@ function LiquorSearchContent({
         <RecommendSection keywords={keywords} onClick={handleKeywordClick} />
       )}
       {!liquorSubKey && (
-        <SearchInfoSection count={isLoading ? 0 : liquors.length}>
+        <SearchInfoSection count={totalCount}>
           <SortDropDown />
           <FilterButton />
         </SearchInfoSection>
       )}
       {liquorSubKey && (
-        <SearchInfoSection count={isLoading ? 0 : liquors.length}>
+        <SearchInfoSection count={liquors.length}>
           <div />
         </SearchInfoSection>
       )}
-      {isLoading ? (
+      {isFirstLoading ? (
         <section className="flex flex-col items-center justify-center gap-2.5 overflow-y-auto px-[20px]">
           <LoadingCard />
         </section>
       ) : liquors.length === 0 ? (
         <NoResultSection />
       ) : (
-        <LiquorList liquors={liquors} />
+        <>
+          <LiquorList liquors={liquors} />
+          <div ref={observerRef} style={{ height: 1 }} />
+          {isLoading && !isFirstLoading && <LoadingCard />}
+        </>
       )}
     </main>
   );
