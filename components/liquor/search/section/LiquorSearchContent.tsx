@@ -168,7 +168,6 @@ function LiquorSearchContent({
         <>
           <LiquorList liquors={liquors} />
           <div ref={observerRef} style={{ height: 1 }} />
-          {isLoading && !isFirstLoading && <LoadingCard />}
         </>
       )}
     </main>
