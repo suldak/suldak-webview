@@ -111,9 +111,6 @@ function LiquorSearchContent({
       {isLoading ? (
         <section className="flex flex-col items-center justify-center gap-2.5 overflow-y-auto px-[20px]">
           <LoadingCard />
-          <LoadingCard />
-          <LoadingCard />
-          <LoadingCard />
         </section>
       ) : liquors.length === 0 ? (
         <NoResultSection />

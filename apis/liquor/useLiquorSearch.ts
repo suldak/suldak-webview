@@ -36,6 +36,7 @@ export const useLiquorSearch = (
       }),
     select: (data) => ({ data: data.data }),
     enabled: !!searchKey,
+    staleTime: 1000 * 60,
   });
 };
 
