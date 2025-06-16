@@ -6,7 +6,6 @@ import { ResponseType } from "apis/api";
 const getRecommendKeyword = async (): Promise<
   ResponseType<RecommendKeyword[]>
 > => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   const { data } = await axiosInstance.get<ResponseType<RecommendKeyword[]>>(
     `api/search/text/view/recommend`,
     {
