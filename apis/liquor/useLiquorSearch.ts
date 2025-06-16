@@ -7,17 +7,18 @@ const getLiquorSearch = async ({
   tag,
   isRecommend,
   ...priKeys
-}: LiquorSearchParams): Promise<ResponseType<{ content: Liquor[] }>> => {
-  const { data } = await axiosInstance.get<ResponseType<{ content: Liquor[] }>>(
-    `/api/liquor/view/liquor-search/`,
-    {
-      params: {
-        searchTag: tag,
-        isRecommend,
-        ...priKeys,
-      },
+}: LiquorSearchParams): Promise<
+  ResponseType<{ content: Liquor[]; totalElements: number }>
+> => {
+  const { data } = await axiosInstance.get<
+    ResponseType<{ content: Liquor[]; totalElements: number }>
+  >(`/api/liquor/view/liquor-search/`, {
+    params: {
+      searchTag: tag,
+      isRecommend,
+      ...priKeys,
     },
-  );
+  });
 
   return data;
 };
@@ -43,16 +44,17 @@ export const useLiquorSearch = (
 const getLiquorCategorySearch = async ({
   liquorNamePriKeys,
   ...priKeys
-}: LiquorSearchParams): Promise<ResponseType<{ content: Liquor[] }>> => {
-  const { data } = await axiosInstance.get<ResponseType<{ content: Liquor[] }>>(
-    `/api/liquor/view/liquor-search/`,
-    {
-      params: {
-        liquorNamePriKeys,
-        ...priKeys,
-      },
+}: LiquorSearchParams): Promise<
+  ResponseType<{ content: Liquor[]; totalElements: number }>
+> => {
+  const { data } = await axiosInstance.get<
+    ResponseType<{ content: Liquor[]; totalElements: number }>
+  >(`/api/liquor/view/liquor-search/`, {
+    params: {
+      liquorNamePriKeys,
+      ...priKeys,
     },
-  );
+  });
 
   return data;
 };

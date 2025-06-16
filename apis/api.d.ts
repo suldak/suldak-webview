@@ -15,4 +15,5 @@ export interface LiquorSearchParams {
   tastePriKeys?: string;
   statePriKeys?: number;
   recordSize?: number; // 술 목록 recordSize
+  pageNum?: number; // 페이지네이션을 위한 pageNum
 }
