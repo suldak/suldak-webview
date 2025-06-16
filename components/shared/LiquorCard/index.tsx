@@ -46,6 +46,7 @@ function LiquorCard({
           alt="술 이미지"
           width={96}
           height={96}
+          loading="lazy"
         />
       </div>
 
