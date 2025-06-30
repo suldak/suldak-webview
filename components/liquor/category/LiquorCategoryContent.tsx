@@ -1,4 +1,4 @@
-import { Liquor } from "models/liquor";
+import { SearchLiquor } from "models/liquor";
 import { useLiquorCategorySearch } from "apis/liquor/useLiquorSearch";
 import CategoryHeader from "components/liquor/category/CategoryHeader";
 import NoResultSection from "components/liquor/search/section/NoResultSection";
@@ -44,7 +44,7 @@ function LiquorCategoryContent({
 
   // 무한스크롤 상태
   const [pageNum, setPageNum] = useState(0);
-  const [liquors, setLiquors] = useState<Liquor[]>([]);
+  const [liquors, setLiquors] = useState<SearchLiquor[]>([]);
   const [hasNext, setHasNext] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
 
