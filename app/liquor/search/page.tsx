@@ -11,13 +11,20 @@ import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 �
 function LiquorSearchPage() {
   // 실제 토큰 유무만 상태로 관리
   const [hasToken, setHasToken] = useState<boolean>(false);
+  const [userToken, setUserToken] = useState<string | null>(null);
+  const [envToken, setEnvToken] = useState<string | null>(null);
 
   // 토큰 상태 체크 함수
   const checkToken = () => {
     if (typeof window === "undefined") return;
     const token = getToken();
-    const currentHasToken = !!token;
-    setHasToken(currentHasToken);
+    setUserToken(token);
+    setHasToken(!!token);
+    // 환경변수 토큰은 클라이언트에서 process.env로 접근 불가하므로 window에서 직접 할당 필요
+    // 빌드 타임에 NEXT_PUBLIC_TOKEN이 노출되어 있다면 아래처럼 사용 가능
+    // (next.config.mjs에서 NEXT_PUBLIC_ 접두어가 붙은 변수만 클라이언트로 노출됨)
+    // @ts-ignore
+    setEnvToken(process.env.NEXT_PUBLIC_TOKEN || null);
   };
 
   useEffect(() => {
@@ -44,6 +51,30 @@ function LiquorSearchPage() {
 
   return (
     <>
+      {/* 디버그용 토큰 비교 영역 (운영 배포 전 삭제 권장) */}
+      <div
+        style={{
+          background: "#eee",
+          padding: 8,
+          marginBottom: 16,
+          fontSize: 12,
+        }}
+      >
+        <div>
+          <b>사용자 토큰(userToken):</b> {userToken || "(없음)"}
+        </div>
+        <div>
+          <b>환경 토큰(envToken):</b> {envToken || "(없음)"}
+        </div>
+        <div>
+          <b>두 토큰이 동일한가?</b>{" "}
+          {userToken && envToken
+            ? userToken === envToken
+              ? "예"
+              : "아니오"
+            : "비교 불가"}
+        </div>
+      </div>
       <RecentSearchSection />
       <Suspense fallback={<div>로딩 중...</div>}>
         <RecommendedSearchSection />
