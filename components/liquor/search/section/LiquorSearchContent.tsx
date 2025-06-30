@@ -4,7 +4,7 @@ import { useGetRecommendKeyword } from "apis/keyword/useGetRecommendKeyword";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
 import LiquorList from "components/liquor/category/LiquorList";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
-import { Liquor } from "models/liquor";
+import { Liquor, SearchLiquor } from "models/liquor";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import FilterButton from "components/liquor/search/FilterButton";
@@ -25,7 +25,7 @@ function LiquorSearchContent({
   const router = useRouter();
   // 무한스크롤 상태
   const [pageNum, setPageNum] = useState(0);
-  const [liquors, setLiquors] = useState<Liquor[]>([]);
+  const [liquors, setLiquors] = useState<SearchLiquor[]>([]);
   const [hasNext, setHasNext] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
 
@@ -53,7 +53,7 @@ function LiquorSearchContent({
       } else {
         setLiquors((prev) => [...prev, ...data.data.content]);
       }
-      setHasNext(data.data.content.length === PAGE_SIZE);
+      setHasNext(!data.data.last);
       setIsFirstLoading(false);
     }
   }, [data, pageNum]);

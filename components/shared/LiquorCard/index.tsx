@@ -23,9 +23,15 @@ function LiquorCard({
   };
 
   // 모든 태그를 하나의 배열로 결합
-  const allTags = [...liquorSellDtos, ...tasteTypeDtos, ...liquorSnackRes]
+  const allTags = [
+    ...liquorSellDtos,
+    ...liquorSnackRes,
+    ...(tasteTypeDtos?.map((tag) =>
+      "tagName" in tag ? { name: tag.tagName } : tag,
+    ) || []),
+  ]
     .filter((item) => item?.name)
-    .slice(0, 3); // 최대 4개로 제한
+    .slice(0, 3); // 최대 3개로 제한
 
   // DefaultImg를 import한 경우, 해당 이미지의 실제 경로를 가져와야 합니다
   const defaultImgSrc = DefaultImg?.src || DefaultImg;
