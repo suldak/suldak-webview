@@ -1,20 +1,20 @@
 import LiquorCard from "components/shared/LiquorCard";
-import { Liquor } from "models/liquor";
+import { SearchLiquor } from "models/liquor";
 
-function LiquorList({ liquors }: { liquors: Liquor[] }) {
+function LiquorList({ liquors }: { liquors: SearchLiquor[] }) {
   return (
     <section className="flex h-full w-full flex-col items-center justify-center">
-      {liquors.map((liquor: Liquor) => (
-        <div key={liquor.id} className="mt-[10px]">
+      {liquors.map((liquor: SearchLiquor) => (
+        <div key={liquor.liquorId} className="mt-[10px]">
           <LiquorCard
             imgUrl={liquor.liquorPictureUrl}
-            liquorId={liquor.id}
+            liquorId={liquor.liquorId}
             liquorDetail={liquor.summaryExplanation}
             liquorAbv={liquor.detailAbv}
             name={liquor.name}
-            liquorSellDtos={liquor.liquorSellDtos}
-            liquorSnackRes={liquor.liquorSnackRes}
-            tasteTypeDtos={liquor.tasteTypeDtos}
+            liquorSellDtos={[]}
+            liquorSnackRes={[]}
+            tasteTypeDtos={liquor.tagList}
           />
         </div>
       ))}

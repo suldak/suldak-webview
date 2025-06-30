@@ -85,3 +85,19 @@ export interface SellerType {
   id: number;
   name: string;
 }
+
+// 검색 결과용 타입
+export interface SearchLiquor {
+  detailAbv: number;
+  isLike: boolean;
+  liquorId: number;
+  liquorPictureUrl: string;
+  name: string;
+  summaryExplanation: string;
+  tagList: SearchLiquorTag[];
+}
+
+export interface SearchLiquorTag {
+  tagId: number;
+  tagName: string;
+}

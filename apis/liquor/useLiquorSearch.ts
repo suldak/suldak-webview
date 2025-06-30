@@ -1,17 +1,41 @@
 import axiosInstance from "apis/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import { LiquorSearchParams, ResponseType } from "apis/api";
-import { Liquor } from "models/liquor";
+import { Liquor, SearchLiquor, SearchLiquorTag } from "models/liquor";
 
 const getLiquorSearch = async ({
   tag,
   isRecommend,
   ...priKeys
 }: LiquorSearchParams): Promise<
-  ResponseType<{ content: Liquor[]; totalElements: number }>
+  ResponseType<{
+    content: SearchLiquor[];
+    empty: boolean;
+    first: boolean;
+    last: boolean;
+    number: number;
+    numberOfElements: number;
+    pageable: any;
+    size: number;
+    sort: any;
+    totalElements: number;
+    totalPages: number;
+  }>
 > => {
   const { data } = await axiosInstance.get<
-    ResponseType<{ content: Liquor[]; totalElements: number }>
+    ResponseType<{
+      content: SearchLiquor[];
+      empty: boolean;
+      first: boolean;
+      last: boolean;
+      number: number;
+      numberOfElements: number;
+      pageable: any;
+      size: number;
+      sort: any;
+      totalElements: number;
+      totalPages: number;
+    }>
   >(`/api/liquor/view/liquor-search/`, {
     params: {
       searchTag: tag,
@@ -45,10 +69,34 @@ const getLiquorCategorySearch = async ({
   liquorNamePriKeys,
   ...priKeys
 }: LiquorSearchParams): Promise<
-  ResponseType<{ content: Liquor[]; totalElements: number }>
+  ResponseType<{
+    content: SearchLiquor[];
+    empty: boolean;
+    first: boolean;
+    last: boolean;
+    number: number;
+    numberOfElements: number;
+    pageable: any;
+    size: number;
+    sort: any;
+    totalElements: number;
+    totalPages: number;
+  }>
 > => {
   const { data } = await axiosInstance.get<
-    ResponseType<{ content: Liquor[]; totalElements: number }>
+    ResponseType<{
+      content: SearchLiquor[];
+      empty: boolean;
+      first: boolean;
+      last: boolean;
+      number: number;
+      numberOfElements: number;
+      pageable: any;
+      size: number;
+      sort: any;
+      totalElements: number;
+      totalPages: number;
+    }>
   >(`/api/liquor/view/liquor-search/`, {
     params: {
       liquorNamePriKeys,
