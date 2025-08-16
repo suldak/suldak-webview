@@ -3,7 +3,14 @@ function CommunityTab() {
     <div className="mb-[73px] flex w-full flex-col">
       <p className="px-[20px]">
         📍 모임을 만들거나 참여하기 전에 꼭&nbsp;
-        <span className="text-suldak-mint-500 underline">커뮤니티 가이드</span>
+        <a
+          href="https://suldak.notion.site/4919c81e56134f4bb67cda343b129823"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cursor-pointer text-suldak-mint-500 underline"
+        >
+          커뮤니티 가이드
+        </a>
         를 확인해주세요 📍
       </p>
       <div className="flex w-full flex-col px-[20px]">
