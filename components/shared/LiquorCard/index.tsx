@@ -66,7 +66,7 @@ function LiquorCard({
         <p className="mt-[2px] text-xs text-suldak-gray-600 mobile:text-[14px]">
           {liquorDetail || "주류 정보 추가 예정입니다."}
         </p>
-        <div className="mt-2 flex gap-1">
+        <div className="mt-2 flex gap-1 overflow-scroll scrollbar-hide">
           {allTags.map((tag, index) => (
             <LiquorTag key={index} name={tag.name} />
           ))}
