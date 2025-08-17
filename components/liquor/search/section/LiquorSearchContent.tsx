@@ -159,8 +159,19 @@ function LiquorSearchContent({
         </SearchInfoSection>
       )}
       {isFirstLoading ? (
-        <section className="flex flex-col items-center justify-center gap-2.5 overflow-y-auto px-[20px]">
-          <LoadingCard />
+        <section className="flex h-full w-full flex-col items-center justify-center">
+          <div className="mt-[10px]">
+            <LoadingCard />
+          </div>
+          <div className="mt-[10px]">
+            <LoadingCard />
+          </div>
+          <div className="mt-[10px]">
+            <LoadingCard />
+          </div>
+          <div className="mt-[10px]">
+            <LoadingCard />
+          </div>
         </section>
       ) : liquors.length === 0 ? (
         <NoResultSection />
