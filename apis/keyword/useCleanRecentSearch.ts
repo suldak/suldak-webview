@@ -2,11 +2,9 @@ import axiosInstance from "apis/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const cleanRecentSearch = async () => {
-  const { data } = await axiosInstance.delete(`/api/search/search-text/clean`, {
-    params: {
-      searchType: "LIQUOR",
-    },
-  });
+  const { data } = await axiosInstance.delete(
+    `/api/search/search-text/clean/LIQUOR`,
+  );
   return data;
 };
 
