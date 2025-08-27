@@ -6,10 +6,14 @@ import RecommendedSearchSection from "components/liquor/search/section/Recommend
 import SearchRankingSection from "components/liquor/search/section/SearchRankingSection";
 import { getToken } from "../utils/tokenStore";
 import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
-import DebugTokenInfo from "components/shared/DebugTokenInfo";
+
+import { useFlutterToken } from "../hooks/useFlutterToken";
 
 /** 술 검색 페이지 */
 function LiquorSearchPage() {
+  // Flutter 토큰 초기화 훅 사용
+  const { isTokenInitialized } = useFlutterToken();
+
   // 실제 토큰 유무만 상태로 관리
   const [hasToken, setHasToken] = useState<boolean>(false);
 
@@ -45,7 +49,6 @@ function LiquorSearchPage() {
 
   return (
     <>
-      <DebugTokenInfo />
       <RecentSearchSection />
       <Suspense fallback={<div>로딩 중...</div>}>
         <RecommendedSearchSection />

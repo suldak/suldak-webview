@@ -15,9 +15,9 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getToken();
 
   if (token) {
-    // 플러터 앱과 같은 형식으로 설정
+    // 사용자 토큰이 있으면 우선 사용
     (config.headers as any)["Authorization"] = token;
-    console.log("사용자 토큰 사용 중"); // 테스트용 코드
+    console.log("사용자 토큰 사용 중");
     if (typeof window !== "undefined" && (window as any).__setLastApiToken) {
       (window as any).__setLastApiToken(token);
     }
@@ -25,21 +25,39 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
       (window as any).__debugLog("사용자 토큰 사용 중");
     }
   } else {
-    // 토큰이 없으면 환경변수 사용
-    const envToken = process.env.NEXT_PUBLIC_TOKEN;
-    if (envToken) {
-      (config.headers as any)["Authorization"] = envToken;
-      console.log("Using environment token for API request");
-      if (typeof window !== "undefined" && (window as any).__setLastApiToken) {
-        (window as any).__setLastApiToken(envToken);
-      }
-      if (typeof window !== "undefined" && (window as any).__debugLog) {
-        (window as any).__debugLog("환경변수 토큰 사용 중");
+    // 개발/디버깅 환경에서만 환경변수 토큰 사용
+    const isDevelopment =
+      process.env.NODE_ENV === "development" ||
+      (typeof window !== "undefined" &&
+        window.location.hostname === "localhost");
+
+    if (isDevelopment) {
+      const envToken = process.env.NEXT_PUBLIC_TOKEN;
+      if (envToken) {
+        (config.headers as any)["Authorization"] = envToken;
+        console.log("개발환경: 환경변수 토큰 사용");
+        if (
+          typeof window !== "undefined" &&
+          (window as any).__setLastApiToken
+        ) {
+          (window as any).__setLastApiToken(envToken);
+        }
+        if (typeof window !== "undefined" && (window as any).__debugLog) {
+          (window as any).__debugLog("개발환경: 환경변수 토큰 사용");
+        }
+      } else {
+        console.warn("개발환경: 환경변수 토큰도 없음");
+        if (typeof window !== "undefined" && (window as any).__debugLog) {
+          (window as any).__debugLog("개발환경: 환경변수 토큰도 없음");
+        }
       }
     } else {
-      console.warn("No token available for API request");
+      // 프로덕션에서는 토큰 없으면 요청 차단
+      console.warn("프로덕션: 사용자 토큰 없음 - API 요청 차단");
       if (typeof window !== "undefined" && (window as any).__debugLog) {
-        (window as any).__debugLog("토큰 없음: API 요청 불가");
+        (window as any).__debugLog(
+          "프로덕션: 사용자 토큰 없음 - API 요청 차단",
+        );
       }
     }
   }
