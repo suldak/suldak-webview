@@ -1,10 +1,12 @@
-import axiosInstance from 'apis/axiosInstance';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axiosInstance from "apis/axiosInstance";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const cleanRecentSearch = async () => {
-  const { data } = await axiosInstance.delete(
-    `/api/search/search-text/clean`,
-  );
+  const { data } = await axiosInstance.delete(`/api/search/search-text/clean`, {
+    params: {
+      searchType: "LIQUOR",
+    },
+  });
   return data;
 };
 
@@ -15,7 +17,7 @@ export const useCleanRecentSearch = () => {
     mutationFn: cleanRecentSearch,
     onSuccess: () => {
       // 성공 시 최근 검색어 쿼리를 무효화하여 재fetching 유도
-      queryClient.invalidateQueries({ queryKey: ['recent-searches'] });
+      queryClient.invalidateQueries({ queryKey: ["recent-searches"] });
     },
   });
 };
