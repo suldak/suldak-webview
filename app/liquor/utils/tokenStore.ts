@@ -49,3 +49,33 @@ if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("tokenUpdated", { detail: token }));
   };
 }
+
+// 플러터로 토큰을 요청하는 함수
+export const requestTokenFromFlutter = () => {
+  if (typeof window === "undefined") return;
+
+  try {
+    console.log("Requesting token from Flutter...");
+
+    // FlutterBridge 채널을 통해 토큰 요청
+    if (
+      (window as any).FlutterBridge &&
+      (window as any).FlutterBridge.postMessage
+    ) {
+      (window as any).FlutterBridge.postMessage("authorizationToken");
+      console.log("Token request sent to Flutter");
+
+      if (typeof window !== "undefined" && (window as any).__debugLog) {
+        (window as any).__debugLog("플러터에 토큰 요청 전송");
+      }
+    } else {
+      console.warn("FlutterBridge not available for token request");
+
+      if (typeof window !== "undefined" && (window as any).__debugLog) {
+        (window as any).__debugLog("FlutterBridge 없음: 토큰 요청 불가");
+      }
+    }
+  } catch (error) {
+    console.error("Error requesting token from Flutter:", error);
+  }
+};

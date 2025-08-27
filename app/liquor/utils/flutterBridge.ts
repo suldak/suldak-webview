@@ -1,4 +1,4 @@
-import { setToken } from "./tokenStore";
+import { setToken, requestTokenFromFlutter } from "./tokenStore";
 
 const sendMessageToFlutter = () => {
   // window 객체 존재 여부 확인
@@ -55,4 +55,8 @@ if (typeof window !== "undefined") {
   (window as any).receiveToken = receiveTokenFromFlutter;
 }
 
-export { sendMessageToFlutter, receiveTokenFromFlutter };
+export {
+  sendMessageToFlutter,
+  receiveTokenFromFlutter,
+  requestTokenFromFlutter,
+};
