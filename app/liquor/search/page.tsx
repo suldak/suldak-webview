@@ -50,10 +50,8 @@ function LiquorSearchPage() {
   return (
     <>
       <RecentSearchSection />
-      <Suspense fallback={<div>로딩 중...</div>}>
-        <RecommendedSearchSection />
-        <SearchRankingSection />
-      </Suspense>
+      <RecommendedSearchSection />
+      <SearchRankingSection />
     </>
   );
 }
