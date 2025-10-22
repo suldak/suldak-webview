@@ -61,6 +61,10 @@ export const useGetLiquorDetail = (id: number) => {
   const { data } = useSuspenseQuery({
     queryKey: ["liquor-detail", id],
     queryFn: () => getLiquorDetail(id),
+    // 상세 페이지는 5분 동안 fresh 상태 유지 (자주 변경되지 않는 데이터)
+    staleTime: 1000 * 60 * 5,
+    // 5분 이내 뒤로가기 시 refetch 하지 않음
+    gcTime: 1000 * 60 * 10,
   });
 
   return {

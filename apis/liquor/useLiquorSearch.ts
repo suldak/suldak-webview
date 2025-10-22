@@ -61,7 +61,8 @@ export const useLiquorSearch = (
       }),
     select: (data) => ({ data: data.data }),
     enabled: !!searchKey,
-    staleTime: 1000 * 60,
+    // 검색 결과는 30초 동안만 fresh 상태 유지 (기본값 사용)
+    // 30초 이내 뒤로가기는 캐시 사용, 이후는 새로 불러오기
   });
 };
 

@@ -29,7 +29,11 @@ function LiquorSearchContent({
   const [hasNext, setHasNext] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
 
-  const { data, isLoading, error } = useLiquorSearch(
+  // searchKey 생성 - 빈 문자열이 아니도록 보장
+  const searchKey = searchParams.toString() || "default";
+  const queryKey = `${searchKey}-page-${pageNum}`;
+
+  const { data, isLoading, error, isFetching, isSuccess } = useLiquorSearch(
     {
       tag: searchParams.get("q") || undefined,
       isRecommend: searchParams.get("isRecommend") || "인기순",
@@ -41,13 +45,40 @@ function LiquorSearchContent({
       liquorDetailPriKeys: searchParams.get("subKey") || "",
       pageNum,
     },
-    searchParams.toString() + `-page-${pageNum}`,
+    queryKey,
   );
+
+  console.log("[LiquorSearchContent] 🔍 Query State:", {
+    searchKey,
+    queryKey,
+    isLoading,
+    isFetching,
+    isSuccess,
+    hasData: !!data,
+    liquorsLength: liquors.length,
+    isFirstLoading,
+  });
 
   const totalCount = data?.data.totalElements ?? liquors.length;
 
+  // 검색 조건이 바뀌면 초기화 (가장 먼저 실행되어야 함)
   useEffect(() => {
-    if (data) {
+    console.log(
+      "[LiquorSearchContent] 🔄 Search params changed, resetting state",
+    );
+    setPageNum(0);
+    setLiquors([]);
+    setHasNext(true);
+    setIsFirstLoading(true);
+  }, [searchParams.toString()]);
+
+  // 데이터 업데이트
+  useEffect(() => {
+    console.log("[LiquorSearchContent] 📦 Data effect:", {
+      hasData: !!data,
+      pageNum,
+    });
+    if (data?.data?.content) {
       if (pageNum === 0) {
         setLiquors(data.data.content);
       } else {
@@ -58,13 +89,24 @@ function LiquorSearchContent({
     }
   }, [data, pageNum]);
 
-  // 검색 조건이 바뀌면 초기화
+  // 로딩 상태 체크 (캐시에서 즉시 반환되는 경우를 위해)
   useEffect(() => {
-    setPageNum(0);
-    setLiquors([]);
-    setHasNext(true);
-    setIsFirstLoading(true);
-  }, [searchParams.toString()]);
+    console.log("[LiquorSearchContent] ⏳ Loading check:", {
+      isLoading,
+      isFetching,
+      hasData: !!data,
+    });
+    // 로딩도 아니고 fetching도 아닌데 데이터가 있으면 캐시에서 온 것
+    if (!isLoading && !isFetching && data?.data?.content) {
+      console.log("[LiquorSearchContent] ✅ Data from cache, stopping loading");
+      setIsFirstLoading(false);
+      // 캐시된 데이터로 liquors 설정
+      if (pageNum === 0 && liquors.length === 0) {
+        setLiquors(data.data.content);
+        setHasNext(!data.data.last);
+      }
+    }
+  }, [isLoading, isFetching, data]);
 
   // 무한스크롤 감지용 ref
   const observerRef = useRef<HTMLDivElement | null>(null);
@@ -158,7 +200,7 @@ function LiquorSearchContent({
           <div />
         </SearchInfoSection>
       )}
-      {isFirstLoading ? (
+      {isFirstLoading && !data ? (
         <section className="flex h-full w-full flex-col items-center justify-center">
           <div className="mt-[10px]">
             <LoadingCard />
@@ -173,7 +215,7 @@ function LiquorSearchContent({
             <LoadingCard />
           </div>
         </section>
-      ) : liquors.length === 0 ? (
+      ) : liquors.length === 0 && !isLoading ? (
         <NoResultSection />
       ) : (
         <>
