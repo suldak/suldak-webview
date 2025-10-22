@@ -28,15 +28,15 @@ function DetailImage({ name = "술", imgUrl }: DetailImageProps) {
   console.log("[Image] 🖼 Using image source:", imageSource);
 
   return (
-    <section className="flex">
+    <section className="relative aspect-[4/3] w-full overflow-hidden bg-white">
       <Image
-        className=""
+        className="object-contain"
         src={imageSource}
         alt={`${name} 사진`}
-        height={400}
-        width={500}
+        fill // 부모 요소를 채우도록 설정
         priority // 이미지를 우선적으로 로드
         unoptimized={isValidImageUrl(imgUrl)} // 외부 이미지는 Next.js 최적화를 건너뜀
+        sizes="100vw" // 반응형 이미지 크기 설정
       />
     </section>
   );
