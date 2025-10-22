@@ -64,16 +64,13 @@ function LiquorCategoryContent({
 
   const totalCount = data?.data.totalElements ?? liquors.length;
 
-  // searchKey 변경 시 상태 초기화 (동기적으로 처리)
-  const prevSearchKeyRef = useRef(searchKey);
-  if (prevSearchKeyRef.current !== searchKey) {
-    prevSearchKeyRef.current = searchKey;
-    // 상태 초기화를 렌더링 단계에서 동기적으로 처리
-    if (pageNum !== 0) setPageNum(0);
-    if (liquors.length > 0) setLiquors([]);
-    if (!hasNext) setHasNext(true);
-    if (!isFirstLoading) setIsFirstLoading(true);
-  }
+  // searchKey 변경 시 상태 초기화
+  useEffect(() => {
+    setPageNum(0);
+    setLiquors([]);
+    setHasNext(true);
+    setIsFirstLoading(true);
+  }, [searchKey]);
 
   // 데이터 업데이트
   useEffect(() => {
@@ -87,6 +84,19 @@ function LiquorCategoryContent({
       setIsFirstLoading(false);
     }
   }, [data, pageNum]);
+
+  // 캐시에서 즉시 반환되는 경우 처리
+  useEffect(() => {
+    // 로딩도 아닌데 데이터가 있으면 캐시에서 온 것
+    if (!isLoading && data?.data?.content) {
+      setIsFirstLoading(false);
+      // 캐시된 데이터로 liquors 설정
+      if (pageNum === 0 && liquors.length === 0) {
+        setLiquors(data.data.content);
+        setHasNext(data.data.content.length === PAGE_SIZE);
+      }
+    }
+  }, [isLoading, data, pageNum]);
 
   // 무한스크롤 감지용 ref
   const observerRef = useRef<HTMLDivElement | null>(null);
