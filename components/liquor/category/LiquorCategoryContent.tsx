@@ -63,6 +63,14 @@ function LiquorCategoryContent({
 
   const totalCount = data?.data.totalElements ?? liquors.length;
 
+  // searchKey 변경 시 상태 초기화
+  useEffect(() => {
+    setPageNum(0);
+    setLiquors([]);
+    setHasNext(true);
+    setIsFirstLoading(true);
+  }, [searchKey]);
+
   // 데이터 업데이트
   useEffect(() => {
     if (data?.data?.content) {
