@@ -23,14 +23,16 @@ function LiquorSearchContent({
   searchParams: URLSearchParams;
 }) {
   const router = useRouter();
-  // 무한스크롤 상태
-  const [pageNum, setPageNum] = useState(0);
-  const [liquors, setLiquors] = useState<SearchLiquor[]>([]);
-  const [hasNext, setHasNext] = useState(true);
-  const [isFirstLoading, setIsFirstLoading] = useState(true);
 
   // searchKey 생성 - 빈 문자열이 아니도록 보장
   const searchKey = searchParams.toString() || "default";
+
+  // 무한스크롤 상태 - searchKey를 key로 사용하여 URL 변경 시 자동 초기화
+  const [pageNum, setPageNum] = useState(() => 0);
+  const [liquors, setLiquors] = useState<SearchLiquor[]>(() => []);
+  const [hasNext, setHasNext] = useState(() => true);
+  const [isFirstLoading, setIsFirstLoading] = useState(() => true);
+
   const queryKey = `${searchKey}-page-${pageNum}`;
 
   const { data, isLoading, error } = useLiquorSearch(
@@ -50,13 +52,16 @@ function LiquorSearchContent({
 
   const totalCount = data?.data.totalElements ?? liquors.length;
 
-  // searchKey 변경 시 상태 초기화
-  useEffect(() => {
-    setPageNum(0);
-    setLiquors([]);
-    setHasNext(true);
-    setIsFirstLoading(true);
-  }, [searchKey]);
+  // searchKey 변경 시 상태 초기화 (동기적으로 처리)
+  const prevSearchKeyRef = useRef(searchKey);
+  if (prevSearchKeyRef.current !== searchKey) {
+    prevSearchKeyRef.current = searchKey;
+    // 상태 초기화를 렌더링 단계에서 동기적으로 처리
+    if (pageNum !== 0) setPageNum(0);
+    if (liquors.length > 0) setLiquors([]);
+    if (!hasNext) setHasNext(true);
+    if (!isFirstLoading) setIsFirstLoading(true);
+  }
 
   // 데이터 업데이트
   useEffect(() => {
