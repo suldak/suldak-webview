@@ -1,0 +1,52 @@
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
+import RecentSearchSection from "components/liquor/search/section/RecentSearchSection";
+import RecommendedSearchSection from "components/liquor/search/section/RecommendSearchSection";
+import SearchRankingSection from "components/liquor/search/section/SearchRankingSection";
+import { getToken } from "../utils/tokenStore";
+import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
+
+import { useFlutterToken } from "../hooks/useFlutterToken";
+
+/** 술 검색 페이지 (CSR 전용 클라이언트) */
+function LiquorSearchPageClient() {
+  useFlutterToken();
+  const [hasToken, setHasToken] = useState<boolean>(false);
+
+  const checkToken = () => {
+    if (typeof window === "undefined") return;
+    const token = getToken();
+    setHasToken(!!token);
+  };
+
+  useEffect(() => {
+    checkToken();
+    const handleTokenUpdate = (event: Event) => {
+      if (event instanceof CustomEvent && event.detail) {
+        checkToken();
+      }
+    };
+
+    window.addEventListener("tokenUpdated", handleTokenUpdate);
+    return () => {
+      window.removeEventListener("tokenUpdated", handleTokenUpdate);
+    };
+  }, []);
+
+  if (!hasToken) {
+    return null;
+  }
+
+  return (
+    <>
+      <RecentSearchSection />
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <RecommendedSearchSection />
+        <SearchRankingSection />
+      </Suspense>
+    </>
+  );
+}
+
+export default LiquorSearchPageClient;

@@ -1,26 +1,10 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import { Suspense, useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import LiquorSearchContent from "components/liquor/search/section/LiquorSearchContent";
+const LiquorSearchResultPageClient = dynamic(
+  () => import("./SearchResultPageClient"),
+  { ssr: false, loading: () => <div /> },
+);
 
-function SearchParamsHandler({
-  children,
-}: {
-  children: (params: URLSearchParams) => React.ReactNode;
-}) {
-  const searchParams = useSearchParams();
-  return <>{children(new URLSearchParams(searchParams.toString()))}</>;
+export default function LiquorSearchResultPage() {
+  return <LiquorSearchResultPageClient />;
 }
-
-function LiquorSearchResultPage() {
-  return (
-    <Suspense fallback>
-      <SearchParamsHandler>
-        {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
-      </SearchParamsHandler>
-    </Suspense>
-  );
-}
-
-export default LiquorSearchResultPage;

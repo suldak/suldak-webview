@@ -7,6 +7,9 @@ import { getToken } from "../../utils/tokenStore";
 import "../../utils/flutterBridge";
 import { useFlutterToken } from "../../hooks/useFlutterToken";
 
+// 카테고리 검색 결과는 동적으로 렌더링
+export const dynamic = "force-dynamic";
+
 function CategoryParamsHandler({
   children,
 }: {

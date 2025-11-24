@@ -6,6 +6,9 @@ import { LiquorSearchParams } from "apis/api";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
+// Parallel Routes에서 빌드 시 정적 생성 방지
+export const dynamic = "force-dynamic";
+
 // SearchParamsHandler 컴포넌트 추가
 function SearchParamsHandler({
   children,
