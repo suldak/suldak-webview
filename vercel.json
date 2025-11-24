@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/liquor/search/:path*",
+      "destination": "/liquor/search"
+    }
+  ]
+}

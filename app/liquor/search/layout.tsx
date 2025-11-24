@@ -20,7 +20,7 @@ interface LayoutProps {
 
 export default function Layout({ children, filter }: LayoutProps) {
   return (
-    <Suspense>
+    <Suspense fallback={<div>{children}</div>}>
       <SearchParamsWrapper>
         {({ isFilterOpen }: { isFilterOpen: boolean }) => (
           <>
