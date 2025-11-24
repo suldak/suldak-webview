@@ -4,7 +4,6 @@ import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import LiquorSearchContent from "components/liquor/search/section/LiquorSearchContent";
 
-
 function SearchParamsHandler({
   children,
 }: {
@@ -13,7 +12,6 @@ function SearchParamsHandler({
   const searchParams = useSearchParams();
   return <>{children(new URLSearchParams(searchParams.toString()))}</>;
 }
-
 
 function LiquorSearchResultPage() {
   return (

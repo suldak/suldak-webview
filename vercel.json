@@ -1,0 +1,18 @@
+{
+  "rewrites": [
+    {
+      "source": "/liquor/search/:path*",
+      "destination": "/liquor/search/:path*"
+    },
+    {
+      "source": "/liquor/detail/:id",
+      "destination": "/liquor/detail/:id"
+    },
+    {
+      "source": "/liquor/category/result",
+      "destination": "/liquor/category/result"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
