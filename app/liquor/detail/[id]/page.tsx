@@ -3,6 +3,7 @@ import { fetchLiquorDetail } from "apis/liquor/useGetLiquorDetail";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600; // 1시간마다 재검증
+export const dynamicParams = true; // 동적 경로 허용
 
 interface Props {
   params: {

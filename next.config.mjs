@@ -34,10 +34,8 @@ const nextConfig = {
   reactStrictMode: false,
   // Parallel Routes와 동적 라우팅을 위한 설정
   skipTrailingSlashRedirect: true,
-  // 클라이언트 측 라우팅 우선
-  experimental: {
-    clientRouterFilter: true,
-  },
+  // Trailing slash 처리
+  trailingSlash: false,
 };
 
 export default nextConfig;
