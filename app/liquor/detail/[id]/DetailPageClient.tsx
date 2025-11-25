@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from "react";
 import { useGetLiquorDetail } from "apis/liquor/useGetLiquorDetail";
 import LiquorDetail from "components/liquor/detail/LiquorDetail";
 import SplashScreen from "components/shared/SplashScreen";
-import TokenDebugger from "components/shared/TokenDebugger";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
@@ -59,12 +58,9 @@ function DetailPageClient({ id }: { id: string }) {
   }
 
   return (
-    <>
-      <Suspense fallback={<SplashScreen />}>
-        <DetailContent id={numericId} />
-      </Suspense>
-      <TokenDebugger />
-    </>
+    <Suspense fallback={<SplashScreen />}>
+      <DetailContent id={numericId} />
+    </Suspense>
   );
 }
 

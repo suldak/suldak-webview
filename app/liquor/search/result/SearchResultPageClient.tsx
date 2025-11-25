@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import LiquorSearchContent from "components/liquor/search/section/LiquorSearchContent";
-import TokenDebugger from "components/shared/TokenDebugger";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
@@ -46,16 +45,11 @@ function LiquorSearchResultPageClient() {
   }
 
   return (
-    <>
-      <Suspense fallback={null}>
-        <SearchParamsHandler>
-          {(searchParams) => (
-            <LiquorSearchContent searchParams={searchParams} />
-          )}
-        </SearchParamsHandler>
-      </Suspense>
-      <TokenDebugger />
-    </>
+    <Suspense fallback={null}>
+      <SearchParamsHandler>
+        {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
+      </SearchParamsHandler>
+    </Suspense>
   );
 }
 
