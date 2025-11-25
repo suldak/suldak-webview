@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import LiquorCategoryContent from "components/liquor/category/LiquorCategoryContent";
+import TokenDebugger from "components/shared/TokenDebugger";
 import { getToken } from "../../utils/tokenStore";
 import "../../utils/flutterBridge";
 import { useFlutterToken } from "../../hooks/useFlutterToken";
@@ -57,13 +58,16 @@ function LiquorCategoryResultPage() {
   }, []); // 의존성 배열 비움 (최초 마운트 시에만 실행)
 
   return (
-    <Suspense fallback>
-      <CategoryParamsHandler>
-        {(searchParams) => (
-          <LiquorCategoryContent searchParams={searchParams} />
-        )}
-      </CategoryParamsHandler>
-    </Suspense>
+    <>
+      <Suspense fallback>
+        <CategoryParamsHandler>
+          {(searchParams) => (
+            <LiquorCategoryContent searchParams={searchParams} />
+          )}
+        </CategoryParamsHandler>
+      </Suspense>
+      <TokenDebugger />
+    </>
   );
 }
 
