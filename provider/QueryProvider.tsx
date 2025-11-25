@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 interface Props {
   children?: React.ReactNode;
@@ -12,21 +12,22 @@ interface Props {
  * @returns
  */
 const QueryProvider = ({ children }: Props) => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        gcTime: 0,
-        retry: 0,
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
+  // useState로 감싸서 QueryClient가 한 번만 생성되도록 함
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            gcTime: 0,
+            retry: 0,
+            refetchOnWindowFocus: false,
+          },
+        },
+      }),
+  );
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
 

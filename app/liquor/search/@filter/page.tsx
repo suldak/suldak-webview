@@ -1,10 +1,23 @@
 "use client";
 
+import dynamicImport from "next/dynamic";
 import { useRouter } from "next/navigation";
-import FilterPopup from "components/liquor/search/FilterPopup";
 import { LiquorSearchParams } from "apis/api";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+
+// FilterPopup을 동적 import로 변경하여 번들 크기 감소
+const FilterPopup = dynamicImport(
+  () => import("components/liquor/search/FilterPopup"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-suldak-gray-200 border-t-suldak-mint-500" />
+      </div>
+    ),
+  },
+);
 
 // Parallel Routes에서 빌드 시 정적 생성 방지
 export const dynamic = "force-dynamic";
