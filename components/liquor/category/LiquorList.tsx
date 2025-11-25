@@ -4,7 +4,7 @@ import { SearchLiquor } from "models/liquor";
 function LiquorList({ liquors }: { liquors: SearchLiquor[] }) {
   return (
     <section className="flex h-full w-full flex-col items-center justify-center">
-      {liquors.map((liquor: SearchLiquor) => (
+      {liquors.map((liquor: SearchLiquor, index: number) => (
         <div key={liquor.liquorId} className="mt-[10px]">
           <LiquorCard
             imgUrl={liquor.liquorPictureUrl}
@@ -15,6 +15,7 @@ function LiquorList({ liquors }: { liquors: SearchLiquor[] }) {
             liquorSellDtos={[]}
             liquorSnackRes={[]}
             tasteTypeDtos={liquor.tagList}
+            priority={index < 4}
           />
         </div>
       ))}

@@ -161,7 +161,7 @@ function LiquorSearchContent({
       {isFirstLoading ? (
         <section className="flex h-full w-full flex-col items-center justify-center">
           <div className="mt-[10px]">
-            <LoadingCard />
+            <LoadingCard priority />
           </div>
           <div className="mt-[10px]">
             <LoadingCard />

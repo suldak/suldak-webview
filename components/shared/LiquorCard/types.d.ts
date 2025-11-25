@@ -9,6 +9,7 @@ export interface CardProps {
   liquorSellDtos: LiquorSell[]; // 술 판매처 목록
   liquorSnackRes: LiquorSnack[]; // 술 안주 목록
   tasteTypeDtos: SearchLiquorTag[]; // 술 맛 또는 태그
+  priority?: boolean; // LCP 최적화를 위한 이미지 우선순위
 }
 export interface LiquorTagProps {
   name: string;
