@@ -25,7 +25,11 @@ const SearchRankingSection = dynamic(
 /** 술 검색 페이지 (CSR 전용 클라이언트) */
 function LiquorSearchPageClient() {
   useFlutterToken();
-  const [hasToken, setHasToken] = useState<boolean>(false);
+  // lazy initialization으로 초기 렌더링 시 토큰 동기 확인 (뒤로가기 시 빈 화면 방지)
+  const [hasToken, setHasToken] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return !!getToken();
+  });
 
   const checkToken = () => {
     if (typeof window === "undefined") return;
