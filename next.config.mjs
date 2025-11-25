@@ -36,6 +36,14 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   // Trailing slash 처리
   trailingSlash: false,
+  // 프로덕션에서 console.log 제거
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  // 패키지 최적화 (트리 쉐이킹 개선)
+  experimental: {
+    optimizePackageImports: ["@tanstack/react-query", "react-slick"],
+  },
 };
 
 export default nextConfig;
