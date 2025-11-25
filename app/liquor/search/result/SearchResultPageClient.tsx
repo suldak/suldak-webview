@@ -1,11 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import LiquorSearchContent from "components/liquor/search/section/LiquorSearchContent";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
+
+// LiquorSearchContent를 동적 로딩하여 초기 번들 크기 감소
+const LiquorSearchContent = dynamic(
+  () => import("components/liquor/search/section/LiquorSearchContent"),
+  { ssr: false },
+);
 
 function SearchParamsHandler({
   children,
