@@ -17,6 +17,15 @@ export const setToken = (token: string) => {
   }
 };
 
+// 개발환경 체크 함수
+const isDevelopment = () => {
+  if (typeof window === "undefined") return false;
+  return (
+    process.env.NODE_ENV === "development" ||
+    window.location.hostname === "localhost"
+  );
+};
+
 // 토큰 가져오기 함수
 export const getToken = () => {
   if (typeof window === "undefined") return null;
@@ -24,7 +33,7 @@ export const getToken = () => {
   // 1. 메모리에 있으면 반환
   if (userToken) return userToken;
 
-  // 2. 쿠키에도 없으면 로컬 스토리지 확인
+  // 2. 로컬 스토리지 확인
   try {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
@@ -34,6 +43,15 @@ export const getToken = () => {
     }
   } catch (error) {
     console.error("Error reading token from localStorage:", error);
+  }
+
+  // 3. 개발환경에서 환경변수 토큰 사용
+  if (isDevelopment()) {
+    const envToken = process.env.NEXT_PUBLIC_TOKEN;
+    if (envToken) {
+      console.log("개발환경: 환경변수 토큰 사용");
+      return envToken;
+    }
   }
 
   return null;

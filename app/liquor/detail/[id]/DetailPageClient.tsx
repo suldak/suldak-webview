@@ -1,23 +1,27 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import LiquorSearchContent from "components/liquor/search/section/LiquorSearchContent";
+import { useGetLiquorDetail } from "apis/liquor/useGetLiquorDetail";
+import LiquorDetail from "components/liquor/detail/LiquorDetail";
+import SplashScreen from "components/shared/SplashScreen";
 import TokenDebugger from "components/shared/TokenDebugger";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
 
-function SearchParamsHandler({
-  children,
-}: {
-  children: (params: URLSearchParams) => React.ReactNode;
-}) {
-  const searchParams = useSearchParams();
-  return <>{children(new URLSearchParams(searchParams.toString()))}</>;
+/** 토큰이 준비된 후 데이터를 가져오는 컴포넌트 */
+function DetailContent({ id }: { id: number }) {
+  const { data } = useGetLiquorDetail(id);
+
+  if (!data) {
+    return <SplashScreen />;
+  }
+
+  return <LiquorDetail liquorData={data} />;
 }
 
-function LiquorSearchResultPageClient() {
+/** 술 상세 페이지 클라이언트 컴포넌트 */
+function DetailPageClient({ id }: { id: string }) {
   useFlutterToken();
   const [hasToken, setHasToken] = useState<boolean>(false);
 
@@ -42,21 +46,26 @@ function LiquorSearchResultPageClient() {
   }, []);
 
   if (!hasToken) {
-    return null;
+    return <SplashScreen />;
+  }
+
+  const numericId = parseInt(id);
+  if (isNaN(numericId)) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p>잘못된 ID입니다.</p>
+      </div>
+    );
   }
 
   return (
     <>
-      <Suspense fallback={null}>
-        <SearchParamsHandler>
-          {(searchParams) => (
-            <LiquorSearchContent searchParams={searchParams} />
-          )}
-        </SearchParamsHandler>
+      <Suspense fallback={<SplashScreen />}>
+        <DetailContent id={numericId} />
       </Suspense>
       <TokenDebugger />
     </>
   );
 }
 
-export default LiquorSearchResultPageClient;
+export default DetailPageClient;
