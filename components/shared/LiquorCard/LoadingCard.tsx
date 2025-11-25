@@ -2,7 +2,7 @@ import Image from "next/image";
 import DefaultImg from "assets/pngs/image-default-alchol.png";
 
 /** 카드 컴포넌트 */
-function LoadingCard() {
+function LoadingCard({ priority = false }: { priority?: boolean }) {
   return (
     <div className="flex h-[140px] w-[335px] cursor-pointer items-center rounded-[16px] bg-white p-[18px] text-black shadow-suldak-card">
       {/* 이미지 영역 - 기본 주류 이미지 */}
@@ -13,6 +13,7 @@ function LoadingCard() {
           alt="주류 이미지 로딩 중"
           width={96}
           height={96}
+          priority={priority}
         />
       </div>
 

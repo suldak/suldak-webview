@@ -15,6 +15,7 @@ function LiquorCard({
   liquorSellDtos,
   liquorSnackRes,
   tasteTypeDtos,
+  priority = false,
 }: CardProps) {
   const router = useRouter();
 
@@ -52,7 +53,7 @@ function LiquorCard({
           alt="술 이미지"
           width={96}
           height={96}
-          loading="lazy"
+          {...(priority ? { priority: true } : { loading: "lazy" })}
         />
       </div>
 
