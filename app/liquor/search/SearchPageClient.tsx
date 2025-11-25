@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from "react";
 import RecentSearchSection from "components/liquor/search/section/RecentSearchSection";
 import RecommendedSearchSection from "components/liquor/search/section/RecommendSearchSection";
 import SearchRankingSection from "components/liquor/search/section/SearchRankingSection";
-import TokenDebugger from "components/shared/TokenDebugger";
 import { getToken } from "../utils/tokenStore";
 import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
 
@@ -46,7 +45,6 @@ function LiquorSearchPageClient() {
         <RecommendedSearchSection />
         <SearchRankingSection />
       </Suspense>
-      <TokenDebugger />
     </>
   );
 }
