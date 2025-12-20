@@ -45,16 +45,34 @@ export const getToken = () => {
     console.error("Error reading token from localStorage:", error);
   }
 
-  // 3. 개발환경에서 환경변수 토큰 사용
+  // 3. 개발환경에서 환경변수 토큰 사용 (로컬 개발 시 편의용)
   if (isDevelopment()) {
     const envToken = process.env.NEXT_PUBLIC_TOKEN;
     if (envToken) {
-      console.log("개발환경: 환경변수 토큰 사용");
+      // 주의: 환경변수 토큰은 메모리나 로컬스토리지에 저장하지 않음
+      // (진짜 토큰 수신 시 덮어쓰기 위해)
       return envToken;
     }
   }
 
   return null;
+};
+
+/**
+ * 현재 토큰이 "진짜" 사용자 토큰인지 확인 (환경변수 토큰이 아닌지)
+ */
+export const hasRealToken = () => {
+  if (typeof window === "undefined") return false;
+
+  // 메모리에 있거나 로컬스토리지에 있으면 진짜 토큰으로 간주
+  if (userToken) return true;
+
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    return !!storedToken;
+  } catch {
+    return false;
+  }
 };
 
 // Flutter 앱으로부터 토큰을 받기 위한 함수
