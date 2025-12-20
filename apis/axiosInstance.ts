@@ -1,10 +1,14 @@
 "use client";
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { getToken } from "app/liquor/utils/tokenStore";
+
+// 토큰 없음 에러를 구분하기 위한 커스텀 에러 클래스
+export class NoTokenError extends Error {
+  constructor(message: string = "토큰이 없습니다") {
+    super(message);
+    this.name = "NoTokenError";
+  }
+}
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -17,13 +21,7 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   if (token) {
     // 사용자 토큰이 있으면 우선 사용
     (config.headers as any)["Authorization"] = token;
-    console.log("사용자 토큰 사용 중");
-    if (typeof window !== "undefined" && (window as any).__setLastApiToken) {
-      (window as any).__setLastApiToken(token);
-    }
-    if (typeof window !== "undefined" && (window as any).__debugLog) {
-      (window as any).__debugLog("사용자 토큰 사용 중");
-    }
+    console.log("[axiosInstance] 사용자 토큰 사용 중");
   } else {
     // 개발/디버깅 환경에서만 환경변수 토큰 사용
     const isDevelopment =
@@ -35,30 +33,17 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
       const envToken = process.env.NEXT_PUBLIC_TOKEN;
       if (envToken) {
         (config.headers as any)["Authorization"] = envToken;
-        console.log("개발환경: 환경변수 토큰 사용");
-        if (
-          typeof window !== "undefined" &&
-          (window as any).__setLastApiToken
-        ) {
-          (window as any).__setLastApiToken(envToken);
-        }
-        if (typeof window !== "undefined" && (window as any).__debugLog) {
-          (window as any).__debugLog("개발환경: 환경변수 토큰 사용");
-        }
+        console.log("[axiosInstance] 개발환경: 환경변수 토큰 사용");
       } else {
-        console.warn("개발환경: 환경변수 토큰도 없음");
-        if (typeof window !== "undefined" && (window as any).__debugLog) {
-          (window as any).__debugLog("개발환경: 환경변수 토큰도 없음");
-        }
+        console.warn("[axiosInstance] 개발환경: 환경변수 토큰도 없음");
       }
     } else {
-      // 프로덕션에서는 토큰 없으면 요청 차단 (에러 발생시켜서 불필요한 호출 방지)
-      const errorMsg = "프로덕션: 사용자 토큰 없음 - API 요청 차단";
-      console.error(errorMsg);
-      if (typeof window !== "undefined" && (window as any).__debugLog) {
-        (window as any).__debugLog(errorMsg);
-      }
-      return Promise.reject(new Error(errorMsg));
+      // 프로덕션에서 토큰이 없으면 NoTokenError 발생
+      // 이 에러는 컴포넌트에서 catch하여 적절히 처리할 수 있음
+      console.warn(
+        "[axiosInstance] 프로덕션: 사용자 토큰 없음 - API 요청 차단",
+      );
+      return Promise.reject(new NoTokenError("프로덕션: 사용자 토큰 없음"));
     }
   }
 
