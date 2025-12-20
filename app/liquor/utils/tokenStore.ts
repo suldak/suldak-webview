@@ -11,9 +11,9 @@ export const setToken = (token: string) => {
   // 로컬 스토리지에도 저장
   try {
     localStorage.setItem("authToken", token);
-    console.log("Token set and saved to localStorage");
+    console.log("[tokenStore] Token set and saved to localStorage");
   } catch (error) {
-    console.error("Error saving token to localStorage:", error);
+    console.error("[tokenStore] Error saving token to localStorage:", error);
   }
 };
 
@@ -33,24 +33,33 @@ export const getToken = () => {
   // 1. 메모리에 있으면 반환
   if (userToken) return userToken;
 
-  // 2. 로컬 스토리지 확인
+  // 2. layout.tsx 인라인 스크립트에서 저장한 pending 토큰 확인
+  const pendingToken = (window as any).__pendingToken;
+  if (pendingToken) {
+    console.log("[tokenStore] Using pending token from inline script");
+    userToken = pendingToken;
+    return userToken;
+  }
+
+  // 3. 로컬 스토리지 확인
   try {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
-      console.log("Token restored from localStorage");
+      console.log("[tokenStore] Token restored from localStorage");
       userToken = storedToken;
       return userToken;
     }
   } catch (error) {
-    console.error("Error reading token from localStorage:", error);
+    console.error("[tokenStore] Error reading token from localStorage:", error);
   }
 
-  // 3. 개발환경에서 환경변수 토큰 사용 (로컬 개발 시 편의용)
+  // 4. 개발환경에서 환경변수 토큰 사용 (로컬 개발 시 편의용)
   if (isDevelopment()) {
     const envToken = process.env.NEXT_PUBLIC_TOKEN;
     if (envToken) {
       // 주의: 환경변수 토큰은 메모리나 로컬스토리지에 저장하지 않음
       // (진짜 토큰 수신 시 덮어쓰기 위해)
+      console.log("[tokenStore] Using env token for development");
       return envToken;
     }
   }
