@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import { getToken } from "../utils/tokenStore";
 import "../utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
 import { useFlutterToken } from "../hooks/useFlutterToken";
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 // 섹션 컴포넌트들을 동적 로딩하여 초기 번들 크기 감소
 const RecentSearchSection = dynamic(
@@ -51,13 +52,29 @@ function LiquorSearchPageClient() {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <RecentSearchSection />
       <Suspense fallback={<div>로딩 중...</div>}>
-        <RecommendedSearchSection />
-        <SearchRankingSection />
+        <ErrorBoundary
+          fallback={
+            <div className="px-5 py-4 text-sm text-suldak-gray-500">
+              추천 검색어를 불러올 수 없습니다.
+            </div>
+          }
+        >
+          <RecommendedSearchSection />
+        </ErrorBoundary>
+        <ErrorBoundary
+          fallback={
+            <div className="px-5 py-4 text-sm text-suldak-gray-500">
+              검색 랭킹을 불러올 수 없습니다.
+            </div>
+          }
+        >
+          <SearchRankingSection />
+        </ErrorBoundary>
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 }
 

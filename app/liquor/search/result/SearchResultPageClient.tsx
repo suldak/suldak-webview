@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 // LiquorSearchContent를 동적 로딩하여 초기 번들 크기 감소
 const LiquorSearchContent = dynamic(
@@ -50,11 +51,15 @@ function LiquorSearchResultPageClient() {
   }
 
   return (
-    <Suspense fallback={null}>
-      <SearchParamsHandler>
-        {(searchParams) => <LiquorSearchContent searchParams={searchParams} />}
-      </SearchParamsHandler>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={null}>
+        <SearchParamsHandler>
+          {(searchParams) => (
+            <LiquorSearchContent searchParams={searchParams} />
+          )}
+        </SearchParamsHandler>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

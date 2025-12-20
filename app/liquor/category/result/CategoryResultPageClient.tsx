@@ -7,6 +7,7 @@ import { getToken } from "../../utils/tokenStore";
 import "../../utils/flutterBridge";
 import { useFlutterToken } from "../../hooks/useFlutterToken";
 import SplashScreen from "components/shared/SplashScreen";
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 function CategoryParamsHandler({
   children,
@@ -47,13 +48,15 @@ function CategoryResultPageClient() {
   }
 
   return (
-    <Suspense fallback={<SplashScreen />}>
-      <CategoryParamsHandler>
-        {(searchParams) => (
-          <LiquorCategoryContent searchParams={searchParams} />
-        )}
-      </CategoryParamsHandler>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<SplashScreen />}>
+        <CategoryParamsHandler>
+          {(searchParams) => (
+            <LiquorCategoryContent searchParams={searchParams} />
+          )}
+        </CategoryParamsHandler>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

@@ -7,6 +7,7 @@ import SplashScreen from "components/shared/SplashScreen";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge"; // Flutter 브릿지 함수 등록을 위해 필수
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 /** 토큰이 준비된 후 데이터를 가져오는 컴포넌트 */
 function DetailContent({ id }: { id: number }) {
@@ -57,9 +58,11 @@ function DetailPageClient({ id }: { id: string }) {
   }
 
   return (
-    <Suspense fallback={<SplashScreen />}>
-      <DetailContent id={numericId} />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<SplashScreen />}>
+        <DetailContent id={numericId} />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

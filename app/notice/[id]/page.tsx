@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useFlutterToken } from "app/liquor/hooks/useFlutterToken";
 import { getToken } from "app/liquor/utils/tokenStore";
 import "app/liquor/utils/flutterBridge";
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 // react-markdown 등 무거운 라이브러리를 포함한 NoticeDetail을 동적 로드
 const NoticeDetail = dynamic(
@@ -53,10 +54,10 @@ export default function NoticeDetailPage() {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <Suspense>
         <NoticeDetail id={parseInt(id)} />
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 }
