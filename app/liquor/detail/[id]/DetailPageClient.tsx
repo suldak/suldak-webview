@@ -21,20 +21,19 @@ function DetailContent({ id }: { id: number }) {
 
 /** 술 상세 페이지 클라이언트 컴포넌트 */
 function DetailPageClient({ id }: { id: string }) {
-  useFlutterToken();
+  const { isTokenInitialized } = useFlutterToken();
   const [hasToken, setHasToken] = useState<boolean>(false);
 
-  const checkToken = () => {
-    if (typeof window === "undefined") return;
-    const token = getToken();
-    setHasToken(!!token);
-  };
+  useEffect(() => {
+    if (isTokenInitialized) {
+      setHasToken(!!getToken());
+    }
+  }, [isTokenInitialized]);
 
   useEffect(() => {
-    checkToken();
     const handleTokenUpdate = (event: Event) => {
       if (event instanceof CustomEvent && event.detail) {
-        checkToken();
+        setHasToken(true);
       }
     };
 
@@ -44,7 +43,7 @@ function DetailPageClient({ id }: { id: string }) {
     };
   }, []);
 
-  if (!hasToken) {
+  if (!isTokenInitialized || !hasToken) {
     return <SplashScreen />;
   }
 

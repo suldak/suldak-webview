@@ -52,13 +52,13 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
         }
       }
     } else {
-      // 프로덕션에서는 토큰 없으면 요청 차단
-      console.warn("프로덕션: 사용자 토큰 없음 - API 요청 차단");
+      // 프로덕션에서는 토큰 없으면 요청 차단 (에러 발생시켜서 불필요한 호출 방지)
+      const errorMsg = "프로덕션: 사용자 토큰 없음 - API 요청 차단";
+      console.error(errorMsg);
       if (typeof window !== "undefined" && (window as any).__debugLog) {
-        (window as any).__debugLog(
-          "프로덕션: 사용자 토큰 없음 - API 요청 차단",
-        );
+        (window as any).__debugLog(errorMsg);
       }
+      return Promise.reject(new Error(errorMsg));
     }
   }
 

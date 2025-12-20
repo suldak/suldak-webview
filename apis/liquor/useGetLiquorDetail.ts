@@ -9,7 +9,9 @@ export async function fetchLiquorDetail(
 ): Promise<ResponseType<Liquor>> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001";
   const url = `${baseUrl}/api/liquor/${id}`;
-  const token = process.env.NEXT_PUBLIC_TOKEN;
+  // 서버 측 호출 시에는 사용자 토큰을 알 수 없으므로,
+  // 필요한 경우 별도의 서버용 관리자 토큰을 사용하거나 토큰 없이 호출해야 함
+  // const token = process.env.NEXT_PUBLIC_TOKEN;
 
   console.log("[Server] 🔄 Fetching liquor detail - ID:", id);
   console.log("[Server] 🌐 URL:", url);
@@ -17,7 +19,7 @@ export async function fetchLiquorDetail(
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization: token || "",
+        // Authorization: token || "",
         "Content-Type": "application/json",
       },
     });
