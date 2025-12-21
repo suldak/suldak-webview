@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Component, ErrorInfo, ReactNode } from "react";
-import { addDebugLog } from "./DebugPanel";
 
 interface Props {
   children: ReactNode;
@@ -30,15 +29,6 @@ class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ errorInfo });
-
-    // 디버그 로그에 에러 기록
-    try {
-      addDebugLog("error", `에러 발생: ${error.message}`);
-      addDebugLog("error", `스택: ${error.stack?.slice(0, 200)}...`);
-    } catch {
-      // DebugPanel이 로드되지 않은 경우 무시
-    }
-
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
@@ -111,10 +101,6 @@ class ErrorBoundary extends Component<Props, State> {
                 📋 에러 복사
               </button>
             </div>
-
-            <p className="mt-4 text-center text-xs text-gray-500">
-              우측 상단 더블클릭으로 디버그 패널 열기
-            </p>
           </div>
         </div>
       );
