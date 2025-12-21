@@ -1,9 +1,32 @@
 "use client";
 import { useGetRankingKeyword } from "apis/keyword/useGetRankingKeyword";
+import { addDebugLog } from "components/shared/DebugPanel";
 import RankingKeywordList from "./RankingKeywordList";
+import { useEffect } from "react";
+
+// 디버그 로그 헬퍼
+const debugLog = (
+  type: "info" | "success" | "warning" | "error",
+  message: string,
+) => {
+  console.log(`[${type.toUpperCase()}] ${message}`);
+  try {
+    addDebugLog(type, message);
+  } catch {
+    // DebugPanel이 아직 로드되지 않은 경우 무시
+  }
+};
 
 function RankingKeyword() {
   const { data: rankingKeywords = [] } = useGetRankingKeyword();
+
+  // 디버깅: 데이터 상태 로깅
+  useEffect(() => {
+    debugLog(
+      "info",
+      `[RankingKeyword] data길이=${rankingKeywords?.length ?? 0}`,
+    );
+  }, [rankingKeywords]);
 
   // 왼쪽(1~5), 오른쪽(6~10) 분리
   const leftKeywords = rankingKeywords.slice(0, 5);
