@@ -1,48 +1,37 @@
 import { setToken, requestTokenFromFlutter } from "./tokenStore";
-import { addDebugLog } from "components/shared/DebugPanel";
-
-// 디버그 로그 헬퍼
-const debugLog = (
-  type: "info" | "success" | "warning" | "error",
-  message: string,
-) => {
-  console.log(`[${type.toUpperCase()}] ${message}`);
-  try {
-    addDebugLog(type, message);
-  } catch {
-    // DebugPanel이 아직 로드되지 않은 경우 무시
-  }
-};
 
 const sendMessageToFlutter = () => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
 
-  debugLog("info", "Flutter로 goBack 메시지 전송 시도");
+  console.log("Attempting to send message to Flutter...");
 
   try {
     // FlutterBridge 채널을 통해 메시지 전송
     if (window.FlutterBridge) {
+      console.log("Flutter bridge detected, sending message...");
       window.FlutterBridge.postMessage("goBack");
-      debugLog("success", "goBack 메시지 전송 완료");
+      console.log("Message sent to Flutter successfully");
     } else {
-      debugLog("warning", "FlutterBridge 없음 - goBack 불가");
+      console.warn(
+        "No Flutter bridge detected. Are you running in a Flutter WebView?",
+      );
     }
   } catch (error) {
-    debugLog("error", `goBack 전송 오류: ${error}`);
+    console.error("Error sending message to Flutter:", error);
   }
 };
 
-// 플러터로부터 토큰을 받는 함수 (미사용 - authorizationToken이 실제 사용됨)
+// 플러터로부터 토큰을 받는 함수
 const receiveTokenFromFlutter = (token: string) => {
   // window 객체 존재 여부 확인
   if (typeof window === "undefined") return;
 
   try {
-    debugLog("info", "receiveToken으로 토큰 수신 (비권장 경로)");
+    console.log("Token received from Flutter");
 
     if (!token) {
-      debugLog("warning", "수신된 토큰이 비어있음");
+      console.warn("Received empty token from Flutter");
       return;
     }
 
@@ -55,16 +44,15 @@ const receiveTokenFromFlutter = (token: string) => {
     });
     window.dispatchEvent(tokenUpdateEvent);
 
-    debugLog("success", "receiveToken 처리 완료");
+    console.log("Token receiver processed the token");
   } catch (error) {
-    debugLog("error", `receiveToken 오류: ${error}`);
+    console.error("Error in receiveTokenFromFlutter:", error);
   }
 };
 
-// Flutter가 호출할 수 있도록 전역 스코프에 함수 등록 (미사용이지만 호환성을 위해 유지)
+// Flutter가 호출할 수 있도록 전역 스코프에 함수 등록
 if (typeof window !== "undefined") {
   (window as any).receiveToken = receiveTokenFromFlutter;
-  debugLog("info", "receiveToken 함수 등록 (미사용)");
 }
 
 export {
