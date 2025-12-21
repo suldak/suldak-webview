@@ -4,6 +4,7 @@ import { useGetRecommendKeyword } from "apis/keyword/useGetRecommendKeyword";
 import { useLiquorSearch } from "apis/liquor/useLiquorSearch";
 import LiquorList from "components/liquor/category/LiquorList";
 import LoadingCard from "components/shared/LiquorCard/LoadingCard";
+import { addDebugLog } from "components/shared/DebugPanel";
 import { Liquor, SearchLiquor } from "models/liquor";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,19 @@ import NoResultSection from "components/liquor/search/section/NoResultSection";
 import RecommendSection from "components/liquor/search/section/RecommendSection";
 import HeadBackIcon from "assets/icons/ico-head-back.svg";
 import SearchInfoSection from "components/liquor/search/section/SearchInfoSection";
+
+// 디버그 로그 헬퍼
+const debugLog = (
+  type: "info" | "success" | "warning" | "error",
+  message: string,
+) => {
+  console.log(`[${type.toUpperCase()}] ${message}`);
+  try {
+    addDebugLog(type, message);
+  } catch {
+    // DebugPanel이 아직 로드되지 않은 경우 무시
+  }
+};
 
 const PAGE_SIZE = 20;
 
@@ -47,7 +61,19 @@ function LiquorSearchContent({
   const totalCount = data?.data?.totalElements ?? liquors.length;
 
   useEffect(() => {
+    // 디버깅: data 상태 로깅
+    debugLog(
+      "info",
+      `[LiquorSearch] data=${!!data}, data.data=${!!data?.data}, isLoading=${isLoading}`,
+    );
+
     if (data?.data) {
+      const contentLength = data.data.content?.length ?? 0;
+      debugLog(
+        "success",
+        `[LiquorSearch] 데이터 수신: ${contentLength}개, total=${data.data.totalElements}`,
+      );
+
       if (pageNum === 0) {
         setLiquors(data.data.content ?? []);
       } else {
@@ -55,8 +81,13 @@ function LiquorSearchContent({
       }
       setHasNext(!data.data.last);
       setIsFirstLoading(false);
+    } else if (data && !data.data) {
+      debugLog(
+        "warning",
+        `[LiquorSearch] data는 있지만 data.data가 없음: ${JSON.stringify(data).slice(0, 100)}`,
+      );
     }
-  }, [data, pageNum]);
+  }, [data, pageNum, isLoading]);
 
   // 검색 조건이 바뀌면 초기화
   useEffect(() => {

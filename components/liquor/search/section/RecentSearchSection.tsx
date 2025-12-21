@@ -4,10 +4,25 @@ import { useRouter } from "next/navigation";
 import { SearchText } from "models/searchText";
 import { useCleanRecentSearch } from "apis/keyword/useCleanRecentSearch";
 import { useDeleteRecentSearch } from "apis/keyword/useDeleteRecentSearch";
+import { addDebugLog } from "components/shared/DebugPanel";
 import Tag from "components/shared/Tag";
 import SearchInput from "../SearchInput";
 import DeleteIcon from "assets/icons/ico-head-close.svg";
 import HeadBackIcon from "assets/icons/ico-head-back.svg";
+import { useEffect } from "react";
+
+// 디버그 로그 헬퍼
+const debugLog = (
+  type: "info" | "success" | "warning" | "error",
+  message: string,
+) => {
+  console.log(`[${type.toUpperCase()}] ${message}`);
+  try {
+    addDebugLog(type, message);
+  } catch {
+    // DebugPanel이 아직 로드되지 않은 경우 무시
+  }
+};
 
 function RecentSearchSection() {
   const router = useRouter();
@@ -16,6 +31,14 @@ function RecentSearchSection() {
   const deleteRecentSearchMutation = useDeleteRecentSearch();
 
   const isValidRecent = Array.isArray(recent) && recent.length > 0;
+
+  // 디버깅: 데이터 상태 로깅
+  useEffect(() => {
+    debugLog(
+      "info",
+      `[RecentSearch] data=${JSON.stringify(recent)?.slice(0, 100)}, isArray=${Array.isArray(recent)}, length=${recent?.length ?? 0}`,
+    );
+  }, [recent]);
 
   const handleRecentClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     const searchValue = event.currentTarget.textContent;

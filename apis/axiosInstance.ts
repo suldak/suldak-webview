@@ -62,6 +62,28 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     const endpoint = response.config.url || "unknown";
     debugLog("success", `API 성공: ${endpoint} (${response.status})`);
+
+    // 응답 데이터 구조 로깅 (디버깅용)
+    try {
+      const data = response.data;
+      if (data) {
+        const hasData = data.data !== undefined;
+        const dataType = hasData
+          ? Array.isArray(data.data)
+            ? "array"
+            : typeof data.data
+          : "undefined";
+        const contentLength =
+          hasData && data.data?.content ? data.data.content.length : "N/A";
+        debugLog(
+          "info",
+          `응답 구조: success=${data.success}, data=${dataType}, content길이=${contentLength}`,
+        );
+      }
+    } catch (e) {
+      // 로깅 실패 시 무시
+    }
+
     return response;
   },
   (error: any) => {
