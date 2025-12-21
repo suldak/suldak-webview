@@ -1,5 +1,11 @@
 import "./globals.css";
 import Provider from "provider";
+import dynamic from "next/dynamic";
+
+// 디버그 패널 (클라이언트 전용, 우측 상단 더블클릭으로 활성화)
+const DebugPanel = dynamic(() => import("components/shared/DebugPanel"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
@@ -33,6 +39,7 @@ export default function RootLayout({
       </head>
       <body className="mx-auto bg-white font-pretendard text-suldak-gray-900">
         <Provider>{children}</Provider>
+        <DebugPanel />
       </body>
     </html>
   );
