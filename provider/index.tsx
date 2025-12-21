@@ -1,4 +1,7 @@
-import QueryProvider from './QueryProvider';
+"use client";
+
+import QueryProvider from "./QueryProvider";
+import ErrorBoundary from "components/shared/ErrorBoundary";
 
 interface Props {
   children?: React.ReactNode;
@@ -12,9 +15,9 @@ interface Props {
  */
 const Provider = ({ children }: Props) => {
   return (
-    <>
+    <ErrorBoundary>
       <QueryProvider>{children}</QueryProvider>
-    </>
+    </ErrorBoundary>
   );
 };
 
