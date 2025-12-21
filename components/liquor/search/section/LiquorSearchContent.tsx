@@ -44,14 +44,14 @@ function LiquorSearchContent({
     searchParams.toString() + `-page-${pageNum}`,
   );
 
-  const totalCount = data?.data.totalElements ?? liquors.length;
+  const totalCount = data?.data?.totalElements ?? liquors.length;
 
   useEffect(() => {
-    if (data) {
+    if (data?.data) {
       if (pageNum === 0) {
-        setLiquors(data.data.content);
+        setLiquors(data.data.content ?? []);
       } else {
-        setLiquors((prev) => [...prev, ...data.data.content]);
+        setLiquors((prev) => [...prev, ...(data.data.content ?? [])]);
       }
       setHasNext(!data.data.last);
       setIsFirstLoading(false);

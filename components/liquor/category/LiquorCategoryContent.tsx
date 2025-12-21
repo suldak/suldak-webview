@@ -57,16 +57,17 @@ function LiquorCategoryContent({
     searchParams.toString() + `-page-${pageNum}`,
   );
 
-  const totalCount = data?.data.totalElements ?? liquors.length;
+  const totalCount = data?.data?.totalElements ?? liquors.length;
 
   useEffect(() => {
-    if (data) {
+    if (data?.data) {
+      const content = data.data.content ?? [];
       if (pageNum === 0) {
-        setLiquors(data.data.content);
+        setLiquors(content);
       } else {
-        setLiquors((prev) => [...prev, ...data.data.content]);
+        setLiquors((prev) => [...prev, ...content]);
       }
-      setHasNext(data.data.content.length === PAGE_SIZE);
+      setHasNext(content.length === PAGE_SIZE);
       setIsFirstLoading(false);
     }
   }, [data, pageNum]);
