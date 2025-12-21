@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getToken } from "app/liquor/utils/tokenStore";
+import { getToken, requestTokenFromFlutter } from "app/liquor/utils/tokenStore";
 
 interface DebugLog {
   timestamp: string;
@@ -175,6 +175,40 @@ function DebugPanel() {
     addDebugLog("info", "로그가 초기화됨");
   };
 
+  // 토큰 초기화 및 재요청
+  const resetToken = () => {
+    try {
+      // 1. localStorage에서 토큰 삭제
+      localStorage.removeItem("authToken");
+      addDebugLog("info", "localStorage 토큰 삭제됨");
+
+      // 2. 메모리 토큰 초기화
+      (window as any).__memoryToken = null;
+      addDebugLog("info", "메모리 토큰 초기화됨");
+
+      // 3. Flutter에 새 토큰 요청
+      addDebugLog("info", "Flutter에 새 토큰 요청 중...");
+      requestTokenFromFlutter();
+
+      // 4. 토큰 정보 업데이트
+      setTimeout(() => {
+        updateTokenInfo();
+        addDebugLog("success", "토큰 초기화 완료 - 새 토큰 대기 중");
+      }, 500);
+    } catch (error) {
+      addDebugLog("error", `토큰 초기화 실패: ${error}`);
+    }
+  };
+
+  // 토큰 초기화 후 페이지 새로고침
+  const resetTokenAndReload = () => {
+    resetToken();
+    setTimeout(() => {
+      addDebugLog("info", "페이지 새로고침 중...");
+      window.location.reload();
+    }, 1000);
+  };
+
   if (!isVisible) return null;
 
   const getLogColor = (type: DebugLog["type"]) => {
@@ -257,7 +291,7 @@ function DebugPanel() {
         </div>
 
         {/* 버튼들 */}
-        <div className="flex gap-2 border-b border-gray-700 p-3">
+        <div className="flex flex-wrap gap-2 border-b border-gray-700 p-3">
           <button
             onClick={updateTokenInfo}
             className="flex-1 rounded bg-blue-600 px-3 py-2 text-xs text-white hover:bg-blue-700"
@@ -274,7 +308,23 @@ function DebugPanel() {
             onClick={clearLogs}
             className="flex-1 rounded bg-gray-600 px-3 py-2 text-xs text-white hover:bg-gray-700"
           >
-            🗑️ 초기화
+            🗑️ 로그삭제
+          </button>
+        </div>
+
+        {/* 토큰 관리 버튼 */}
+        <div className="flex gap-2 border-b border-gray-700 p-3">
+          <button
+            onClick={resetToken}
+            className="flex-1 rounded bg-orange-600 px-3 py-2 text-xs text-white hover:bg-orange-700"
+          >
+            🔑 토큰 초기화
+          </button>
+          <button
+            onClick={resetTokenAndReload}
+            className="flex-1 rounded bg-red-600 px-3 py-2 text-xs text-white hover:bg-red-700"
+          >
+            🔄 초기화 + 새로고침
           </button>
         </div>
 
